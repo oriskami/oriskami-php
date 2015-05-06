@@ -54,7 +54,7 @@ require_once('/path/to/ubivar-php/init.php');
 
 ```php
 \Ubivar\Ubivar::setApiKey('d8e8fca2dc0f896fd7cb4cb0031ba249');
-$charge = \Ubivar\Charge::create(array(
+$tx = \Ubivar\Charge::create(array(
   "user_id"         => "test_phahr3Eit3_123"          // your client's id
 , "user_email"      => "test_phahr3Eit3@gmail-123.com"// your client email
 , "gender"          => "M"                            // your client's gender
@@ -83,7 +83,7 @@ $charge = \Ubivar\Charge::create(array(
 ),"ip_address"      => "1.2.3.4"                      // your client ip address
 , "user_agent"      => "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36"// your client's user agent
 ));
-echo $charge;
+echo $tx;
 ```
 
 ### B. Retrieve routing 
