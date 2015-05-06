@@ -25,7 +25,8 @@ those `transactions` as `fraud`.
 ## Quick Start
 
 Via [Composer](http://getcomposer.org/):
-1. add to your `composer.json`
+
+* add to your `composer.json`
 ```js
 {
   "require": {
@@ -33,18 +34,19 @@ Via [Composer](http://getcomposer.org/):
   }
 }
 ```
-2. run the install script
+* run the install script
 ```
 composer install
 ```
-3. use [autoload](https://getcomposer.org/doc/00-intro.md#autoloading)
+* use [autoload](https://getcomposer.org/doc/00-intro.md#autoloading)
 ```php
 require_once('vendor/autoload.php');
 ```
 
 Manually:
-1. download the [latest release](https://github.com/ubivar/ubivar-php/releases) 
-2. include the `init.php`.
+
+* download the [latest release](https://github.com/ubivar/ubivar-php/releases) 
+* include the `init.php`.
 ```php
 require_once('/path/to/ubivar-php/init.php');
 ```
