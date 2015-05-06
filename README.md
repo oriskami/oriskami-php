@@ -6,16 +6,26 @@
 [![License](https://poser.pugx.org/ubivar/ubivar-php/license.svg)](https://packagist.org/packages/ubivar/ubivar-php)
 [![Code Coverage](https://coveralls.io/repos/ubivar/ubivar-php/badge.png?branch=master)](https://coveralls.io/r/ubivar/ubivar-php?branch=master)
 
-You can sign up for a Ubivar account at https://my.ubivar.com.
 
-## Requirements
+Ubivar is an API that takes over the hassle of screening e-payment for
+frauds. 
 
-PHP 5.3.3 and later.
+Ubivar routes e-commerce transactions given their risk. By default the three
+`routing` outcomes are rejection, manual verification and acceptance. And the two
+elementary resources are the `transactions` and the `labels`.  `Transactions`
+are online sales pushed to your payment gateway and `labels` define the *a
+posteriori* truth about each `transaction`, i.e. {`fraud`, `non-fraud`}. 
 
-## Composer
+Using Ubivar simply requires an access `token`. Then the bindings provide the
+hooks to send and receive resources to the API. For each `transaction` that
+Ubivar receives, it calculates a `routing`. Later, as you review manually some of
+the `transactions` or as you receive fraud notifications, you `label` 
+those `transactions` as `fraud`. 
 
-You can install the bindings via [Composer](http://getcomposer.org/). Add this to your `composer.json`:
+## Quick Start
 
+Via [Composer](http://getcomposer.org/):
+1. add to your `composer.json`
 ```js
 {
   "require": {
@@ -23,30 +33,22 @@ You can install the bindings via [Composer](http://getcomposer.org/). Add this t
   }
 }
 ```
-
-Then install via:
-
+2. run the install script
 ```
 composer install
 ```
-
-To use the bindings, use Composer's [autoload](https://getcomposer.org/doc/00-intro.md#autoloading):
-
+3. use [autoload](https://getcomposer.org/doc/00-intro.md#autoloading)
 ```php
 require_once('vendor/autoload.php');
 ```
 
-## Manual Installation
-
-If you do not wish to use Composer, you can download the [latest release](https://github.com/ubivar/ubivar-php/releases). Then, to use the bindings, include the `init.php` file.
-
+Manually:
+1. download the [latest release](https://github.com/ubivar/ubivar-php/releases) 
+2. include the `init.php`.
 ```php
 require_once('/path/to/ubivar-php/init.php');
 ```
-
-## Getting Started
-
-Simple usage looks like:
+### A. Send transactions
 
 ```php
 \Ubivar\Ubivar::setApiKey('d8e8fca2dc0f896fd7cb4cb0031ba249');
@@ -82,34 +84,78 @@ $charge = \Ubivar\Charge::create(array(
 echo $charge;
 ```
 
-## Documentation
+### B. Retrieve routing 
 
-Please see https://ubivar.com/docs/php for up-to-date documentation.
+### C. Label as fraud
 
-## Legacy Version Support
+## Resources, actions, and arguments 
 
-If you are using PHP 5.2, you can download v1.18.0 ([zip](https://github.com/ubivar/ubivar-php/archive/v1.18.0.zip), [tar.gz](https://github.com/ubivar/ubivar-php/archive/v1.18.0.tar.gz)) from our [releases page](https://github.com/ubivar/ubivar-php/releases). This version will continue to work with new versions of the Ubivar API for all common uses.
+Every resource is accessed via your `ubivar` instance and accepts an optional
+callback as the last argument. In the matrix below we list the resources
+(rows), the actions (columns) and the arguments (cells). The full documentation
+is available at [https://ubivar.com/docs/php](https://ubivar.com/docs/php). 
 
-This legacy version may be included via `require_once("/path/to/ubivar-php/lib/Ubivar.php");`, and used like:
+| Resource      | C | R | U | D | L | Summary | Test Specs |
+| ------------- |:-:|:-:|:-:|:-:|:----:|:-------:|:----------:|
+| Accounts      |<a href="https://ubivar.com/docs/php#create_an_account">`{}`</a>|<a href="https://ubivar.com/docs/php#retrieve_an_account">id</a>  |<a href="https://ubivar.com/docs/php#update_an_account">`{}`</a>|<a href="https://ubivar.com/docs/php#delete_an_account">id</a>|<a href="https://ubivar.com/docs/php#list_accounts">`{}`</a>| | [![](https://status.ubivar.com/ubivar-php/resources/accounts.svg)](https://github.com/ubivar/ubivar-php/blob/master/test/Resources/Accounts/spec.js)|
+| Items         |<a href="https://ubivar.com/docs/php#create_item">`{}`</a>|<a href="https://ubivar.com/docs/php#retrieve_item">id</a>  |<a href="https://ubivar.com/docs/php#update_item">`{}`</a>|<a href="https://ubivar.com/docs/php#delete_item">id</a>|<a href="https://ubivar.com/docs/php#list_items">`{}`</a>| | [![](https://status.ubivar.com/ubivar-php/resources/items.svg)](https://github.com/ubivar/ubivar-php/blob/master/test/Resources/Items/spec.js)| 
+| Labels        |<a href="https://ubivar.com/docs/php#create_label">`{}`</a>|<a href="https://ubivar.com/docs/php#retrieve_label">id</a>  |<a href="https://ubivar.com/docs/php#update_label">`{}`</a>|<a href="https://ubivar.com/docs/php#delete_label">id</a>|<a href="https://ubivar.com/docs/php#list_labels">`{}`</a>| | [![](https://status.ubivar.com/ubivar-php/resources/labels.svg)](https://github.com/ubivar/ubivar-php/blob/master/test/Resources/Labels/spec.js) | 
+| Login         |<a href="https://ubivar.com/docs/php#create_login_event">`{}`</a>|<a href="https://ubivar.com/docs/php#retrieve_login_event">id</a>  |        |<a href="https://ubivar.com/docs/php#delete_login_event">id</a>|<a href="https://ubivar.com/docs/php#list_login_events">`{}`</a>| | [![](https://status.ubivar.com/ubivar-php/resources/login.svg)](https://github.com/ubivar/ubivar-php/blob/master/test/Resources/Login/spec.js)| 
+| Logout        |<a href="https://ubivar.com/docs/php#create_logout_event">`{}`</a>|<a href="https://ubivar.com/docs/php#retrieve_logout_event">id</a>  |        |<a href="https://ubivar.com/docs/php#delete_logout_event">id</a>|<a href="https://ubivar.com/docs/php#list_logout_events">`{}`</a>| |  [![](https://status.ubivar.com/ubivar-php/resources/logout.svg)](https://github.com/ubivar/ubivar-php/blob/master/test/Resources/Logout/spec.js)| 
+| Me            |        |<a href="https://ubivar.com/docs/php#retrieve_your_information">_</a>  |<a href="https://ubivar.com/docs/php#retrieve_your_information">`{}`</a>|        |        | | [![](https://status.ubivar.com/ubivar-php/resources/me.svg)](https://github.com/ubivar/ubivar-php/blob/master/test/Resources/Me/spec.js) |
+| Routing | | <a href="https://ubivar.com/docs/php#retrieve_a_routing">id</a>  |<a href="https://ubivar.com/docs/php#update_a_routing">`{}`</a>| |<a href="https://ubivar.com/docs/php#list_routing">`{}`</a>| | [![](https://status.ubivar.com/ubivar-php/resources/routing.svg)](https://github.com/ubivar/ubivar-php/blob/master/test/Resources/Routing/spec.js)| 
+| Transactions  |<a href="https://ubivar.com/docs/php#create_a_transaction">`{}`</a>| <a href="https://ubivar.com/docs/php#retrieve_a_transaction">id</a>  |<a href="https://ubivar.com/docs/php#update_a_transaction">`{}`</a>|<a href="https://ubivar.com/docs/php#delete_a_transaction">id</a>|<a href="https://ubivar.com/docs/php#list_transactions">`{}`</a>| | [![](https://status.ubivar.com/ubivar-php/resources/transactions.svg)](https://github.com/ubivar/ubivar-php/blob/master/test/Resources/Transactions/spec.js)| 
 
++ *C*: Create
++ *R*: Retrieve
++ *U*: Update
++ *D*: Delete
++ *L*: List
++ `{}`: JSON with query parameters
+
+## Filter parameters
+
+| Filter        | Default | Example             | Description                   |
+| ------------- |:-------:|:--------------------|:------------------------------|
+| `start_after` |         | `array("start_after"=>10)`| `id` after the one specified  |
+| `end_before`  |         | `array("end_before"=>10)` | `id` before the one specified |
+| `limit`       | `10`    | `array("limit"=>10)`      | At most `10` returned results |
+| `gt`          |         | `array("id"=>array("gt"=>10))`  | `id` greater than 10          |
+| `gte`         |         | `array("id"=>array("gte"=>10))` | `id` greater than or equal    |
+| `lt`          |         | `array("id"=>array("lt"=>10))`  | `id` less than                |
+| `lte`         |         | `array("id"=>array("lte"=>10))` | `id` less than or equal       |
+
+## Configuration
+
+Change API access token dynamically:
 ```php
 Ubivar::setApiKey('d8e8fca2dc0f896fd7cb4cb0031ba249');
-$myCard = array('number' => '4242424242424242', 'exp_month' => 5, 'exp_year' => 2015);
-$charge = Ubivar_Charge::create(array('card' => $myCard, 'amount' => 2000, 'currency' => 'usd'));
-echo $charge;
 ```
 
-## Tests
 
-In order to run tests first install [PHPUnit](http://packagist.org/packages/phpunit/phpunit) via [Composer](http://getcomposer.org/):
+## Requirements
 
-```
+- You can sign up for a Ubivar account at https://my.ubivar.com.
+- PHP 5.3.3 and later.
+- If you are using PHP 5.2, you can download v1.18.0 ([zip](https://github.com/ubivar/ubivar-php/archive/v1.18.0.zip), [tar.gz](https://github.com/ubivar/ubivar-php/archive/v1.18.0.tar.gz)) from our [releases page](https://github.com/ubivar/ubivar-php/releases). This version will continue to work with new versions of the Ubivar API for all common uses. This legacy version may be included via `require_once("/path/to/ubivar-php/lib/Ubivar.php");`, and used like:
+
+## Development
+
+To run the tests, you will need a Ubivar test API key (from your [Ubivar dashboard](https://my.ubivar.com))
+
+
+To run tests, first install [PHPUnit](http://packagist.org/packages/phpunit/phpunit) via [Composer](http://getcomposer.org/):
+```php
 composer update --dev
 ```
-
-To run the test suite:
+and run the test suite:
 
 ```php
 ./vendor/bin/phpunit
 ```
 
+### [Issues and feature requests](https://github.com/ubivar/ubivar-php/issues)
+
+## Author
+
+Originally inspired from [stripe-php](https://github.com/stripe/stripe-php). Developed and maintained by [Fabrice Colas](https://fabricecolas.me) ([fabrice.colas@gmail.com](mailto:fabrice.colas@gmail.com)) for [Ubivar](https://ubivar.com). 
