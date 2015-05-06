@@ -139,12 +139,10 @@ Ubivar::setApiKey('d8e8fca2dc0f896fd7cb4cb0031ba249');
 
 - You can sign up for a Ubivar account at https://my.ubivar.com.
 - PHP 5.3.3 and later.
-- If you are using PHP 5.2, you can download v1.18.0 ([zip](https://github.com/ubivar/ubivar-php/archive/v1.18.0.zip), [tar.gz](https://github.com/ubivar/ubivar-php/archive/v1.18.0.tar.gz)) from our [releases page](https://github.com/ubivar/ubivar-php/releases). This version will continue to work with new versions of the Ubivar API for all common uses. This legacy version may be included via `require_once("/path/to/ubivar-php/lib/Ubivar.php");`, and used like:
 
 ## Development
 
 To run the tests, you will need a Ubivar test API key (from your [Ubivar dashboard](https://my.ubivar.com))
-
 
 To run tests, first install [PHPUnit](http://packagist.org/packages/phpunit/phpunit) via [Composer](http://getcomposer.org/):
 ```php
@@ -156,7 +154,7 @@ and run the test suite:
 ./vendor/bin/phpunit
 ```
 
-### [Issues and feature requests](https://github.com/ubivar/ubivar-php/issues)
+To report issues: [issues and feature requests](https://github.com/ubivar/ubivar-php/issues)
 
 ## Author
 
