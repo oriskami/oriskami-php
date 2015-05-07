@@ -129,27 +129,16 @@ is available at [https://ubivar.com/docs/php](https://ubivar.com/docs/php).
 
 ## Configuration
 
-Change API access token dynamically:
+- Require PHP 5.3.3 and later.
+- Sign up for an account and get an API key at [https://my.ubivar.com](https://my.ubivar.com).
+- Set the API access token:
 ```php
 Ubivar::setApiKey('d8e8fca2dc0f896fd7cb4cb0031ba249');
 ```
 
-
-## Requirements
-
-- You can sign up for a Ubivar account at https://my.ubivar.com.
-- PHP 5.3.3 and later.
-
 ## Development
 
-To run the tests, you will need a Ubivar test API key (from your [Ubivar dashboard](https://my.ubivar.com))
-
-To run tests, first install [PHPUnit](http://packagist.org/packages/phpunit/phpunit) via [Composer](http://getcomposer.org/):
-```php
-composer update 
-```
-and run the test suite:
-
+To run the test suite:
 ```php
 ./vendor/bin/phpunit
 ```
