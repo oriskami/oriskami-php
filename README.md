@@ -146,7 +146,7 @@ is available at [https://ubivar.com/docs/php](https://ubivar.com/docs/php).
 - Sign up for an account and get an API key at [https://my.ubivar.com](https://my.ubivar.com).
 - Set the API access token:
 ```php
-Ubivar::setApiKey('d8e8fca2dc0f896fd7cb4cb0031ba249');
+\Ubivar\Ubivar::setApiKey('d8e8fca2dc0f896fd7cb4cb0031ba249');
 ```
 
 ## Development
