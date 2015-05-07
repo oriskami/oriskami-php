@@ -54,7 +54,7 @@ require_once('/path/to/ubivar-php/init.php');
 
 ```php
 \Ubivar\Ubivar::setApiKey('d8e8fca2dc0f896fd7cb4cb0031ba249');
-$tx                 = \Ubivar\Charge::create(array(
+$tx                 = \Ubivar\Transaction::create(array(
   "user_id"         => "test_phahr3Eit3_123"          // your client's id
 , "user_email"      => "test_phahr3Eit3@gmail-123.com"// your client email
 , "gender"          => "M"                            // your client's gender
