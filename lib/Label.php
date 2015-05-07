@@ -2,13 +2,13 @@
 
 namespace Ubivar;
 
-class Routings extends ApiResource
+class Label extends ApiResource
 {
     /**
      * @param array|null $params
      * @param array|string|null $opts
      *
-     * @return Routings The created routing.
+     * @return Label The created transaction.
      */
     public static function create($params = null, $opts = null)
     {
@@ -16,10 +16,10 @@ class Routings extends ApiResource
     }
 
     /**
-     * @param string $id The ID of the routing to retrieve.
+     * @param string $id The ID of the transaction to retrieve.
      * @param array|string|null $opts
      *
-     * @return Routings
+     * @return Label
      */
     public static function retrieve($id, $opts = null)
     {
@@ -29,7 +29,7 @@ class Routings extends ApiResource
     /**
      * @param array|string|null $opts
      *
-     * @return Routings The saved routing.
+     * @return Label The saved transaction.
      */
     public function save($opts = null)
     {
@@ -40,7 +40,7 @@ class Routings extends ApiResource
      * @param array|null $params
      * @param array|string|null $opts
      *
-     * @return Routings The deleted routing.
+     * @return Label The deleted transaction.
      */
     public function delete($params = null, $opts = null)
     {
@@ -51,7 +51,7 @@ class Routings extends ApiResource
      * @param array|null $params
      * @param array|string|null $opts
      *
-     * @return Routings[]
+     * @return Label[]
      */
     public static function all($params = null, $opts = null)
     {
