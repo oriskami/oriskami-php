@@ -146,7 +146,7 @@ To run the tests, you will need a Ubivar test API key (from your [Ubivar dashboa
 
 To run tests, first install [PHPUnit](http://packagist.org/packages/phpunit/phpunit) via [Composer](http://getcomposer.org/):
 ```php
-composer update --dev
+composer update 
 ```
 and run the test suite:
 
