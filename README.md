@@ -54,7 +54,7 @@ require_once('/path/to/ubivar-php/init.php');
 
 ```php
 \Ubivar\Ubivar::setApiKey('d8e8fca2dc0f896fd7cb4cb0031ba249');
-$tx = \Ubivar\Charge::create(array(
+$tx                 = \Ubivar\Charge::create(array(
   "user_id"         => "test_phahr3Eit3_123"          // your client's id
 , "user_email"      => "test_phahr3Eit3@gmail-123.com"// your client email
 , "gender"          => "M"                            // your client's gender
@@ -88,7 +88,20 @@ echo $tx;
 
 ### B. Retrieve routing 
 
+```php
+$routing            = \Ubivar\Routing::retrieve($tx->id)
+echo $routing;
+```
+
 ### C. Label as fraud
+
+```php
+$label              = \Ubivar\Label::save(array(
+  "id"              => $tx->id
+, "status"          => "is_fraud"
+))
+echo $label;
+```
 
 ## Resources, actions, and arguments 
 
