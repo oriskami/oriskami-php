@@ -24,32 +24,24 @@ those `transactions` as `fraud`.
 
 ## Quick Start
 
-Via [Composer](http://getcomposer.org/):
+Via [Composer](http://getcomposer.org/). Add to your `composer.json` the following, and run `composer install`
 
-* add to your `composer.json`
 ```js
-{
+{ /* composer.json */
   "require": {
     "ubivar/ubivar-php": "0.*"
   }
 }
 ```
-* run the install script
-```
-composer install
-```
-* use [autoload](https://getcomposer.org/doc/00-intro.md#autoloading)
+Using [autoload](https://getcomposer.org/doc/00-intro.md#autoloading):
 ```php
 require_once('vendor/autoload.php');
 ```
-
-Manually:
-
-* download the [latest release](https://github.com/ubivar/ubivar-php/releases) 
-* include the `init.php`.
+And manually, download the [latest release](https://github.com/ubivar/ubivar-php/releases) and include the `init.php`.
 ```php
 require_once('/path/to/ubivar-php/init.php');
 ```
+
 ### A. Send transactions
 
 ```php
