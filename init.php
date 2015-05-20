@@ -24,10 +24,13 @@ require(dirname(__FILE__) . '/lib/SingletonApiResource.php');
 require(dirname(__FILE__) . '/lib/AttachedObject.php');
 
 // Ubivar API Resources
-require(dirname(__FILE__) . '/lib/Resources/Accounts.php');
-require(dirname(__FILE__) . '/lib/Resources/Transactions.php');
-require(dirname(__FILE__) . '/lib/Resources/Routing.php');
-require(dirname(__FILE__) . '/lib/Resources/Labels.php');
-require(dirname(__FILE__) . '/lib/Resources/Login.php');
-require(dirname(__FILE__) . '/lib/Resources/Logout.php');
-require(dirname(__FILE__) . '/lib/Resources/Me.php');
+require(dirname(__FILE__) . '/lib/Account.php');
+require(dirname(__FILE__) . '/lib/Login.php');
+require(dirname(__FILE__) . '/lib/Logout.php');
+require(dirname(__FILE__) . '/lib/Order.php');
+require(dirname(__FILE__) . '/lib/Transaction.php');
+require(dirname(__FILE__) . '/lib/Routing.php');
+require(dirname(__FILE__) . '/lib/Label.php');
+
+require(dirname(__FILE__) . '/lib/Item.php');
+require(dirname(__FILE__) . '/lib/Me.php');

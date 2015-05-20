@@ -1,23 +1,18 @@
 <?php
 
-namespace Stripe;
+namespace Ubivar;
 
 /**
- * Base class for Stripe test cases, provides some utility methods for creating
+ * Base class for Ubivar test cases, provides some utility methods for creating
  * objects.
  */
 class TestCase extends \PHPUnit_Framework_TestCase
 {
-    const API_KEY = 'tGN0bIwXnHdwOa85VABjPdSn8nWY7G7I';
-
     protected static function authorizeFromEnv()
     {
-        $apiKey = getenv('STRIPE_API_KEY');
-        if (!$apiKey) {
-            $apiKey = self::API_KEY;
-        }
+        $apiKey = getenv("UBIVAR_TEST_TOKEN");
 
-        Stripe::setApiKey($apiKey);
+        Ubivar::setApiKey($apiKey);
     }
 
     /**
@@ -56,24 +51,6 @@ class TestCase extends \PHPUnit_Framework_TestCase
                 'currency' => 'usd',
                 'description' => 'Transfer to test@example.com',
                 'recipient' => $recipient->id
-            )
-        );
-    }
-
-    /**
-     * Create a valid test customer.
-     */
-    protected static function createTestCustomer(array $attributes = array())
-    {
-        self::authorizeFromEnv();
-
-        return Customer::create(
-            $attributes + array(
-                'card' => array(
-                    'number' => '4242424242424242',
-                    'exp_month' => 5,
-                    'exp_year' => date('Y') + 3,
-                ),
             )
         );
     }

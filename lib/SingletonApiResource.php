@@ -18,7 +18,7 @@ abstract class SingletonApiResource extends ApiResource
     public static function classUrl()
     {
         $base = static::className();
-        return "/v1/${base}";
+        return "/${base}";
     }
 
     /**

@@ -2,13 +2,13 @@
 
 namespace Ubivar;
 
-class Label extends ApiResource
+class Order extends ApiResource
 {
     /**
-     * @param string $id The ID of the label to retrieve.
+     * @param string $id The ID of the order to retrieve.
      * @param array|string|null $opts
      *
-     * @return Label
+     * @return Order
      */
     public static function retrieve($id, $opts = null)
     {
@@ -19,7 +19,7 @@ class Label extends ApiResource
      * @param array|null $params
      * @param array|string|null $opts
      *
-     * @return array An array of Labels.
+     * @return array An array of Orders.
      */
     public static function all($params = null, $opts = null)
     {
@@ -30,7 +30,7 @@ class Label extends ApiResource
      * @param array|null $params
      * @param array|string|null $opts
      *
-     * @return Label The created label.
+     * @return Order The created order.
      */
     public static function create($params = null, $opts = null)
     {
@@ -40,7 +40,7 @@ class Label extends ApiResource
     /**
      * @param array|string|null $opts
      *
-     * @return Label The saved label.
+     * @return Order The saved order.
      */
     public function save($opts = null)
     {
@@ -51,7 +51,7 @@ class Label extends ApiResource
      * @param array|null $params
      * @param array|string|null $opts
      *
-     * @return Label The deleted label.
+     * @return Order The deleted order.
      */
     public function delete($params = null, $opts = null)
     {

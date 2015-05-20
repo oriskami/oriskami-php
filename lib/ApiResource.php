@@ -59,7 +59,7 @@ abstract class ApiResource extends Object
     public static function classUrl()
     {
         $base = static::className();
-        return "/v1/${base}s";
+        return "/${base}s";
     }
 
     /**
