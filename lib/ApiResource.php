@@ -135,6 +135,7 @@ abstract class ApiResource extends Object
         $url = static::classUrl();
 
         list($response, $opts) = static::_staticRequest('post', $url, $params, $options);
+        fwrite(STDOUT, __METHOD__ . print_r($response, true));
         return Util\Util::convertToUbivarObject($response, $opts);
     }
 

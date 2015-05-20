@@ -96,14 +96,15 @@ class ApiRequestor
      */
     public function request($method, $url, $params = null, $headers = null)
     {
+
         if (!$params) {
             $params = array();
         }
         if (!$headers) {
             $headers = array();
         }
-        list($rbody, $rcode, $myApiKey) =
-        $this->_requestRaw($method, $url, $params, $headers);
+
+        list($rbody, $rcode, $myApiKey) = $this->_requestRaw($method, $url, $params, $headers);
         $resp = $this->_interpretResponse($rbody, $rcode);
         return array($resp, $myApiKey);
     }
@@ -149,6 +150,7 @@ class ApiRequestor
 
     private function _requestRaw($method, $url, $params, $headers)
     {
+
         $myApiKey = $this->_apiKey;
         if (!$myApiKey) {
             $myApiKey = Ubivar::$apiKey;
@@ -163,7 +165,8 @@ class ApiRequestor
         }
 
         $absUrl       = $this->_apiBase.$url;
-        $params       = self::_encodeObjects($params);
+        $params       = json_encode($params);
+        // $params       = self::_encodeObjects($params);
         $langVersion  = phpversion();
         $uname        = php_uname();
         $ua           = array(
@@ -183,6 +186,7 @@ class ApiRequestor
         }
         $hasFile      = false;
         $hasCurlFile  = class_exists('\CURLFile', false);
+        /*
         foreach ($params as $k => $v) {
             if (is_resource($v)) {
                 $hasFile = true;
@@ -191,12 +195,12 @@ class ApiRequestor
                 $hasFile = true;
             }
         }
-
         if ($hasFile) {
             $defaultHeaders['Content-Type'] = 'multipart/form-data';
         } else {
             $defaultHeaders['Content-Type'] = 'application/x-www-form-urlencoded';
-        }
+        } */
+        $defaultHeaders['Content-Type'] = 'application/json';
 
         $combinedHeaders = array_merge($defaultHeaders, $headers);
         $rawHeaders = array();
@@ -212,6 +216,7 @@ class ApiRequestor
             $params,
             $hasFile
         );
+
         return array($rbody, $rcode, $myApiKey);
     }
 
@@ -260,36 +265,23 @@ class ApiRequestor
         $method = strtolower($method);
         $opts = array();
         if ($method == 'get') {
-            if ($hasFile) {
-                throw new Error\Api(
-                    "Issuing a GET request with a file parameter"
-                );
-            }
             $opts[CURLOPT_HTTPGET] = 1;
-            if (count($params) > 0) {
-                $encoded = self::encode($params);
-                $absUrl = "$absUrl?$encoded";
-            }
         } elseif ($method == 'post') {
             $opts[CURLOPT_POST] = 1;
-            $opts[CURLOPT_POSTFIELDS] = $hasFile ? $params : self::encode($params);
         } elseif ($method == 'delete') {
             $opts[CURLOPT_CUSTOMREQUEST] = 'DELETE';
-            if (count($params) > 0) {
-                $encoded = self::encode($params);
-                $absUrl = "$absUrl?$encoded";
-            }
         } else {
             throw new Error\Api("Unrecognized method $method");
         }
 
-        $absUrl = self::utf8($absUrl);
-        $opts[CURLOPT_URL] = $absUrl;
-        $opts[CURLOPT_RETURNTRANSFER] = true;
+        $opts[CURLOPT_POSTFIELDS]     = $params; 
+        $opts[CURLOPT_URL]            = $absUrl;
         $opts[CURLOPT_CONNECTTIMEOUT] = 30;
-        $opts[CURLOPT_TIMEOUT] = 80;
+        $opts[CURLOPT_TIMEOUT]        = 80;
         $opts[CURLOPT_RETURNTRANSFER] = true;
-        $opts[CURLOPT_HTTPHEADER] = $headers;
+        $opts[CURLOPT_HTTPHEADER]     = $headers;
+        $opts[CURLOPT_VERBOSE]        = true;
+
         if (!Ubivar::$verifySslCerts) {
             $opts[CURLOPT_SSL_VERIFYPEER] = false;
         }

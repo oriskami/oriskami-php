@@ -62,27 +62,19 @@ abstract class Util
     public static function convertToUbivarObject($resp, $opts)
     {
         $types = array(
-            'account' => 'Ubivar\\Account',
-            'card' => 'Ubivar\\Card',
-            'charge' => 'Ubivar\\Charge',
-            'coupon' => 'Ubivar\\Coupon',
-            'customer' => 'Ubivar\\Customer',
-            'list' => 'Ubivar\\Collection',
-            'invoice' => 'Ubivar\\Invoice',
-            'invoiceitem' => 'Ubivar\\InvoiceItem',
-            'event' => 'Ubivar\\Event',
-            'file' => 'Ubivar\\FileUpload',
-            'token' => 'Ubivar\\Token',
-            'transfer' => 'Ubivar\\Transfer',
-            'plan' => 'Ubivar\\Plan',
-            'recipient' => 'Ubivar\\Recipient',
-            'refund' => 'Ubivar\\Refund',
-            'subscription' => 'Ubivar\\Subscription',
-            'fee_refund' => 'Ubivar\\ApplicationFeeRefund',
-            'bitcoin_receiver' => 'Ubivar\\BitcoinReceiver',
-            'bitcoin_transaction' => 'Ubivar\\BitcoinTransaction',
+            'me'          => 'Ubivar\\Me',
+            'account'     => 'Ubivar\\Account',
+            'login'       => 'Ubivar\\Login',
+            'logout'      => 'Ubivar\\Logout',
+            'items'       => 'Ubivar\\Item',
+            'orders'      => 'Ubivar\\Order',
+            'transactions'=> 'Ubivar\\Transaction',
+            'routing'     => 'Ubivar\\Routing',
+            'labels'      => 'Ubivar\\Label',
         );
-        if (self::isList($resp)) {
+        if($resp->status === "200" && !!$resp->data){
+          return self::convertToUbivarObject($resp->data, $opts);
+        } elseif (self::isList($resp)) {
             $mapped = array();
             foreach ($resp as $i) {
                 array_push($mapped, self::convertToUbivarObject($i, $opts));
