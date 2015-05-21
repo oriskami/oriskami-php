@@ -28,7 +28,7 @@ Using [Composer](http://getcomposer.org/), add to your `composer.json` the follo
 ```js
 { /* composer.json */
   "require": {
-    "ubivar/ubivar-php": "0.*"
+    "ubivar/ubivar-php": "1.*"
   }
 }
 ```
@@ -110,7 +110,7 @@ is available at [https://ubivar.com/docs/php](https://ubivar.com/docs/php).
 | Items         |<a href="https://ubivar.com/docs/php#create_item">`{}`</a>|<a href="https://ubivar.com/docs/php#retrieve_item">id</a>  |<a href="https://ubivar.com/docs/php#update_item">`{}`</a>|<a href="https://ubivar.com/docs/php#delete_item">id</a>|<a href="https://ubivar.com/docs/php#list_items">`{}`</a>| | [![](https://status.ubivar.com/ubivar-php/resources/items.svg)](https://github.com/ubivar/ubivar-php/blob/master/test/Items/spec.js)| 
 | Orders         |<a href="https://ubivar.com/docs/php#create_item">`{}`</a>|<a href="https://ubivar.com/docs/php#retrieve_item">id</a>  |<a href="https://ubivar.com/docs/php#update_item">`{}`</a>|<a href="https://ubivar.com/docs/php#delete_item">id</a>|<a href="https://ubivar.com/docs/php#list_orders">`{}`</a>| | [![](https://status.ubivar.com/ubivar-php/resources/orders.svg)](https://github.com/ubivar/ubivar-php/blob/master/test/Orders/spec.js)| 
 | Transactions  |<a href="https://ubivar.com/docs/php#create_a_transaction">`{}`</a>| <a href="https://ubivar.com/docs/php#retrieve_a_transaction">id</a>  |<a href="https://ubivar.com/docs/php#update_a_transaction">`{}`</a>|<a href="https://ubivar.com/docs/php#delete_a_transaction">id</a>|<a href="https://ubivar.com/docs/php#list_transactions">`{}`</a>| | [![](https://status.ubivar.com/ubivar-php/resources/transactions.svg)](https://github.com/ubivar/ubivar-php/blob/master/test/Transactions/spec.js)| 
-| Routing | | <a href="https://ubivar.com/docs/php#retrieve_a_routing">id</a>  |<a href="https://ubivar.com/docs/php#update_a_routing">`{}`</a>| |<a href="https://ubivar.com/docs/php#list_routing">`{}`</a>| | [![](https://status.ubivar.com/ubivar-php/resources/routing.svg)](https://github.com/ubivar/ubivar-php/blob/master/test/Routing/spec.js)| 
+| Routing | | <a href="https://ubivar.com/docs/php#retrieve_a_routing">id</a>  | | |<a href="https://ubivar.com/docs/php#list_routing">`{}`</a>| | [![](https://status.ubivar.com/ubivar-php/resources/routing.svg)](https://github.com/ubivar/ubivar-php/blob/master/test/Routing/spec.js)| 
 | Labels        |<a href="https://ubivar.com/docs/php#create_label">`{}`</a>|<a href="https://ubivar.com/docs/php#retrieve_label">id</a>  |<a href="https://ubivar.com/docs/php#update_label">`{}`</a>|<a href="https://ubivar.com/docs/php#delete_label">id</a>|<a href="https://ubivar.com/docs/php#list_labels">`{}`</a>| | [![](https://status.ubivar.com/ubivar-php/resources/labels.svg)](https://github.com/ubivar/ubivar-php/blob/master/test/Labels/spec.js) | 
 
 + *C*: Create

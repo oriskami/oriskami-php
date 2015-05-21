@@ -246,14 +246,14 @@ class ApiRequestor
 
     private function _curlRequest($method, $absUrl, $headers, $params, $hasFile)
     {
-        $curl       = curl_init();
-        $method     = strtolower($method);
-        $opts       = array();
+        $curl                         = curl_init();
+        $method                       = strtolower($method);
+        $opts                         = array();
         if ($method == 'get') {
-            $opts[CURLOPT_HTTPGET] = 1;
+            $opts[CURLOPT_HTTPGET]    = 1;
         } elseif ($method == 'post') {
             $opts[CURLOPT_POSTFIELDS] = $params; 
-            $opts[CURLOPT_POST] = 1;
+            $opts[CURLOPT_POST]       = 1;
         } elseif ($method == 'delete') {
             $opts[CURLOPT_CUSTOMREQUEST] = 'DELETE';
         } else {
@@ -273,7 +273,6 @@ class ApiRequestor
 
         curl_setopt_array($curl, $opts);
         $rbody      = curl_exec($curl);
-        //fwrite(STDOUT, "\n".__METHOD__." ".$rbody);
 
         if (!defined('CURLE_SSL_CACERT_BADFILE')) {
             define('CURLE_SSL_CACERT_BADFILE', 77);  // constant not defined in PHP
@@ -302,6 +301,12 @@ class ApiRequestor
         }
 
         $rcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+        if($rcode === 404){
+            fwrite(STDOUT, "\n* ".__METHOD__);
+            fwrite(STDOUT, "\n*\t".$rcode);
+            fwrite(STDOUT, "\n*\t".$rbody);
+        }
+        //fwrite(STDOUT, "\n".__METHOD__ . " " . print_r($rbody, true));
         curl_close($curl);
         return array($rbody, $rcode);
     }

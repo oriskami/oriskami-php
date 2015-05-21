@@ -61,8 +61,13 @@ abstract class ApiResource extends Object
      */
     public static function classUrl()
     {
-        $base = static::className();
-        return "/${base}s";
+        $base               = static::className();
+        $noPluralResources  = array("login","logout","routing"); 
+        if(in_array($base, $noPluralResources)){
+            return "/${base}";
+        } else {
+            return "/${base}s";
+        }
     }
 
     /**
