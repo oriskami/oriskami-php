@@ -185,21 +185,6 @@ class ApiRequestor
             $defaultHeaders['Ubivar-Version'] = Ubivar::$apiVersion;
         }
         $hasFile      = false;
-        $hasCurlFile  = class_exists('\CURLFile', false);
-        /*
-        foreach ($params as $k => $v) {
-            if (is_resource($v)) {
-                $hasFile = true;
-                $params[$k] = self::_processResourceParam($v, $hasCurlFile);
-            } elseif ($hasCurlFile && $v instanceof \CURLFile) {
-                $hasFile = true;
-            }
-        }
-        if ($hasFile) {
-            $defaultHeaders['Content-Type'] = 'multipart/form-data';
-        } else {
-            $defaultHeaders['Content-Type'] = 'application/x-www-form-urlencoded';
-        } */
         $defaultHeaders['Content-Type'] = 'application/json';
 
         $combinedHeaders = array_merge($defaultHeaders, $headers);
@@ -210,11 +195,11 @@ class ApiRequestor
         }
 
         list($rbody, $rcode) = $this->_curlRequest(
-            $method,
-            $absUrl,
-            $rawHeaders,
-            $params,
-            $hasFile
+            $method
+          , $absUrl
+          , $rawHeaders
+          , $params
+          , $hasFile
         );
 
         return array($rbody, $rcode, $myApiKey);
@@ -261,12 +246,13 @@ class ApiRequestor
 
     private function _curlRequest($method, $absUrl, $headers, $params, $hasFile)
     {
-        $curl = curl_init();
-        $method = strtolower($method);
-        $opts = array();
+        $curl       = curl_init();
+        $method     = strtolower($method);
+        $opts       = array();
         if ($method == 'get') {
             $opts[CURLOPT_HTTPGET] = 1;
         } elseif ($method == 'post') {
+            $opts[CURLOPT_POSTFIELDS] = $params; 
             $opts[CURLOPT_POST] = 1;
         } elseif ($method == 'delete') {
             $opts[CURLOPT_CUSTOMREQUEST] = 'DELETE';
@@ -274,20 +260,20 @@ class ApiRequestor
             throw new Error\Api("Unrecognized method $method");
         }
 
-        $opts[CURLOPT_POSTFIELDS]     = $params; 
         $opts[CURLOPT_URL]            = $absUrl;
         $opts[CURLOPT_CONNECTTIMEOUT] = 30;
         $opts[CURLOPT_TIMEOUT]        = 80;
         $opts[CURLOPT_RETURNTRANSFER] = true;
         $opts[CURLOPT_HTTPHEADER]     = $headers;
-        $opts[CURLOPT_VERBOSE]        = true;
+        $opts[CURLOPT_VERBOSE]        = false;
 
         if (!Ubivar::$verifySslCerts) {
             $opts[CURLOPT_SSL_VERIFYPEER] = false;
         }
 
         curl_setopt_array($curl, $opts);
-        $rbody = curl_exec($curl);
+        $rbody      = curl_exec($curl);
+        //fwrite(STDOUT, "\n".__METHOD__." ".$rbody);
 
         if (!defined('CURLE_SSL_CACERT_BADFILE')) {
             define('CURLE_SSL_CACERT_BADFILE', 77);  // constant not defined in PHP

@@ -4,7 +4,9 @@ namespace Ubivar;
 
 abstract class ApiResource extends Object
 {
-    private static $HEADERS_TO_PERSIST = array('Ubivar-Account' => true, 'Ubivar-Version' => true);
+    private static $HEADERS_TO_PERSIST = array(
+      'Ubivar-Account' => true
+    , 'Ubivar-Version' => true);
 
     public static function baseUrl()
     {
@@ -16,15 +18,16 @@ abstract class ApiResource extends Object
      */
     public function refresh()
     {
-        $requestor = new ApiRequestor($this->_opts->apiKey, static::baseUrl());
-        $url = $this->instanceUrl();
+        $requestor    = new ApiRequestor($this->_opts->apiKey, static::baseUrl());
+        $url          = $this->instanceUrl();
 
         list($response, $this->_opts->apiKey) = $requestor->request(
-            'get',
-            $url,
-            $this->_retrieveOptions,
-            $this->_opts->headers
+            'get'
+          , $url
+          , $this->_retrieveOptions
+          , $this->_opts->headers
         );
+
         $this->refreshFrom($response, $this->_opts);
         return $this;
     }
@@ -83,11 +86,7 @@ abstract class ApiResource extends Object
     private static function _validateParams($params = null)
     {
         if ($params && !is_array($params)) {
-            $message = "You must pass an array as the first argument to Ubivar API "
-               . "method calls.  (HINT: an example call to create a charge "
-               . "would be: \"Ubivar\\Charge::create(array('amount' => 100, "
-               . "'currency' => 'usd', 'card' => array('number' => "
-               . "4242424242424242, 'exp_month' => 5, 'exp_year' => 2015)))\")";
+            $message = "Ubivar API method calls receive an array as first argument.";
             throw new Error\Api($message);
         }
     }
@@ -113,10 +112,12 @@ abstract class ApiResource extends Object
 
     protected static function _retrieve($id, $options = null)
     {
-        $opts = Util\RequestOptions::parse($options);
-        $instance = new static($id, $opts);
-        $instance->refresh();
-        return $instance;
+        self::_validateParams($params);
+        $base = static::baseUrl();
+        $url = static::classUrl()."/".$id;
+
+        list($response, $opts) = static::_staticRequest('get', $url, $params, $options);
+        return Util\Util::convertToUbivarObject($response, $opts)[0];
     }
 
     protected static function _all($params = null, $options = null)
@@ -135,19 +136,16 @@ abstract class ApiResource extends Object
         $url = static::classUrl();
 
         list($response, $opts) = static::_staticRequest('post', $url, $params, $options);
-        fwrite(STDOUT, __METHOD__ . print_r($response, true));
-        return Util\Util::convertToUbivarObject($response, $opts);
+        return Util\Util::convertToUbivarObject($response, $opts)[0];
     }
 
     protected function _save($options = null)
     {
-        $params = $this->serializeParameters();
-        if (count($params) > 0) {
-            $url = $this->instanceUrl();
-            list($response, $opts) = $this->_request('post', $url, $params, $options);
-            $this->refreshFrom($response, $opts);
-        }
-        return $this;
+        $params = $this->_values;
+        $url = $this->instanceUrl();
+
+        list($response, $opts) = $this->_request('post', $url, $params, $options);
+        return Util\Util::convertToUbivarObject($response, $opts)[0];
     }
 
     protected function _delete($params = null, $options = null)

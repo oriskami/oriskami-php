@@ -61,34 +61,29 @@ abstract class Util
      */
     public static function convertToUbivarObject($resp, $opts)
     {
-        $types = array(
-            'me'          => 'Ubivar\\Me',
-            'account'     => 'Ubivar\\Account',
-            'login'       => 'Ubivar\\Login',
-            'logout'      => 'Ubivar\\Logout',
-            'items'       => 'Ubivar\\Item',
-            'orders'      => 'Ubivar\\Order',
-            'transactions'=> 'Ubivar\\Transaction',
-            'routing'     => 'Ubivar\\Routing',
-            'labels'      => 'Ubivar\\Label',
-        );
-        if($resp->status === "200" && !!$resp->data){
-          return self::convertToUbivarObject($resp->data, $opts);
-        } elseif (self::isList($resp)) {
-            $mapped = array();
-            foreach ($resp as $i) {
-                array_push($mapped, self::convertToUbivarObject($i, $opts));
+        if(isset($resp["object"])){
+            $types = array(
+                'me'          => 'Ubivar\\Me',
+                'account'     => 'Ubivar\\Account',
+                'login'       => 'Ubivar\\Login',
+                'logout'      => 'Ubivar\\Logout',
+                'items'       => 'Ubivar\\Item',
+                'orders'      => 'Ubivar\\Order',
+                'transactions'=> 'Ubivar\\Transaction',
+                'routing'     => 'Ubivar\\Routing',
+                'labels'      => 'Ubivar\\Label',
+            );
+
+            $class            = $types[$resp["object"]];
+            $data             = $resp["data"];
+            $mapped           = array();
+
+            foreach ($data as $i) {
+                array_push($mapped, $class::constructFrom($i, $opts));
             }
+
             return $mapped;
-        } elseif (is_array($resp)) {
-            if (isset($resp['object']) && is_string($resp['object']) && isset($types[$resp['object']])) {
-                $class = $types[$resp['object']];
-            } else {
-                $class = 'Ubivar\\Object';
-            }
-            return $class::constructFrom($resp, $opts);
-        } else {
-            return $resp;
-        }
+        } 
+        return $resp;
     }
 }

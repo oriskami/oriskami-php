@@ -44,7 +44,7 @@ class Transaction extends ApiResource
      */
     public function save($opts = null)
     {
-        return $this->_save($opts);
+        return self::_save($opts);
     }
 
     /**
