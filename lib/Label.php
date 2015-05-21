@@ -34,6 +34,7 @@ class Label extends ApiResource
      */
     public static function create($params = null, $opts = null)
     {
+        
         return self::_create($params, $opts);
     }
 

@@ -1,0 +1,14 @@
+0.1.2-beta May 21st, 2015
+ - Expand test specs for Label resources.
+
+0.1.1-beta May 21st, 2015
+ - Add passing test specs for Routing and Label, and expand those of Transaction resources.
+ 
+0.1.0-beta May 21st, 2015
+ - Add passing test specs for Transaction resources.
+
+0.0.2-beta May 6-7th, 2015
+ - Edit layout of README.md.
+
+0.0.1-beta May 5th, 2015
+ - Initial commit.

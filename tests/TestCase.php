@@ -61,4 +61,8 @@ class TestCase extends \PHPUnit_Framework_TestCase
       }
       return $randomString;
     }
+
+    protected function log($context, $message){
+        fwrite(STDOUT, "\n".$context."\t| ".$message);
+    }
 }

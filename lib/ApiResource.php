@@ -159,7 +159,6 @@ abstract class ApiResource extends Object
 
         $url = $this->instanceUrl();
         list($response, $opts) = $this->_request('delete', $url, $params, $options);
-        $this->refreshFrom($response, $opts);
-        return $this;
+        return Util\Util::convertToUbivarObject($response, $opts)[0];
     }
 }
