@@ -41,6 +41,14 @@ class TestCase extends \PHPUnit_Framework_TestCase
       , "user_agent"      => "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36"// your client's user agent
     );
 
+    public $login      = array(
+        "session_id"      => "abc"
+      , "user_id"         => "def"
+    );
+
+    public $logout        = array(
+        "user_id"         => "def"  
+    );
 
     protected static function authorizeFromEnv()
     {
