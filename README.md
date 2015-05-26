@@ -145,8 +145,10 @@ is available at [https://ubivar.com/docs/php](https://ubivar.com/docs/php).
 ## Development
 
 To run the test suite:
-```php
-./vendor/bin/phpunit
+```
+cd path/to/ubivar/ubivar-php
+composer install --dev
+./vendor/bin/phpunit -v 
 ```
 
 To report issues: [issues and feature requests](https://github.com/ubivar/ubivar-php/issues)
