@@ -4,65 +4,110 @@ namespace Ubivar;
 
 class TransactionTest extends TestCase 
 {
-    public function testCreate()
+    public function __construct()
     {
         self::authorizeFromEnv();
-        $tx               = Transaction::create($this->tx);
+        $tx = array(
+            "user_id"         => "test_phahr3Eit3_123"          // your client's id
+          , "user_email"      => "test_phahr3Eit3@gmail-123.com"// your client email
+          , "gender"          => "M"                            // your client's gender
+          , "first_name"      => "John"                         // your client's first name
+          , "last_name"       => "Doe"                          // your client's last name
+          , "type"            => "sale"                         // the transaction type
+          , "status"          => "success"                      // the transaction status 
+          , "order_id"        => "test_iiquoozeiroogi_123"      // the shopping cart id
+          , "tx_id"           => "client_tx_id_123"             // the transaction id 
+          , "tx_timestamp"    => "2015-04-13 13:36:41"          // the timestamp of this transaction
+          , "amount"          => "43210"                        // the amount in cents
+          , "currency_code"   => "EUR"
 
-        // CLASS INSTANCE 
-        $this->assertInstanceOf("Ubivar\\Transaction", $tx);
+          , "payment_method"  => array(
+              "bin"           => "123456"                       // the BIN of the card
+            , "brand"         => "Mastercard"                   // the brand of the card
+            , "funding"       => "credit"                       // the type of card
+            , "country"       => "US"                           // the card country code
+            , "name"          => "M John Doe"                   // the card holder's name
+            , "cvc_check"     => "pass"                         // the cvc check result
 
-        // EXPECT SAME ID 
-        $this->assertSame($this->tx["user_id"], $tx["user_id"]);
+          ),"shipping_address"=> array(
+              "line1"         => "123 Market Street"            // the shipping address
+            , "line2"         => "4th Floor"                       
+            , "city"          => "San Francisco"
+            , "state"         => "California"
+            , "zip"           => "94102"
+            , "country"       => "US"
 
-        // PROPERTIES 
-        $this->assertTrue(isset($tx->user_id));
-        $this->assertTrue(isset($tx->user_email));
-        $this->assertTrue(isset($tx->gender));
-        $this->assertTrue(isset($tx->first_name));
-        $this->assertTrue(isset($tx->last_name));
-        $this->assertTrue(isset($tx->type));
-        $this->assertTrue(isset($tx->status));
-        $this->assertTrue(isset($tx->order_id));
-        $this->assertTrue(isset($tx->tx_id));
-        $this->assertTrue(isset($tx->tx_timestamp));
-        $this->assertTrue(isset($tx->amount));
-        $this->assertTrue(isset($tx->user_agent));
-        $this->assertTrue(isset($tx->ip_address));
-        $this->assertTrue(isset($tx->billing_address));
-        $this->assertTrue(isset($tx->payment_method));
+          ),"billing_address" => array(
+              "line1"         => "123 Market Street"            // the billing address
+            , "line2"         => "4th Floor"                       
+            , "city"          => "San Francisco"
+            , "state"         => "California"
+            , "zip"           => "94102"
+            , "country"       => "US"
 
-        // $this->assertTrue(isset($tx->currency_code));
-        // $this->assertTrue(isset($tx->shipping_address));
+          ),"ip_address"      => "1.2.3.4"                      // your client ip address
+          , "user_agent"      => "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36"// your client's user agent
+          , "metadata"        => array("key" => "value")
+        );
+
+        // CRUD ________________________________________
+        // Create
+        $this->created        = Transaction::create($tx);
+        // Retrieve
+        $this->retrieved      = Transaction::retrieve($this->created->id);
+        // Update
+        $this->created->amount= "12345";
+        $this->saved          = $this->created->save(); 
+        // Delete
+        $this->deleted        = $this->created->delete(); 
     }
 
-    public function testRetrieve()
+    public function testExists()
     {
-        self::authorizeFromEnv();
-        $tx               = Transaction::create($this->tx);
-        $tx2              = Transaction::retrieve($tx->id);
-        $this->assertSame($this->tx["user_id"], $tx2["user_id"]);
+        self::log(__METHOD__, "Should exist");
+        $this->assertNotNull($this->created);
+        $this->assertNotNull($this->retrieved);
+        $this->assertNotNull($this->saved);
+        $this->assertNotNull($this->deleted);
     }
 
-    public function testUpdate()
+    public function testClass()
     {
-        self::authorizeFromEnv();
-        $tx               = Transaction::create($this->tx);
-        $user_id_new      = "ABC";
-        $user_id_old      = $tx["user_id"];
-        $tx["user_id"]    = $user_id_new;
-        $this->assertSame($tx->user_id, $user_id_new);
-        $tx->save();
-        $tx_saved         = Transaction::retrieve($tx->id);
-        $this->assertSame($tx_saved->user_id, $user_id_new);
+        self::log(__METHOD__, "Should have the right class");
+        $this->assertInstanceOf("Ubivar\\Transaction", $this->created);
+        $this->assertInstanceOf("Ubivar\\Transaction", $this->retrieved);
+        $this->assertInstanceOf("Ubivar\\Transaction", $this->saved);
+        $this->assertInstanceOf("Ubivar\\Transaction", $this->deleted);
     }
 
-    public function testDelete()
+    public function testId()
     {
-        self::authorizeFromEnv();
-        $tx               = Transaction::create($this->tx);
-        $tx               = $tx->delete();
-        $tx_deleted       = Transaction::retrieve($tx->id);
-        $this->assertNull($tx_deleted);
+        self::log(__METHOD__, "Should have the right 'id'");
+        $this->assertEquals($this->created->id, $this->retrieved->id);
+        $this->assertEquals($this->created->id, $this->saved->id);
+        $this->assertEquals($this->created->id, $this->deleted->id);
+    }
+
+    public function testAttr()
+    {
+        self::log(__METHOD__, "Should have the expected attributes");
+        $this->assertTrue(isset($this->created->id));
+        $this->assertTrue(isset($this->created->user_id));
+        $this->assertTrue(isset($this->created->gender));
+        $this->assertTrue(isset($this->created->first_name));
+        $this->assertTrue(isset($this->created->last_name));
+        $this->assertTrue(isset($this->created->type));
+        $this->assertTrue(isset($this->created->status));
+        $this->assertTrue(isset($this->created->order_id));
+        $this->assertTrue(isset($this->created->tx_id));
+        $this->assertTrue(isset($this->created->tx_timestamp));
+        $this->assertTrue(isset($this->created->amount));
+        $this->assertTrue(isset($this->created->currency_code));
+        $this->assertTrue(isset($this->created->payment_method));
+        $this->assertTrue(isset($this->created->billing_address));
+        $this->assertTrue(isset($this->created->shipping_address));
+        $this->assertTrue(isset($this->created->ip_address));
+        $this->assertTrue(isset($this->created->user_agent));
+        $this->assertTrue(isset($this->created->metadata));
     }
 }
