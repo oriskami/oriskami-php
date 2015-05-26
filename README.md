@@ -27,9 +27,9 @@ those `transactions` as `fraud`.
 
 Using [Composer](http://getcomposer.org/), add to your `composer.json` the following, and run `composer install`.
 ```js
-{ /* composer.json */
+{ 
   "require": {
-    "ubivar/ubivar-php": "1.*"
+    "ubivar/ubivar-php": "*@dev"
   }
 }
 ```

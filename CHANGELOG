@@ -1,3 +1,6 @@
+0.1.0-beta May 26th, 2015
+ - Fix composer.json for auto-install via composer. 
+
 0.1.3-beta May 26st, 2015
  - Expand test specs for Me, Orders, Accounts, and Items resources.
  - Fix typo in lib/Util/Util.php for accounts (instead of account).
