@@ -165,8 +165,11 @@ class ApiRequestor
         }
 
         $absUrl       = $this->_apiBase.$url;
+        if($method == "get" && count($params) > 0){
+            $absUrl  .= "?".http_build_query($params);
+            // fwrite(STDOUT, "\n".__METHOD__."\t".$absUrl);
+        } 
         $params       = json_encode($params);
-        // $params       = self::_encodeObjects($params);
         $langVersion  = phpversion();
         $uname        = php_uname();
         $ua           = array(
@@ -250,7 +253,7 @@ class ApiRequestor
         $method                       = strtolower($method);
         $opts                         = array();
         if ($method == 'get') {
-            $opts[CURLOPT_HTTPGET]    = 1;
+            $opts[CURLOPT_HTTPGET]= 1;
         } elseif ($method == 'post') {
             $opts[CURLOPT_POSTFIELDS] = $params; 
             $opts[CURLOPT_POST]       = 1;
@@ -307,6 +310,7 @@ class ApiRequestor
             fwrite(STDOUT, "\n*\t".$rbody);
         }
         // fwrite(STDOUT, "\n".__METHOD__ . " " . print_r($rbody, true));
+        // fwrite(STDOUT, "\n".__METHOD__ . " " . print_r($opts, true));
         curl_close($curl);
         return array($rbody, $rcode);
     }

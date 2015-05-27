@@ -60,6 +60,16 @@ class TransactionTest extends TestCase
         $this->saved          = $this->created->save(); 
         // Delete
         $this->deleted        = $this->created->delete(); 
+        // List 
+        $this->order      = Transaction::all(array("order" =>  "id"));
+        $this->orderInv   = Transaction::all(array("order" => "-id"));
+        $this->limit5     = Transaction::all(array(
+            "limit"       => "5"
+          , "order"       => "id"));
+        $this->limit1     = Transaction::all(array(
+            "start_after" => $this->limit5[1]->id
+          , "end_before"  => $this->limit5[3]->id
+        ));
     }
 
     public function testExists()
@@ -109,5 +119,14 @@ class TransactionTest extends TestCase
         $this->assertTrue(isset($this->created->ip_address));
         $this->assertTrue(isset($this->created->user_agent));
         $this->assertTrue(isset($this->created->metadata));
+    }
+
+    public function testFilters()
+    {
+        self::log(__METHOD__, "Should filter results properly");
+        $this->assertTrue(intval($this->order[1]->id) > intval($this->order[0]->id));
+        $this->assertTrue(intval($this->orderInv[0]->id) > intval($this->order[1]->id));
+        $this->assertTrue(count($this->limit5) == 5);
+        $this->assertTrue(count($this->limit1) == 1);
     }
 }

@@ -1,4 +1,9 @@
-0.1.0-beta May 26th, 2015
+1.0.1-beta May 27th, 2015
+ - Encode 'list' request parameters as query string for GET requests.
+ - Add support for parameterized filtering of results 
+ - Add test cases for all generic resources
+
+1.0.0-beta May 26th, 2015
  - Fix composer.json for auto-install via composer. 
  - Fix procedure in README.md to run test suite. 
  - Restructure test-cases of Transaction, Routing, and Label, similar to other resources. 

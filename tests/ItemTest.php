@@ -24,6 +24,16 @@ class ItemTest extends TestCase
         $this->saved      = $this->created->save();
         // Delete
         $this->deleted    = $this->created->delete();
+        // List 
+        $this->order      = Item::all(array("order" =>  "id"));
+        $this->orderInv   = Item::all(array("order" => "-id"));
+        $this->limit5     = Item::all(array(
+            "limit"       => "5"
+          , "order"       => "id"));
+        $this->limit1     = Item::all(array(
+            "start_after" => $this->limit5[1]->id
+          , "end_before"  => $this->limit5[3]->id
+        ));
     }
 
     public function testExists()
@@ -60,5 +70,14 @@ class ItemTest extends TestCase
         $this->assertTrue(isset($this->created->user_id));
         $this->assertTrue(isset($this->created->item));
         $this->assertTrue(isset($this->created->metadata));
+    }
+
+    public function testFilters()
+    {
+        self::log(__METHOD__, "Should filter results properly");
+        $this->assertTrue(intval($this->order[1]->id) > intval($this->order[0]->id));
+        $this->assertTrue(intval($this->orderInv[0]->id) > intval($this->order[1]->id));
+        $this->assertTrue(count($this->limit5) == 5);
+        $this->assertTrue(count($this->limit1) == 1);
     }
 }
