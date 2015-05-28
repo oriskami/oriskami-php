@@ -147,7 +147,7 @@ abstract class ApiResource extends Object
         $url = $this->instanceUrl();
 
         list($response, $opts) = $this->_request('post', $url, $params, $options);
-        $result = Util\Util::convertToUbivarObject($response, $opts)
+        $result = Util\Util::convertToUbivarObject($response, $opts);
         return $result[0];
     }
 
