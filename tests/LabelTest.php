@@ -83,6 +83,7 @@ class LabelTest extends TestCase
             "start_after" => $this->limit5[1]->id
           , "end_before"  => $this->limit5[3]->id
         ));
+        $this->oneId      = Label::all(array("id"   => $this->limit5[1]->id));
     }
 
     public function testExists()

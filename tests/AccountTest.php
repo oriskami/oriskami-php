@@ -59,6 +59,7 @@ class AccountTest extends TestCase
             "start_after" => $this->limit5[1]->id
           , "end_before"  => $this->limit5[3]->id
         ));
+        $this->oneId      = Account::all(array("id" => $this->limit5[1]->id));
     }
 
     public function testExists()
@@ -111,5 +112,6 @@ class AccountTest extends TestCase
         $this->assertTrue(intval($this->orderInv[0]->id) > intval($this->order[1]->id));
         $this->assertTrue(count($this->limit5) == 5);
         $this->assertTrue(count($this->limit1) == 1);
+        $this->assertTrue($this->oneId[0]->id == $this->limit5[1]->id);
     }
 }
