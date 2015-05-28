@@ -165,7 +165,7 @@ class ApiRequestor
         }
 
         $absUrl       = $this->_apiBase.$url;
-        if ($method == "get" && count($params) > 0){
+        if ($method == "get" && count($params) > 0) {
             $absUrl  .= "?".http_build_query($params);
             // fwrite(STDOUT, "\n".__METHOD__."\t".$absUrl);
         }
@@ -298,7 +298,7 @@ class ApiRequestor
         }
 
         $rcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-        if ($rcode === 404){
+        if ($rcode === 404) {
             fwrite(STDOUT, "\n* ".__METHOD__);
             fwrite(STDOUT, "\n*\t".$rcode);
             fwrite(STDOUT, "\n*\t".$rbody);
