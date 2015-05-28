@@ -117,7 +117,8 @@ abstract class ApiResource extends Object
         $url = static::classUrl()."/".$id;
 
         list($response, $opts) = static::_staticRequest('get', $url, $params, $options);
-        return Util\Util::convertToUbivarObject($response, $opts)[0];
+        $result = Util\Util::convertToUbivarObject($response, $opts);
+        return $result[0];
     }
 
     protected static function _all($params = null, $options = null)
@@ -136,7 +137,8 @@ abstract class ApiResource extends Object
         $url = static::classUrl();
 
         list($response, $opts) = static::_staticRequest('post', $url, $params, $options);
-        return Util\Util::convertToUbivarObject($response, $opts)[0];
+        $result = Util\Util::convertToUbivarObject($response, $opts);
+        return $result[0];
     }
 
     protected function _save($options = null)
@@ -145,7 +147,8 @@ abstract class ApiResource extends Object
         $url = $this->instanceUrl();
 
         list($response, $opts) = $this->_request('post', $url, $params, $options);
-        return Util\Util::convertToUbivarObject($response, $opts)[0];
+        $result = Util\Util::convertToUbivarObject($response, $opts)
+        return $result[0];
     }
 
     protected function _delete($params = null, $options = null)
@@ -154,6 +157,7 @@ abstract class ApiResource extends Object
 
         $url = $this->instanceUrl();
         list($response, $opts) = $this->_request('delete', $url, $params, $options);
-        return Util\Util::convertToUbivarObject($response, $opts)[0];
+        $result = Util\Util::convertToUbivarObject($response, $opts);
+        return $result[0];
     }
 }
