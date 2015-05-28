@@ -2,7 +2,7 @@
 
 namespace Ubivar;
 
-class LabelTest extends TestCase 
+class LabelTest extends TestCase
 {
     protected $label      = null;
     protected $retrieved  = null;
@@ -20,9 +20,9 @@ class LabelTest extends TestCase
           , "first_name"      => "John"                         // your client's first name
           , "last_name"       => "Doe"                          // your client's last name
           , "type"            => "sale"                         // the transaction type
-          , "status"          => "success"                      // the transaction status 
+          , "status"          => "success"                      // the transaction status
           , "order_id"        => "test_iiquoozeiroogi_123"      // the shopping cart id
-          , "tx_id"           => "client_tx_id_123"             // the transaction id 
+          , "tx_id"           => "client_tx_id_123"             // the transaction id
           , "tx_timestamp"    => "2015-04-13 13:36:41"          // the timestamp of this transaction
           , "amount"          => "43210"                        // the amount in cents
 
@@ -36,7 +36,7 @@ class LabelTest extends TestCase
 
           ),"shipping_address"=> array(
               "line1"         => "123 Market Street"            // the shipping address
-            , "line2"         => "4th Floor"                       
+            , "line2"         => "4th Floor"
             , "city"          => "San Francisco"
             , "state"         => "California"
             , "zip"           => "94102"
@@ -44,7 +44,7 @@ class LabelTest extends TestCase
 
           ),"billing_address" => array(
               "line1"         => "123 Market Street"            // the billing address
-            , "line2"         => "4th Floor"                       
+            , "line2"         => "4th Floor"
             , "city"          => "San Francisco"
             , "state"         => "California"
             , "zip"           => "94102"
@@ -68,12 +68,12 @@ class LabelTest extends TestCase
         $this->label      = Label::create($review);
         // Retrieve
         $this->retrieved  = Label::retrieve($this->label->id);
-        // Update 
+        // Update
         $this->label->status = "is_ok";
         $this->saved      = $this->label->save();
         // Delete
         $this->deleted    = $this->label->delete();
-        // List 
+        // List
         $this->order      = Label::all(array("order" =>  "id"));
         $this->orderInv   = Label::all(array("order" => "-id"));
         $this->limit5     = Label::all(array(

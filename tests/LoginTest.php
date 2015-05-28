@@ -2,7 +2,7 @@
 
 namespace Ubivar;
 
-class LoginTest extends TestCase 
+class LoginTest extends TestCase
 {
     protected $created    = null;
     protected $retrieved  = null;
@@ -18,14 +18,14 @@ class LoginTest extends TestCase
         );
         // CRUD ___________________________________
         // Create
-        $this->created          = Login::create($login); 
+        $this->created          = Login::create($login);
         // Retrieve
         $this->retrieved        = Login::retrieve($this->created->id);
         // Update
         // x
         // Delete
         $this->deleted          = $this->created->delete();
-        // List 
+        // List
         $this->order      = Login::all(array("order" =>  "id"));
         $this->orderInv   = Login::all(array("order" => "-id"));
         $this->limit5     = Login::all(array(

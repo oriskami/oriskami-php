@@ -61,7 +61,7 @@ abstract class Util
      */
     public static function convertToUbivarObject($resp, $opts)
     {
-        if (isset($resp["object"])){
+        if (isset($resp["object"])) {
             $types = array(
                 'me'          => 'Ubivar\\Me',
                 'accounts'    => 'Ubivar\\Account',
@@ -83,7 +83,7 @@ abstract class Util
             }
 
             return $mapped;
-        } 
+        }
         return $resp;
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Ubivar;
 
-class LogoutTest extends TestCase 
+class LogoutTest extends TestCase
 {
     protected $created    = null;
     protected $retrieved  = null;
@@ -18,14 +18,14 @@ class LogoutTest extends TestCase
         );
         // CRUD ___________________________________
         // Create
-        $this->created    = Logout::create($logout); 
+        $this->created    = Logout::create($logout);
         // Retrieve
         $this->retrieved  = Logout::retrieve($this->created->id);
         // Update
         // x
         // Delete
         $this->deleted    = $this->created->delete();
-        // List 
+        // List
         $this->order      = Logout::all(array("order" =>  "id"));
         $this->orderInv   = Logout::all(array("order" => "-id"));
         $this->limit5     = Logout::all(array(

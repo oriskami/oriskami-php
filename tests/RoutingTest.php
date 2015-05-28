@@ -2,7 +2,7 @@
 
 namespace Ubivar;
 
-class RoutingTest extends TestCase 
+class RoutingTest extends TestCase
 {
     public function __construct()
     {
@@ -14,9 +14,9 @@ class RoutingTest extends TestCase
           , "first_name"      => "John"                         // your client's first name
           , "last_name"       => "Doe"                          // your client's last name
           , "type"            => "sale"                         // the transaction type
-          , "status"          => "success"                      // the transaction status 
+          , "status"          => "success"                      // the transaction status
           , "order_id"        => "test_iiquoozeiroogi_123"      // the shopping cart id
-          , "tx_id"           => "client_tx_id_123"             // the transaction id 
+          , "tx_id"           => "client_tx_id_123"             // the transaction id
           , "tx_timestamp"    => "2015-04-13 13:36:41"          // the timestamp of this transaction
           , "amount"          => "43210"                        // the amount in cents
           , "currency_code"   => "EUR"
@@ -31,7 +31,7 @@ class RoutingTest extends TestCase
 
           ),"shipping_address"=> array(
               "line1"         => "123 Market Street"            // the shipping address
-            , "line2"         => "4th Floor"                       
+            , "line2"         => "4th Floor"
             , "city"          => "San Francisco"
             , "state"         => "California"
             , "zip"           => "94102"
@@ -39,7 +39,7 @@ class RoutingTest extends TestCase
 
           ),"billing_address" => array(
               "line1"         => "123 Market Street"            // the billing address
-            , "line2"         => "4th Floor"                       
+            , "line2"         => "4th Floor"
             , "city"          => "San Francisco"
             , "state"         => "California"
             , "zip"           => "94102"
@@ -51,7 +51,7 @@ class RoutingTest extends TestCase
 
         $this->tx             = Transaction::create($tx);
         $this->routing        = Routing::retrieve($this->tx->id);
-        // List 
+        // List
         $this->order          = Routing::all(array("order" =>  "id"));
         $this->orderInv       = Routing::all(array("order" => "-id"));
         $this->limit5         = Routing::all(array(

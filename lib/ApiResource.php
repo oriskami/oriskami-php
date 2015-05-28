@@ -21,12 +21,7 @@ abstract class ApiResource extends Object
         $requestor    = new ApiRequestor($this->_opts->apiKey, static::baseUrl());
         $url          = $this->instanceUrl();
 
-        list($response, $this->_opts->apiKey) = $requestor->request(
-            'get'
-          , $url
-          , $this->_retrieveOptions
-          , $this->_opts->headers
-        );
+        list($response, $this->_opts->apiKey) = $requestor->request('get', $url, $this->_retrieveOptions, $this->_opts->headers);
 
         $this->refreshFrom($response, $this->_opts);
         return $this;
@@ -62,8 +57,8 @@ abstract class ApiResource extends Object
     public static function classUrl()
     {
         $base               = static::className();
-        $noPluralResources  = array("me","login","logout","routing"); 
-        if (in_array($base, $noPluralResources)){
+        $noPluralResources  = array("me","login","logout","routing");
+        if (in_array($base, $noPluralResources)) {
             return "/${base}";
         } else {
             return "/${base}s";

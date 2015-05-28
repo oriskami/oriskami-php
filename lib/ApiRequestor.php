@@ -168,7 +168,7 @@ class ApiRequestor
         if ($method == "get" && count($params) > 0){
             $absUrl  .= "?".http_build_query($params);
             // fwrite(STDOUT, "\n".__METHOD__."\t".$absUrl);
-        } 
+        }
         $params       = json_encode($params);
         $langVersion  = phpversion();
         $uname        = php_uname();
@@ -197,13 +197,7 @@ class ApiRequestor
             $rawHeaders[] = $header . ': ' . $value;
         }
 
-        list($rbody, $rcode) = $this->_curlRequest(
-            $method
-          , $absUrl
-          , $rawHeaders
-          , $params
-          , $hasFile
-        );
+        list($rbody, $rcode) = $this->_curlRequest($method, $absUrl, $rawHeaders, $params, $hasFile);
 
         return array($rbody, $rcode, $myApiKey);
     }
@@ -255,7 +249,7 @@ class ApiRequestor
         if ($method == 'get') {
             $opts[CURLOPT_HTTPGET]= 1;
         } elseif ($method == 'post') {
-            $opts[CURLOPT_POSTFIELDS] = $params; 
+            $opts[CURLOPT_POSTFIELDS] = $params;
             $opts[CURLOPT_POST]       = 1;
         } elseif ($method == 'delete') {
             $opts[CURLOPT_CUSTOMREQUEST] = 'DELETE';

@@ -2,7 +2,7 @@
 
 namespace Ubivar;
 
-class MeTest extends TestCase 
+class MeTest extends TestCase
 {
     public function __construct()
     {
@@ -12,7 +12,7 @@ class MeTest extends TestCase
         // x
         // Retrieve
         $this->retrieved  = Me::retrieve();
-        // Update 
+        // Update
         $this->retrieved->last_name = "Doe-2";
         $this->saved      = $this->retrieved->save();
         // Delete

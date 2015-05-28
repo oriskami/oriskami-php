@@ -2,7 +2,7 @@
 
 namespace Ubivar;
 
-class OrderTest extends TestCase 
+class OrderTest extends TestCase
 {
     public function __construct()
     {
@@ -23,13 +23,13 @@ class OrderTest extends TestCase
         , "cvc_check"     => "pass"
         ),"billing_address"=> array(
           "line1"         => "169 11th St"
-        , "city"          => "San Francisco" 
+        , "city"          => "San Francisco"
         , "state_region"  => "California"
         , "zip"           => "94103"
         , "country"       => "USA"
         ),"shipping_address"=> array(
           "line1"         => "169 11th St"
-        , "city"          => "San Francisco" 
+        , "city"          => "San Francisco"
         , "state_region"  => "California"
         , "zip"           => "94103"
         , "country"       => "USA"
@@ -44,12 +44,12 @@ class OrderTest extends TestCase
         $this->created    = Order::create($order);
         // Retrieve
         $this->retrieved  = Order::retrieve($this->created->id);
-        // Update 
+        // Update
         $this->created->amount = "6545321";
         $this->saved      = $this->created->save();
         // Delete
         $this->deleted    = $this->created->delete();
-        // List 
+        // List
         $this->order      = Order::all(array("order" =>  "id"));
         $this->orderInv   = Order::all(array("order" => "-id"));
         $this->limit5     = Order::all(array(

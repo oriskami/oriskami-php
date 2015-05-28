@@ -2,7 +2,7 @@
 
 namespace Ubivar;
 
-class ItemTest extends TestCase 
+class ItemTest extends TestCase
 {
     public function __construct()
     {
@@ -19,12 +19,12 @@ class ItemTest extends TestCase
         $this->created    = Item::create($item);
         // Retrieve
         $this->retrieved  = Item::retrieve($this->created->id);
-        // Update 
+        // Update
         $this->created->item = array("a", "b", "c", "d");
         $this->saved      = $this->created->save();
         // Delete
         $this->deleted    = $this->created->delete();
-        // List 
+        // List
         $this->order      = Item::all(array("order" =>  "id"));
         $this->orderInv   = Item::all(array("order" => "-id"));
         $this->limit5     = Item::all(array(
