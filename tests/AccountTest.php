@@ -41,7 +41,11 @@ class AccountTest extends TestCase
 
         // CRUD ___________________________________
         // Create
-        $this->created    = Account::create($account);
+        $accounts         = array();
+        for ($x = 0; $x <= 2; $x++) {
+          $accounts[]     = Account::create($account);
+        }
+        $this->created    = $accounts[0];
         // Retrieve
         $this->retrieved  = Account::retrieve($this->created->id);
         // Update

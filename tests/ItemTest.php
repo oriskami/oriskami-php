@@ -16,7 +16,11 @@ class ItemTest extends TestCase
 
         // CRUD ___________________________________
         // Create
-        $this->created    = Item::create($item);
+        $items            = array();
+        for ($x = 0; $x <= 2; $x++) {
+          $items[]     = Item::create($item);
+        }
+        $this->created    = $items[0];
         // Retrieve
         $this->retrieved  = Item::retrieve($this->created->id);
         // Update

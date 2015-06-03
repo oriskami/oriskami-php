@@ -18,7 +18,11 @@ class LogoutTest extends TestCase
         );
         // CRUD ___________________________________
         // Create
-        $this->created    = Logout::create($logout);
+        $logouts          = array();
+        for ($x = 0; $x <= 2; $x++) {
+          $logouts[]      = Logout::create($logout);
+        }
+        $this->created    = $logouts[0];
         // Retrieve
         $this->retrieved  = Logout::retrieve($this->created->id);
         // Update

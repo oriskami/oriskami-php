@@ -41,7 +41,11 @@ class OrderTest extends TestCase
 
         // CRUD ___________________________________
         // Create
-        $this->created    = Order::create($order);
+        $orders           = array();
+        for ($x = 0; $x <= 2; $x++) {
+          $orders[]       = Order::create($order);
+        }
+        $this->created    = $orders[0];
         // Retrieve
         $this->retrieved  = Order::retrieve($this->created->id);
         // Update

@@ -65,14 +65,18 @@ class LabelTest extends TestCase
 
         // CRUD ___________________________________
         // Create
-        $this->label      = Label::create($review);
+        $labels           = array();
+        for ($x = 0; $x <= 2; $x++) {
+          $labels[]       = Label::create($review);
+        }
+        $this->created    = $labels[0];
         // Retrieve
-        $this->retrieved  = Label::retrieve($this->label->id);
+        $this->retrieved  = Label::retrieve($this->created->id);
         // Update
-        $this->label->status = "is_ok";
-        $this->saved      = $this->label->save();
+        $this->created->status = "is_ok";
+        $this->saved      = $this->created->save();
         // Delete
-        $this->deleted    = $this->label->delete();
+        $this->deleted    = $this->created->delete();
         // List
         $this->order      = Label::all(array("order" =>  "id"));
         $this->orderInv   = Label::all(array("order" => "-id"));
@@ -89,7 +93,7 @@ class LabelTest extends TestCase
     public function testExists()
     {
         self::log(__METHOD__, "Should exist");
-        $this->assertNotNull($this->label);
+        $this->assertNotNull($this->created);
         $this->assertNotNull($this->retrieved);
         $this->assertNotNull($this->saved);
         $this->assertNotNull($this->deleted);
@@ -98,7 +102,7 @@ class LabelTest extends TestCase
     public function testClass()
     {
         self::log(__METHOD__, "Should have the right class");
-        $this->assertInstanceOf("Ubivar\\Label", $this->label);
+        $this->assertInstanceOf("Ubivar\\Label", $this->created);
         $this->assertInstanceOf("Ubivar\\Label", $this->retrieved);
         $this->assertInstanceOf("Ubivar\\Label", $this->saved);
         $this->assertInstanceOf("Ubivar\\Label", $this->deleted);
@@ -107,23 +111,23 @@ class LabelTest extends TestCase
     public function testId()
     {
         self::log(__METHOD__, "Should have the right 'id'");
-        $this->assertEquals($this->label->tx_id, $this->tx->id);
-        $this->assertEquals($this->label->id, $this->retrieved->id);
-        $this->assertEquals($this->label->id, $this->saved->id);
-        $this->assertEquals($this->label->id, $this->deleted->id);
+        $this->assertEquals($this->created->tx_id, $this->tx->id);
+        $this->assertEquals($this->created->id, $this->retrieved->id);
+        $this->assertEquals($this->created->id, $this->saved->id);
+        $this->assertEquals($this->created->id, $this->deleted->id);
     }
 
     public function testAttr()
     {
         self::log(__METHOD__, "Should have the expected attributes");
-        $this->assertTrue(isset($this->label->id));
-        $this->assertTrue(isset($this->label->session_id));
-        $this->assertTrue(isset($this->label->user_id));
-        $this->assertTrue(isset($this->label->tx_id));
-        $this->assertTrue(isset($this->label->reviewer_id));
-        $this->assertTrue(isset($this->label->status));
-        $this->assertTrue(isset($this->label->insert_timestamp));
-        $this->assertTrue(isset($this->label->update_timestamp));
+        $this->assertTrue(isset($this->created->id));
+        $this->assertTrue(isset($this->created->session_id));
+        $this->assertTrue(isset($this->created->user_id));
+        $this->assertTrue(isset($this->created->tx_id));
+        $this->assertTrue(isset($this->created->reviewer_id));
+        $this->assertTrue(isset($this->created->status));
+        $this->assertTrue(isset($this->created->insert_timestamp));
+        $this->assertTrue(isset($this->created->update_timestamp));
     }
 
     public function testFilters()

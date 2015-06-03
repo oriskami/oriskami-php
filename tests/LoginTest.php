@@ -18,13 +18,17 @@ class LoginTest extends TestCase
         );
         // CRUD ___________________________________
         // Create
-        $this->created          = Login::create($login);
+        $logins           = array();
+        for ($x = 0; $x <= 2; $x++) {
+          $logins[]       = Login::create($login);
+        }
+        $this->created    = $logins[0];
         // Retrieve
-        $this->retrieved        = Login::retrieve($this->created->id);
+        $this->retrieved  = Login::retrieve($this->created->id);
         // Update
         // x
         // Delete
-        $this->deleted          = $this->created->delete();
+        $this->deleted    = $this->created->delete();
         // List
         $this->order      = Login::all(array("order" =>  "id"));
         $this->orderInv   = Login::all(array("order" => "-id"));
