@@ -37,7 +37,7 @@ class AccountTest extends TestCase
           "twitter"       => "https://twitter.com/ubivarinc"
         , "gplus"         => "https://plus.google.com/+UbivarInc"
         , "linkedin"      => "https://www.linkedin.com/company/ubivarinc/"
-        ),"metadata"      => array());
+        ),"meta"          => array());
 
         // CRUD ___________________________________
         // Create
@@ -106,7 +106,7 @@ class AccountTest extends TestCase
         $this->assertTrue(isset($this->created->billing_address));
         $this->assertTrue(isset($this->created->shipping_address));
         $this->assertTrue(isset($this->created->social));
-        $this->assertTrue(isset($this->created->metadata));
+        $this->assertTrue(isset($this->created->meta));
     }
 
     public function testFilters()
