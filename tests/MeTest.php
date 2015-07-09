@@ -46,6 +46,10 @@ class MeTest extends TestCase
         $this->assertTrue(isset($this->retrieved->email));
         $this->assertTrue(isset($this->retrieved->first_name));
         $this->assertTrue(isset($this->retrieved->last_name));
+        $this->assertTrue(isset($this->retrieved->description));
+        $this->assertTrue(isset($this->retrieved->company));
         $this->assertTrue(isset($this->retrieved->primary_phone));
+        $this->assertTrue(isset($this->retrieved->primary_address));
+        $this->assertTrue(isset($this->retrieved->meta));
     }
 }

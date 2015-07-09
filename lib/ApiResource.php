@@ -112,11 +112,10 @@ abstract class ApiResource extends Object
 
     protected static function _retrieve($id, $options = null)
     {
-        self::_validateParams($params);
         $base = static::baseUrl();
         $url = static::classUrl()."/".$id;
 
-        list($response, $opts) = static::_staticRequest('get', $url, $params, $options);
+        list($response, $opts) = static::_staticRequest('get', $url, null, $options);
         $result = Util\Util::convertToUbivarObject($response, $opts);
         return $result[0];
     }
