@@ -64,6 +64,7 @@ abstract class Util
         if (isset($resp["object"])) {
             $types = array(
                 'me'          => 'Ubivar\\Me',
+                'addresses'   => 'Ubivar\\Address',
                 'accounts'    => 'Ubivar\\Account',
                 'login'       => 'Ubivar\\Login',
                 'logout'      => 'Ubivar\\Logout',
