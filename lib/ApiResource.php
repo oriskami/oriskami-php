@@ -58,7 +58,7 @@ abstract class ApiResource extends Object
     {
         $base               = static::className();
         $noPluralResources  = array("me","login","logout","routing");
-        if (in_array($base, $noPluralResources)) {
+        if (in_array($base, $noPluralResources)) 
             return "/${base}";
         else if ($base === 'address')
             return "/${base}es";
