@@ -16,7 +16,7 @@ class Ubivar
     // @var boolean Defaults to true.
     public static $verifySslCerts = true;
 
-    const VERSION = '1.0.1-beta';
+    const VERSION = '1.0.2-beta';
 
     /**
      * @return string The API key used for requests.

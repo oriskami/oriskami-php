@@ -60,9 +60,10 @@ abstract class ApiResource extends Object
         $noPluralResources  = array("me","login","logout","routing");
         if (in_array($base, $noPluralResources)) {
             return "/${base}";
-        } else {
+        else if ($base === 'address')
+            return "/${base}es"
+        else 
             return "/${base}s";
-        }
     }
 
     /**
