@@ -61,7 +61,7 @@ abstract class ApiResource extends Object
         if (in_array($base, $noPluralResources)) {
             return "/${base}";
         else if ($base === 'address')
-            return "/${base}es"
+            return "/${base}es";
         else 
             return "/${base}s";
     }
