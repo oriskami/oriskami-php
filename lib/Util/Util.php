@@ -73,6 +73,7 @@ abstract class Util
               , 'transactions'=> 'Ubivar\\Transaction'
               , 'routing'     => 'Ubivar\\Routing'
               , 'reviewers'   => 'Ubivar\\Reviewer'
+              , 'reviewqueues'=> 'Ubivar\\ReviewQueue'
               , 'labels'      => 'Ubivar\\Label'
             );
 
