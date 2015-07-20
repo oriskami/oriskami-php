@@ -63,17 +63,17 @@ abstract class Util
     {
         if (isset($resp["object"])) {
             $types = array(
-                'me'          => 'Ubivar\\Me',
-                'addresses'   => 'Ubivar\\Address',
-                'accounts'    => 'Ubivar\\Account',
-                'login'       => 'Ubivar\\Login',
-                'logout'      => 'Ubivar\\Logout',
-                'items'       => 'Ubivar\\Item',
-                'orders'      => 'Ubivar\\Order',
-                'transactions'=> 'Ubivar\\Transaction',
-                'routing'     => 'Ubivar\\Routing',
-                'reviewers'   => 'Ubivar\\Reviewer'
-                'labels'      => 'Ubivar\\Label',
+                'me'          => 'Ubivar\\Me'
+              , 'addresses'   => 'Ubivar\\Address'
+              , 'accounts'    => 'Ubivar\\Account'
+              , 'login'       => 'Ubivar\\Login'
+              , 'logout'      => 'Ubivar\\Logout'
+              , 'items'       => 'Ubivar\\Item'
+              , 'orders'      => 'Ubivar\\Order'
+              , 'transactions'=> 'Ubivar\\Transaction'
+              , 'routing'     => 'Ubivar\\Routing'
+              , 'reviewers'   => 'Ubivar\\Reviewer'
+              , 'labels'      => 'Ubivar\\Label'
             );
 
             $class            = $types[$resp["object"]];
