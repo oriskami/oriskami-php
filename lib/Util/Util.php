@@ -64,16 +64,17 @@ abstract class Util
         if (isset($resp["object"])) {
             $types = array(
                 'me'                => 'Ubivar\\Me'
-              , 'addresses'         => 'Ubivar\\Address'
               , 'accounts'          => 'Ubivar\\Account'
+              , 'addresses'         => 'Ubivar\\Address'
               , 'login'             => 'Ubivar\\Login'
               , 'logout'            => 'Ubivar\\Logout'
               , 'items'             => 'Ubivar\\Item'
               , 'orders'            => 'Ubivar\\Order'
               , 'transactions'      => 'Ubivar\\Transaction'
               , 'routing'           => 'Ubivar\\Routing'
-              , 'reviewerbindings'  => 'Ubivar\\ReviewerBinding'
               , 'reviewqueues'      => 'Ubivar\\ReviewQueue'
+              , 'reviewers'         => 'Ubivar\\Reviewer'
+              , 'reviewerbindings'  => 'Ubivar\\ReviewerBinding'
               , 'labels'            => 'Ubivar\\Label'
             );
 
