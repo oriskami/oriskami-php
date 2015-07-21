@@ -35,5 +35,5 @@ require(dirname(__FILE__) . '/lib/Transaction.php');
 require(dirname(__FILE__) . '/lib/Routing.php');
 require(dirname(__FILE__) . '/lib/ReviewQueue.php');
 require(dirname(__FILE__) . '/lib/Reviewer.php');
-require(dirname(__FILE__) . '/lib/ReviewerBinding.php');
+require(dirname(__FILE__) . '/lib/ReviewerQueueBinding.php');
 require(dirname(__FILE__) . '/lib/Label.php');
