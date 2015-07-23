@@ -43,8 +43,9 @@ class OrderTest extends TestCase
         // CRUD ___________________________________
         // Create
         $this->datas      = array();
-        for ($x = 0; $x <= 2; $x++)
-          $this->datas[]  = Order::create($this->data);
+        for ($x = 0; $x <= 2; $x++) {
+            $this->datas[]= Order::create($this->data);
+        }
         $this->created    = $this->datas[0];
         // Retrieve
         $this->retrieved  = Order::retrieve($this->created->id);
@@ -95,8 +96,9 @@ class OrderTest extends TestCase
     public function testAttr()
     {
         self::log(__METHOD__, "Should have the expected attributes");
-        foreach (array_keys($this->data) as $attr)
-          $this->assertTrue($this->retrieved->offsetExists($attr));
+        foreach (array_keys($this->data) as $attr) {
+            $this->assertTrue($this->retrieved->offsetExists($attr));
+        }
     }
 
     public function testFilters()

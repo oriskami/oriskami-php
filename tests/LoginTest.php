@@ -14,7 +14,7 @@ class LoginTest extends TestCase
             'shop_id'     => null
           , 'user_id'     => "abcdef_user_id"
           , 'session_id'  => "abcdef_session_id"
-          , 'is_user_id'  => true 
+          , 'is_user_id'  => true
           , 'is_password' => false
           , 'is_valid'    => null
           , 'create_timestamp'=> null
@@ -23,8 +23,9 @@ class LoginTest extends TestCase
         $this->datas      = array();
         // CRUD ___________________________________
         // Create
-        for ($x = 0; $x <= 2; $x++) 
-          $this->datas[]  = Login::create($this->data);
+        for ($x = 0; $x <= 2; $x++) {
+            $this->datas[]  = Login::create($this->data);
+        }
         $this->created    = $this->datas[0];
         // Retrieve
         $this->retrieved  = Login::retrieve($this->created->id);
@@ -70,8 +71,9 @@ class LoginTest extends TestCase
     public function testAttr()
     {
         self::log(__METHOD__, "Should have the expected attributes");
-        foreach (array_keys($this->data) as $attr)
-          $this->assertTrue($this->retrieved->offsetExists($attr));
+        foreach (array_keys($this->data) as $attr) {
+            $this->assertTrue($this->retrieved->offsetExists($attr));
+        }
     }
 
     public function testFilters()

@@ -104,8 +104,9 @@ class TransactionTest extends TestCase
     public function testAttr()
     {
         self::log(__METHOD__, "Should have the expected attributes");
-        foreach (array_keys($this->data) as $attr)
-          $this->assertTrue($this->retrieved->offsetExists($attr));
+        foreach (array_keys($this->data) as $attr) {
+            $this->assertTrue($this->retrieved->offsetExists($attr));
+        }
     }
 
     public function testFilters()
