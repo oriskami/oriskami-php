@@ -8,12 +8,10 @@ namespace Ubivar;
  */
 class TestCase extends \PHPUnit_Framework_TestCase
 {
-    public $login = array("session_id" => "abc", "user_id" => "def");
-    public $logout = array("user_id"=> "def");
-
     protected static function authorizeFromEnv()
     {
         $apiKey = getenv('UBIVAR_TEST_TOKEN');
+        print_r("\nUBIVAR_TEST_TOKEN = ".substr($apiKey, 0, 5)."****");
         Ubivar::setApiKey($apiKey);
     }
 
