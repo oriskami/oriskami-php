@@ -149,7 +149,7 @@ is available at [https://ubivar.com/docs/php](https://ubivar.com/docs/php).
 To run the test suite:
 ```
 cd path/to/ubivar/ubivar-php
-composer install --dev
+composer install 
 ./vendor/bin/phpunit -v 
 ```
 
