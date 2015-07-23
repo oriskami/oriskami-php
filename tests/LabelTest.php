@@ -62,7 +62,7 @@ class LabelTest extends TestCase
         // Create
         $this->datas      = array();
         for ($x = 0; $x <= 2; $x++) {
-          $this->datas[]  = Label::create($this->data);
+            $this->datas[]= Label::create($this->data);
         }
         $this->created    = $this->datas[0];
         // Retrieve
