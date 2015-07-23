@@ -21,7 +21,7 @@ if ($returnStatus !== 0) {
 if ($autoload) {
     // Only run CS on 1 of the 2 environments
     passthru(
-        './vendor/bin/phpcs --standard=PSR2 -n lib tests *.php',
+        './vendor/squizlabs/php_codesniffer/scripts/phpcs --standard=PSR2 -n lib tests *.php',
         $returnStatus
     );
     if ($returnStatus !== 0) {

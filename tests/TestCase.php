@@ -11,7 +11,6 @@ class TestCase extends \PHPUnit_Framework_TestCase
     protected static function authorizeFromEnv()
     {
         $apiKey = getenv('UBIVAR_TEST_TOKEN');
-        print_r("\nUBIVAR_TEST_TOKEN = ".substr($apiKey, 0, 5)."****");
         Ubivar::setApiKey($apiKey);
     }
 
