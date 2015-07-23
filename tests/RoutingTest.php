@@ -7,7 +7,13 @@ class RoutingTest extends TestCase
     public function __construct()
     {
         self::authorizeFromEnv();
-        $tx = array(
+        $this->data           = array(
+          "status"            => null
+        , "insert_timestamp"  => null
+        , "routing_timestamp" => null
+        , "update_timestamp"  => null
+        );
+        $tx                   = array(
             "user_id"         => "test_phahr3Eit3_123"          // your client's id
           , "user_email"      => "test_phahr3Eit3@gmail-123.com"// your client email
           , "gender"          => "M"                            // your client's gender
@@ -50,7 +56,7 @@ class RoutingTest extends TestCase
         );
 
         $this->tx             = Transaction::create($tx);
-        $this->routing        = Routing::retrieve($this->tx->id);
+        $this->retrieved      = Routing::retrieve($this->tx->id);
         // List
         $this->order          = Routing::all(array("order" =>  "id"));
         $this->orderInv       = Routing::all(array("order" => "-id"));
@@ -68,30 +74,27 @@ class RoutingTest extends TestCase
     {
         self::log(__METHOD__, "Should exist");
         $this->assertNotNull($this->tx);
-        $this->assertNotNull($this->routing);
+        $this->assertNotNull($this->retrieved);
     }
 
     public function testClass()
     {
         self::log(__METHOD__, "Should have the right class");
         $this->assertInstanceOf("Ubivar\\Transaction", $this->tx);
-        $this->assertInstanceOf("Ubivar\\Routing", $this->routing);
+        $this->assertInstanceOf("Ubivar\\Routing", $this->retrieved);
     }
 
     public function testId()
     {
         self::log(__METHOD__, "Should have the right 'id'");
-        $this->assertSame($this->tx->id, $this->routing->id);
+        $this->assertSame($this->tx->id, $this->retrieved->id);
     }
 
     public function testAttr()
     {
         self::log(__METHOD__, "Should have the expected attributes");
-        $this->assertTrue(isset($this->routing->id));
-        $this->assertTrue(isset($this->routing->tx_id));
-        $this->assertTrue(isset($this->routing->status));
-        $this->assertTrue(isset($this->routing->insert_timestamp));
-        $this->assertTrue(isset($this->routing->update_timestamp));
+        foreach (array_keys($this->data) as $attr)
+          $this->assertTrue($this->retrieved->offsetExists($attr));
     }
 
     public function testFilters()

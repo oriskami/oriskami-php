@@ -7,16 +7,22 @@ class MeTest extends TestCase
     public function __construct()
     {
         self::authorizeFromEnv();
+        $this->data         = array(
+          "email"           => null
+        , "company"         => null
+        , "description"     => null
+        , "primary_address" => null
+        , "primary_phone"   => null
+        , "meta"            => null
+        );
         // CRUD ___________________________________
         // Create
-        // x
         // Retrieve
         $this->retrieved  = Me::retrieve();
         // Update
         $this->retrieved->last_name = "Doe-2";
         $this->saved      = $this->retrieved->save();
         // Delete
-        // x
     }
 
     public function testExists()
@@ -42,14 +48,7 @@ class MeTest extends TestCase
     public function testAttr()
     {
         self::log(__METHOD__, "Should have the expected attributes");
-        $this->assertTrue(isset($this->retrieved->id));
-        $this->assertTrue(isset($this->retrieved->email));
-        $this->assertTrue(isset($this->retrieved->first_name));
-        $this->assertTrue(isset($this->retrieved->last_name));
-        $this->assertTrue(isset($this->retrieved->description));
-        $this->assertTrue(isset($this->retrieved->company));
-        $this->assertTrue(isset($this->retrieved->primary_phone));
-        $this->assertTrue(isset($this->retrieved->primary_address));
-        $this->assertTrue(isset($this->retrieved->meta));
+        foreach (array_keys($this->data) as $attr)
+          $this->assertTrue($this->retrieved->offsetExists($attr));
     }
 }

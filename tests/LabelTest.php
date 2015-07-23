@@ -4,12 +4,6 @@ namespace Ubivar;
 
 class LabelTest extends TestCase
 {
-    protected $label      = null;
-    protected $retrieved  = null;
-    protected $saved      = null;
-    protected $deleted    = null;
-    protected $tx_id      = null;
-
     public function __construct()
     {
         self::authorizeFromEnv();
@@ -55,21 +49,22 @@ class LabelTest extends TestCase
         );
 
         $this->tx         = Transaction::create($tx);
-        $review           = array(
-            "tx_id"       => $this->tx->id
-          , "reviewer_id" => 1
-          , "session_id"  => "ABC"
-          , "user_id"     => "DEF"
+        $this->data       = array(
+            "reviewer_id" => 1
+          , "order_id"    => "Some remarks about the review."
+          , "tx_id"       => $this->tx->id
+          , "remarks"     => "Some remarks about the review."
           , "status"      => "is_fraud"
+          , "meta"        => array("some" => "metadata")
         );
 
         // CRUD ___________________________________
         // Create
-        $labels           = array();
+        $this->datas      = array();
         for ($x = 0; $x <= 2; $x++) {
-          $labels[]       = Label::create($review);
+          $this->datas[]  = Label::create($this->data);
         }
-        $this->created    = $labels[0];
+        $this->created    = $this->datas[0];
         // Retrieve
         $this->retrieved  = Label::retrieve($this->created->id);
         // Update
@@ -120,14 +115,8 @@ class LabelTest extends TestCase
     public function testAttr()
     {
         self::log(__METHOD__, "Should have the expected attributes");
-        $this->assertTrue(isset($this->created->id));
-        $this->assertTrue(isset($this->created->session_id));
-        $this->assertTrue(isset($this->created->user_id));
-        $this->assertTrue(isset($this->created->tx_id));
-        $this->assertTrue(isset($this->created->reviewer_id));
-        $this->assertTrue(isset($this->created->status));
-        $this->assertTrue(isset($this->created->insert_timestamp));
-        $this->assertTrue(isset($this->created->update_timestamp));
+        foreach (array_keys($this->data) as $attr)
+          $this->assertTrue($this->retrieved->offsetExists($attr));
     }
 
     public function testFilters()

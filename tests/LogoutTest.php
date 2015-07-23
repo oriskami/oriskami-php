@@ -4,29 +4,25 @@ namespace Ubivar;
 
 class LogoutTest extends TestCase
 {
-    protected $created    = null;
-    protected $retrieved  = null;
-    protected $deleted    = null;
-
     public function __construct()
     {
         self::authorizeFromEnv();
-        $logout           = array(
-            "session_id"  => "abc"
-          , "user_id"     => "def"
-          , "metadata"    => array("key" => "value")
+        $this->data       = array(
+            "shop_id"           => null
+          , "user_id"           => "def"
+          , "session_id"        => "abc"
+          , "create_timestamp"  => null
+          , "meta"              => array("key" => "value")
         );
         // CRUD ___________________________________
         // Create
-        $logouts          = array();
-        for ($x = 0; $x <= 2; $x++) {
-          $logouts[]      = Logout::create($logout);
-        }
-        $this->created    = $logouts[0];
+        $this->datas      = array();
+        for ($x = 0; $x <= 2; $x++) 
+          $this->datas[]  = Logout::create($this->data);
+        $this->created    = $this->datas[0];
         // Retrieve
         $this->retrieved  = Logout::retrieve($this->created->id);
         // Update
-        // x
         // Delete
         $this->deleted    = $this->created->delete();
         // List
@@ -68,10 +64,8 @@ class LogoutTest extends TestCase
     public function testAttr()
     {
         self::log(__METHOD__, "Should have the expected attributes");
-        $this->assertTrue(isset($this->retrieved->id));
-        $this->assertTrue(isset($this->retrieved->session_id));
-        $this->assertTrue(isset($this->retrieved->user_id));
-        $this->assertTrue(isset($this->retrieved->metadata));
+        foreach (array_keys($this->data) as $attr)
+          $this->assertTrue($this->retrieved->offsetExists($attr));
     }
 
     public function testFilters()

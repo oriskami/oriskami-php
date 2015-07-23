@@ -4,10 +4,13 @@ namespace Ubivar;
 
 class AccountTest extends TestCase
 {
+    public $data;
+    public $datas;
+
     public function __construct()
     {
         self::authorizeFromEnv();
-        $account          = array(
+        $this->data       = array(
           "user_id"       => "test_user_id_123"
         , "session_id"    => "test_session_id_123"
         , "user_email"    => "abc@email.com"
@@ -41,11 +44,11 @@ class AccountTest extends TestCase
 
         // CRUD ___________________________________
         // Create
-        $accounts         = array();
+        $this->datas = array();
         for ($x = 0; $x <= 2; $x++) {
-          $accounts[]     = Account::create($account);
+          $this->datas[]  = Account::create($this->data);
         }
-        $this->created    = $accounts[0];
+        $this->created    = $this->datas[0];
         // Retrieve
         $this->retrieved  = Account::retrieve($this->created->id);
         // Update
@@ -95,18 +98,8 @@ class AccountTest extends TestCase
     public function testAttr()
     {
         self::log(__METHOD__, "Should have the expected attributes");
-        $this->assertTrue(isset($this->created->id));
-        $this->assertTrue(isset($this->created->user_id));
-        $this->assertTrue(isset($this->created->session_id));
-        $this->assertTrue(isset($this->created->user_email));
-        $this->assertTrue(isset($this->created->first_name));
-        $this->assertTrue(isset($this->created->last_name));
-        $this->assertTrue(isset($this->created->primary_phone));
-        $this->assertTrue(isset($this->created->payment_method));
-        $this->assertTrue(isset($this->created->billing_address));
-        $this->assertTrue(isset($this->created->shipping_address));
-        $this->assertTrue(isset($this->created->social));
-        $this->assertTrue(isset($this->created->meta));
+        foreach (array_keys($this->data) as $attr)
+          $this->assertTrue($this->retrieved->offsetExists($attr));
     }
 
     public function testFilters()

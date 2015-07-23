@@ -7,17 +7,18 @@ class TransactionTest extends TestCase
     public function __construct()
     {
         self::authorizeFromEnv();
-        $tx = array(
-            "user_id"         => "test_phahr3Eit3_123"          // your client's id
+        $this->data           = array(
+            "shop_id"         => null
+          , "user_id"         => "test_phahr3Eit3_123"          // your client's id
+          , "session_id"      => null
+          , "tx_id"           => "client_tx_id_123"             // the transaction id
+          , "order_id"        => "test_iiquoozeiroogi_123"      // the shopping cart id
           , "user_email"      => "test_phahr3Eit3@gmail-123.com"// your client email
           , "gender"          => "M"                            // your client's gender
           , "first_name"      => "John"                         // your client's first name
           , "last_name"       => "Doe"                          // your client's last name
           , "type"            => "sale"                         // the transaction type
           , "status"          => "success"                      // the transaction status
-          , "order_id"        => "test_iiquoozeiroogi_123"      // the shopping cart id
-          , "tx_id"           => "client_tx_id_123"             // the transaction id
-          , "tx_timestamp"    => "2015-04-13 13:36:41"          // the timestamp of this transaction
           , "amount"          => "43210"                        // the amount in cents
           , "currency_code"   => "EUR"
 
@@ -47,12 +48,13 @@ class TransactionTest extends TestCase
 
           ),"ip_address"      => "1.2.3.4"                      // your client ip address
           , "user_agent"      => "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36"// your client's user agent
-          , "metadata"        => array("key" => "value")
+          , "create_timestamp"=> "2015-04-13 13:36:41"          // the timestamp of this transaction
+          , "meta"            => array("key" => "value")
         );
 
         // CRUD ________________________________________
         // Create
-        $this->created        = Transaction::create($tx);
+        $this->created        = Transaction::create($this->data);
         // Retrieve
         $this->retrieved      = Transaction::retrieve($this->created->id);
         // Update
@@ -102,24 +104,8 @@ class TransactionTest extends TestCase
     public function testAttr()
     {
         self::log(__METHOD__, "Should have the expected attributes");
-        $this->assertTrue(isset($this->created->id));
-        $this->assertTrue(isset($this->created->user_id));
-        $this->assertTrue(isset($this->created->gender));
-        $this->assertTrue(isset($this->created->first_name));
-        $this->assertTrue(isset($this->created->last_name));
-        $this->assertTrue(isset($this->created->type));
-        $this->assertTrue(isset($this->created->status));
-        $this->assertTrue(isset($this->created->order_id));
-        $this->assertTrue(isset($this->created->tx_id));
-        $this->assertTrue(isset($this->created->tx_timestamp));
-        $this->assertTrue(isset($this->created->amount));
-        $this->assertTrue(isset($this->created->currency_code));
-        $this->assertTrue(isset($this->created->payment_method));
-        $this->assertTrue(isset($this->created->billing_address));
-        $this->assertTrue(isset($this->created->shipping_address));
-        $this->assertTrue(isset($this->created->ip_address));
-        $this->assertTrue(isset($this->created->user_agent));
-        $this->assertTrue(isset($this->created->metadata));
+        foreach (array_keys($this->data) as $attr)
+          $this->assertTrue($this->retrieved->offsetExists($attr));
     }
 
     public function testFilters()

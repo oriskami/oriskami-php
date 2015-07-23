@@ -7,8 +7,9 @@ class OrderTest extends TestCase
     public function __construct()
     {
         self::authorizeFromEnv();
-        $order            = array(
-          "user_id"       => "test_user_id_123"
+        $this->data       = array(
+          "shop_id"       => null
+        , "user_id"       => "test_user_id_123"
         , "order_id"      => "test_order_id_123"
         , "session_id"    => "test_session_id_123"
         , "user_email"    => "abc@email.com"
@@ -35,17 +36,16 @@ class OrderTest extends TestCase
         , "country"       => "USA"
         ),"expedited_shipping" => true
         , "items"         => array()
-        , "metadata"      => array(
+        , "meta"          => array(
           "channel"       => "mobile_123"
         ));
 
         // CRUD ___________________________________
         // Create
-        $orders           = array();
-        for ($x = 0; $x <= 2; $x++) {
-          $orders[]       = Order::create($order);
-        }
-        $this->created    = $orders[0];
+        $this->datas      = array();
+        for ($x = 0; $x <= 2; $x++)
+          $this->datas[]  = Order::create($this->data);
+        $this->created    = $this->datas[0];
         // Retrieve
         $this->retrieved  = Order::retrieve($this->created->id);
         // Update
@@ -63,7 +63,7 @@ class OrderTest extends TestCase
             "start_after" => $this->limit5[1]->id
           , "end_before"  => $this->limit5[3]->id
         ));
-        $this->oneId      = Order::all(array("id"   => $this->limit5[1]->id));
+        $this->oneId      = Order::all(array("id"=>$this->limit5[1]->id));
     }
 
     public function testExists()
@@ -95,19 +95,8 @@ class OrderTest extends TestCase
     public function testAttr()
     {
         self::log(__METHOD__, "Should have the expected attributes");
-        $this->assertTrue(isset($this->created->id));
-        $this->assertTrue(isset($this->created->user_id));
-        $this->assertTrue(isset($this->created->order_id));
-        $this->assertTrue(isset($this->created->session_id));
-        $this->assertTrue(isset($this->created->user_email));
-        $this->assertTrue(isset($this->created->amount));
-        $this->assertTrue(isset($this->created->currency_code));
-        $this->assertTrue(isset($this->created->payment_method));
-        $this->assertTrue(isset($this->created->billing_address));
-        $this->assertTrue(isset($this->created->shipping_address));
-        $this->assertTrue(isset($this->created->expedited_shipping));
-        $this->assertTrue(isset($this->created->items));
-        $this->assertTrue(isset($this->created->metadata));
+        foreach (array_keys($this->data) as $attr)
+          $this->assertTrue($this->retrieved->offsetExists($attr));
     }
 
     public function testFilters()

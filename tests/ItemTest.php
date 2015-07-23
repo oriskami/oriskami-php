@@ -8,19 +8,22 @@ class ItemTest extends TestCase
     {
         self::authorizeFromEnv();
 
-        $item             = array(
-          "session_id"    => "loo9achu4yiz9ohKio2Jiz2eep5ahShethai"
+        $this->data       = array(
+          "shop_id"       => null
         , "user_id"       => "de3acauQui"
+        , "session_id"    => "loo9achu4yiz9ohKio2Jiz2eep5ahShethai"
+        , "action"        => "add"
         , "item"          => array("a", "b", "c")
-        , "metadata"      => array("key" => "value"));
+        , "create_timestamp" => null 
+        , "meta"          => array("key" => "value")
+        );
 
         // CRUD ___________________________________
         // Create
-        $items            = array();
-        for ($x = 0; $x <= 2; $x++) {
-          $items[]     = Item::create($item);
-        }
-        $this->created    = $items[0];
+        $this->datas      = array();
+        for ($x = 0; $x <= 2; $x++)
+          $this->datas[]  = Item::create($this->data);
+        $this->created    = $this->datas[0];
         // Retrieve
         $this->retrieved  = Item::retrieve($this->created->id);
         // Update
@@ -70,11 +73,8 @@ class ItemTest extends TestCase
     public function testAttr()
     {
         self::log(__METHOD__, "Should have the expected attributes");
-        $this->assertTrue(isset($this->created->id));
-        $this->assertTrue(isset($this->created->session_id));
-        $this->assertTrue(isset($this->created->user_id));
-        $this->assertTrue(isset($this->created->item));
-        $this->assertTrue(isset($this->created->metadata));
+        foreach (array_keys($this->data) as $attr)
+          $this->assertTrue($this->retrieved->offsetExists($attr));
     }
 
     public function testFilters()
