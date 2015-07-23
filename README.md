@@ -137,7 +137,7 @@ is available at [https://ubivar.com/docs/php](https://ubivar.com/docs/php).
 
 ## Configuration
 
-- Require PHP 5.3.3 and later.
+- Require PHP 5.4 and later.
 - Sign up for an account and get an API key at [https://my.ubivar.com](https://my.ubivar.com).
 - Set the API access token:
 ```php
