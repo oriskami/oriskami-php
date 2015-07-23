@@ -22,7 +22,7 @@ class ItemTest extends TestCase
         // Create
         $this->datas      = array();
         for ($x = 0; $x <= 2; $x++) {
-           $this->datas[]  = Item::create($this->data);
+            $this->datas[]  = Item::create($this->data);
         }
         $this->created    = $this->datas[0];
         // Retrieve
