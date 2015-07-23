@@ -8,8 +8,7 @@ php:
   - hhvm
 
 env:
-  - AUTOLOAD=1
   - AUTOLOAD=0
 
 script: ./build.php ${AUTOLOAD}
-after_script: ./vendor/bin/coveralls -v
+# after_script: ./vendor/bin/coveralls -v
