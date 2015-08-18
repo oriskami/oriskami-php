@@ -184,9 +184,7 @@ class ApiRequestor
             'User-Agent'        => 'Ubivar/v1 PhpBindings/' . Ubivar::VERSION,
             'Authorization'     => 'Bearer ' . $myApiKey,
         );
-        if (Ubivar::$apiVersion) {
-            $defaultHeaders['Ubivar-Version'] = Ubivar::$apiVersion;
-        }
+        $defaultHeaders['Accept-Version'] = Ubivar::$apiVersion;
         $hasFile      = false;
         $defaultHeaders['Content-Type'] = 'application/json';
 

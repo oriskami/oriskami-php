@@ -11,12 +11,12 @@ class Ubivar
     public static $apiBase = 'https://api.ubivar.com';
 
     // @var string|null The version of the Ubivar API to use for requests.
-    public static $apiVersion = null;
+    public static $apiVersion = '0.6.0-beta';
 
     // @var boolean Defaults to true.
     public static $verifySslCerts = true;
 
-    const VERSION = '1.0.2-beta';
+    const VERSION = '1.0.3-beta';
 
     /**
      * @return string The API key used for requests.

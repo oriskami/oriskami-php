@@ -65,7 +65,8 @@ class RequestOptions
                 $headers['Ubivar-Account'] = $options['ubivar_account'];
             }
             if (array_key_exists('ubivar_version', $options)) {
-                $headers['Ubivar-Version'] = $options['ubivar_version'];
+                // $headers['Ubivar-Version'] = $options['ubivar_version'];
+                $headers['Accept-Version'] = $options['ubivar_version'];
             }
             return new RequestOptions($key, $headers);
         }

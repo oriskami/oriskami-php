@@ -6,7 +6,7 @@ abstract class ApiResource extends Object
 {
     private static $HEADERS_TO_PERSIST = array(
       'Ubivar-Account' => true
-    , 'Ubivar-Version' => true);
+    , 'Accept-Version' => true);
 
     public static function baseUrl()
     {
