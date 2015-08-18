@@ -10,13 +10,15 @@ class Ubivar
     // @var string The base URL for the Ubivar API.
     public static $apiBase = 'https://api.ubivar.com';
 
-    // @var string|null The version of the Ubivar API to use for requests.
-    public static $apiVersion = '0.6.0-beta';
-
     // @var boolean Defaults to true.
     public static $verifySslCerts = true;
 
-    const VERSION = '1.0.3-beta';
+    // @var string|null The version of the Ubivar API to use for requests.
+    public static $apiVersion = '0.6.0-beta';
+
+    // version of ubivar-php binding. Patch may differ but both major and minor should align with the 
+    // one of the API blueprint.
+    const VERSION = '0.6.0-beta'; 
 
     /**
      * @return string The API key used for requests.
