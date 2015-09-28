@@ -14,11 +14,11 @@ class Ubivar
     public static $verifySslCerts = true;
 
     // @var string|null The version of the Ubivar API to use for requests.
-    public static $apiVersion = '0.6.0-beta';
+    public static $apiVersion = '0.8.0-beta';
 
     // version of ubivar-php binding. Patch may differ but both major and minor should align with the 
     // one of the API blueprint.
-    const VERSION = '0.6.0-beta'; 
+    const VERSION = '0.8.0-beta'; 
 
     /**
      * @return string The API key used for requests.

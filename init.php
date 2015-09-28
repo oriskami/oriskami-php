@@ -25,12 +25,4 @@ require(dirname(__FILE__) . '/lib/AttachedObject.php');
 
 // Ubivar API Resources
 require(dirname(__FILE__) . '/lib/Me.php');
-require(dirname(__FILE__) . '/lib/Account.php');
-require(dirname(__FILE__) . '/lib/Address.php');
-require(dirname(__FILE__) . '/lib/Login.php');
-require(dirname(__FILE__) . '/lib/Logout.php');
-require(dirname(__FILE__) . '/lib/Item.php');
-require(dirname(__FILE__) . '/lib/Order.php');
-require(dirname(__FILE__) . '/lib/Transaction.php');
-require(dirname(__FILE__) . '/lib/Routing.php');
-require(dirname(__FILE__) . '/lib/Label.php');
+require(dirname(__FILE__) . '/lib/Event.php');

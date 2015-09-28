@@ -64,18 +64,7 @@ abstract class Util
         if (isset($resp["object"])) {
             $types = array(
                 'me'                    => 'Ubivar\\Me'
-              , 'accounts'              => 'Ubivar\\Account'
-              , 'addresses'             => 'Ubivar\\Address'
-              , 'login'                 => 'Ubivar\\Login'
-              , 'logout'                => 'Ubivar\\Logout'
-              , 'items'                 => 'Ubivar\\Item'
-              , 'orders'                => 'Ubivar\\Order'
-              , 'transactions'          => 'Ubivar\\Transaction'
-              , 'routing'               => 'Ubivar\\Routing'
-              , 'reviewqueues'          => 'Ubivar\\ReviewQueue'
-              , 'reviewers'             => 'Ubivar\\Reviewer'
-              , 'reviewerqueuebindings' => 'Ubivar\\ReviewerQueueBinding'
-              , 'labels'                => 'Ubivar\\Label'
+              , 'events'                => 'Ubivar\\Event'
             );
 
             $class            = $types[$resp["object"]];

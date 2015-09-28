@@ -12,7 +12,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
     {
         $apiKey = getenv('UBIVAR_TEST_TOKEN');
         Ubivar::setApiKey($apiKey);
-        Ubivar::setApiVersion('0.6.0-beta');
+        Ubivar::setApiVersion('0.8.0-beta');
     }
 
     /**

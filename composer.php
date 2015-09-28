@@ -20,7 +20,7 @@
   "psr-4"       : { "Ubivar\\" : "lib/" }
 },"extra"       : {
   "branch-alias": {
-    "dev-master": "2.0-dev"
+    "dev-master": "2.1-dev"
     }
   }
 }
