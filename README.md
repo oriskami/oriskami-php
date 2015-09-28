@@ -7,20 +7,7 @@
 [![Code Coverage](https://coveralls.io/repos/ubivar/ubivar-php/badge.png?branch=master)](https://coveralls.io/r/ubivar/ubivar-php?branch=master)
 
 
-Ubivar is an API that takes over the hassle of screening e-payment for
-frauds. 
-
-Ubivar routes e-commerce transactions given their risk. By default the three
-`routing` outcomes are rejection, manual verification and acceptance. And the two
-elementary resources are the `transactions` and the `labels`.  `Transactions`
-are online sales pushed to your payment gateway and `labels` define the *a
-posteriori* truth about each `transaction`, i.e. {`fraud`, `non-fraud`}. 
-
-Using Ubivar simply requires an access `token`. Then the bindings provide the
-hooks to send and receive resources to the API. For each `transaction` that
-Ubivar receives, it calculates a `routing`. Later, as you review manually some of
-the `transactions` or as you receive fraud notifications, you `label` 
-those `transactions` as `fraud`. 
+Ubivar prevents the risk of non-payment *at the root* and *on autopilot* for businesses.
 
 ## Quick Start
 
@@ -41,57 +28,16 @@ Manually, download the [latest release](https://github.com/ubivar/ubivar-php/rel
 require_once('/path/to/ubivar-php/init.php');
 ```
 
-### A. Send transactions
+### Send transactions
 
 ```php
 \Ubivar\Ubivar::setApiKey('d8e8fca2dc0f896fd7cb4cb0031ba249');
-$tx                 = \Ubivar\Transaction::create(array(
-  "user_id"         => "test_phahr3Eit3_123"          // your client's id
-, "user_email"      => "test_phahr3Eit3@gmail-123.com"// your client email
-, "gender"          => "M"                            // your client's gender
-, "first_name"      => "John"                         // your client's first name
-, "last_name"       => "Doe"                          // your client's last name
-, "type"            => "sale"                         // the transaction type
-, "status"          => "success"                      // the transaction status 
-, "order_id"        => "test_iiquoozeiroogi_123"      // the shopping cart id
-, "tx_id"           => "client_tx_id_123"             // the transaction id 
-, "tx_timestamp"    => "2015-04-13 13:36:41"          // the timestamp of this transaction
-, "amount"          => "43210"                        // the amount in cents
-, "payment_method"  => array(
-    "bin"           => "123456"                       // the BIN of the card
-  , "brand"         => "Mastercard"                   // the brand of the card
-  , "funding"       => "credit"                       // the type of card
-  , "country"       => "US"                           // the card country code
-  , "name"          => "M John Doe"                   // the card holder's name
-  , "cvc_check"     => "pass"                         // the cvc check result
-),"billing_address" => array(
-    "line1"         => "123 Market Street"            // the billing address
-  , "line2"         => "4th Floor"                       
-  , "city"          => "San Francisco"
-  , "state"         => "California"
-  , "zip"           => "94102"
-  , "country"       => "US"
-),"ip_address"      => "1.2.3.4"                      // your client ip address
-, "user_agent"      => "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36"// your client's user agent
+$event              = \Ubivar\Event::create(array(
+, "parameters"      => array(
+    "firt_name"     => "John"
+  , "last_name"     => "Doe"
 ));
-echo $tx;
-```
-
-### B. Retrieve routing 
-
-```php
-$routing            = \Ubivar\Routing::retrieve($tx->id)
-echo $routing;
-```
-
-### C. Label as fraud
-
-```php
-$label              = \Ubivar\Label::save(array(
-  "id"              => $tx->id
-, "status"          => "is_fraud"
-))
-echo $label;
+echo $event;
 ```
 
 ## Resources, actions, and arguments 
@@ -104,18 +50,7 @@ is available at [https://ubivar.com/docs/php](https://ubivar.com/docs/php).
 | Resource      | C | R | U | D | L | Test Specs |
 | ------------- |:-:|:-:|:-:|:-:|:----:|:-------:|:----------:|
 | Me            |        |<a href="https://ubivar.com/docs/php#retrieve_your_information">_</a>  |<a href="https://ubivar.com/docs/php#retrieve_your_information">`{}`</a>|        |        | [![](https://status.ubivar.com/ubivar-php/resources/me.svg)](https://github.com/ubivar/ubivar-php/blob/master/tests/MeTest.php) |
-| Account      |<a href="https://ubivar.com/docs/php#create_an_account">`{}`</a>|<a href="https://ubivar.com/docs/php#retrieve_an_account">id</a>  |<a href="https://ubivar.com/docs/php#update_an_account">`{}`</a>|<a href="https://ubivar.com/docs/php#delete_an_account">id</a>|<a href="https://ubivar.com/docs/php#list_accounts">`{}`</a>| [![](https://status.ubivar.com/ubivar-php/resources/accounts.svg)](https://github.com/ubivar/ubivar-php/blob/master/tests/AccountTest.php)|
-| Address      |<a href="https://ubivar.com/docs/php#create_an_address">`{}`</a>|<a href="https://ubivar.com/docs/php#retrieve_an_address">id</a>  |<a href="https://ubivar.com/docs/php#update_an_address">`{}`</a>|<a href="https://ubivar.com/docs/php#delete_an_address">id</a>|<a href="https://ubivar.com/docs/php#list_addresss">`{}`</a>| [![](https://status.ubivar.com/ubivar-php/resources/addresses.svg)](https://github.com/ubivar/ubivar-php/blob/master/tests/AddressTest.php)|
-| Login         |<a href="https://ubivar.com/docs/php#create_login_event">`{}`</a>|<a href="https://ubivar.com/docs/php#retrieve_login_event">id</a>  |        |<a href="https://ubivar.com/docs/php#delete_login_event">id</a>|<a href="https://ubivar.com/docs/php#list_login_events">`{}`</a>| [![](https://status.ubivar.com/ubivar-php/resources/login.svg)](https://github.com/ubivar/ubivar-php/blob/master/tests/LoginTest.php)| 
-| Logout        |<a href="https://ubivar.com/docs/php#create_logout_event">`{}`</a>|<a href="https://ubivar.com/docs/php#retrieve_logout_event">id</a>  |        |<a href="https://ubivar.com/docs/php#delete_logout_event">id</a>|<a href="https://ubivar.com/docs/php#list_logout_events">`{}`</a>|  [![](https://status.ubivar.com/ubivar-php/resources/logout.svg)](https://github.com/ubivar/ubivar-php/blob/master/tests/LogoutTest.php)| 
-| Item         |<a href="https://ubivar.com/docs/php#create_item">`{}`</a>|<a href="https://ubivar.com/docs/php#retrieve_item">id</a>  |<a href="https://ubivar.com/docs/php#update_item">`{}`</a>|<a href="https://ubivar.com/docs/php#delete_item">id</a>|<a href="https://ubivar.com/docs/php#list_items">`{}`</a>| [![](https://status.ubivar.com/ubivar-php/resources/items.svg)](https://github.com/ubivar/ubivar-php/blob/master/tests/ItemTest.php)| 
-| Order         |<a href="https://ubivar.com/docs/php#create_item">`{}`</a>|<a href="https://ubivar.com/docs/php#retrieve_item">id</a>  |<a href="https://ubivar.com/docs/php#update_item">`{}`</a>|<a href="https://ubivar.com/docs/php#delete_item">id</a>|<a href="https://ubivar.com/docs/php#list_orders">`{}`</a>| [![](https://status.ubivar.com/ubivar-php/resources/orders.svg)](https://github.com/ubivar/ubivar-php/blob/master/tests/OrderTest.php)| 
-| Transaction  |<a href="https://ubivar.com/docs/php#create_a_transaction">`{}`</a>| <a href="https://ubivar.com/docs/php#retrieve_a_transaction">id</a>  |<a href="https://ubivar.com/docs/php#update_a_transaction">`{}`</a>|<a href="https://ubivar.com/docs/php#delete_a_transaction">id</a>|<a href="https://ubivar.com/docs/php#list_transactions">`{}`</a>| [![](https://status.ubivar.com/ubivar-php/resources/transactions.svg)](https://github.com/ubivar/ubivar-php/blob/master/tests/TransactionTest.php)| 
-| Routing | | <a href="https://ubivar.com/docs/php#retrieve_a_routing">id</a>  | | |<a href="https://ubivar.com/docs/php#list_routing">`{}`</a>| [![](https://status.ubivar.com/ubivar-php/resources/routing.svg)](https://github.com/ubivar/ubivar-php/blob/master/tests/RoutingTest.php)| 
-| ReviewQueue |<a href="https://ubivar.com/docs/php#create_a_reviewqueue">`{}`</a>| <a href="https://ubivar.com/docs/php#retrieve_a_reviewqueue">id</a>  |<a href="https://ubivar.com/docs/php#update_a_reviewqueue">`{}`</a>|<a href="https://ubivar.com/docs/php#delete_a_reviewqueue">id</a>|<a href="https://ubivar.com/docs/php#list_reviewqueues">`{}`</a>| [![](https://status.ubivar.com/ubivar-php/resources/reviewqueues.svg)](https://github.com/ubivar/ubivar-php/blob/master/tests/ReviewQueues.php)| 
-| Reviewer | | <a href="https://ubivar.com/docs/php#retrieve_a_reviewer">id</a>  | | | <a href="https://ubivar.com/docs/php#list_reviewers">`{}`</a>| [![](https://status.ubivar.com/ubivar-php/resources/reviewers.svg)](https://github.com/ubivar/ubivar-php/blob/master/tests/Reviewer.php)| 
-| ReviewerQueueBinding | <a href="https://ubivar.com/docs/php#create_a_reviewerqueuebinding">`{}`</a>| <a href="https://ubivar.com/docs/php#retrieve_a_reviewerqueuebinding">id</a>  |<a href="https://ubivar.com/docs/php#update_a_reviewerqueuebinding">`{}`</a>|<a href="https://ubivar.com/docs/php#delete_a_reviewerqueuebinding">id</a>|<a href="https://ubivar.com/docs/php#list_reviewerqueuebindings">`{}`</a>| [![](https://status.ubivar.com/ubivar-php/resources/reviewerqueuebindings.svg)](https://github.com/ubivar/ubivar-php/blob/master/tests/ReviewerQueueBinding.php) | 
-| Label        |<a href="https://ubivar.com/docs/php#create_label">`{}`</a>|<a href="https://ubivar.com/docs/php#retrieve_label">id</a>  |<a href="https://ubivar.com/docs/php#update_label">`{}`</a>|<a href="https://ubivar.com/docs/php#delete_label">id</a>|<a href="https://ubivar.com/docs/php#list_labels">`{}`</a>| [![](https://status.ubivar.com/ubivar-php/resources/labels.svg)](https://github.com/ubivar/ubivar-php/blob/master/tests/LabelTest.php) | 
+| Events        | <a href="https://ubivar.com/docs/php#create_event">`{}`</a>|<a href="https://ubivar.com/docs/php#retrieve_event">id</a>  |<a href="https://ubivar.com/docs/php#update_event">`{}`</a>|<a href="https://ubivar.com/docs/php#delete_event">id</a>|<a href="https://ubivar.com/docs/php#list_events">`{}`</a>| [![](https://status.ubivar.com/ubivar-php/resources/events.svg)](https://github.com/ubivar/ubivar-php/blob/master/tests/EventTest.php)|
 
 + *C*: Create
 + *R*: Retrieve
