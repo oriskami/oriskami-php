@@ -47,10 +47,26 @@ callback as the last argument. In the matrix below we list the resources
 (rows), the actions (columns) and the arguments (cells). The full documentation
 is available at [https://ubivar.com/docs/php](https://ubivar.com/docs/php). 
 
-| Resource      | C | R | U | D | L | Test Specs |
-| ------------- |:-:|:-:|:-:|:-:|:----:|:-------:|:----------:|
-| Me            |        |<a href="https://ubivar.com/docs/php#retrieve_your_information">_</a>  |<a href="https://ubivar.com/docs/php#retrieve_your_information">`{}`</a>|        |        | [![](https://status.ubivar.com/ubivar-php/resources/me.svg)](https://github.com/ubivar/ubivar-php/blob/master/tests/MeTest.php) |
-| Events        | <a href="https://ubivar.com/docs/php#create_event">`{}`</a>|<a href="https://ubivar.com/docs/php#retrieve_event">id</a>  |<a href="https://ubivar.com/docs/php#update_event">`{}`</a>|<a href="https://ubivar.com/docs/php#delete_event">id</a>|<a href="https://ubivar.com/docs/php#list_events">`{}`</a>| [![](https://status.ubivar.com/ubivar-php/resources/events.svg)](https://github.com/ubivar/ubivar-php/blob/master/tests/EventTest.php)|
+|               | Resource                | C | R | U | D | L     | Test Specs |
+|--------------:| ----------------------- |:-:|:-:|:-:|:-:|:-----:|:-------:|
+| **Settings**  | Auth, Credentials       |   |   |   |   |       | [See on github]() | 
+| **Data**      | Event                   | [`{}`](https://ubivar.com/docs/php#create_event)| [`123`](https://ubivar.com/docs/php#retrieve_event) | [`123, {}`](https://ubivar.com/docs/php#update_event) | [`123`](https://ubivar.com/docs/php#delete_event) | [`{}`](https://ubivar.com/docs/php#list_events) | | 
+|               | EventNotification      |  | [`123`](https://ubivar.com/docs/php#retrieve_eventnotification) |  |  | [`{}`](https://ubivar.com/docs/php#list_eventnotification) | | 
+|               | EventLastId             |  |  |  |  | [`{}`](https://ubivar.com/docs/php#list_eventlastid) | | 
+|               | EventLabel             | | [`123`](https://ubivar.com/docs/php#retrieve_eventlabel) | [`123, {}`](https://ubivar.com/docs/php#update_eventlabel) | [`123`](https://ubivar.com/docs/php#delete_eventlabel) | [`{}`](https://ubivar.com/docs/php#list_eventlabel) | | 
+|               | EventQueue             | | [`123`](https://ubivar.com/docs/php#retrieve_eventqueue) | [`123, {}`](https://ubivar.com/docs/php#update_eventqueue) | [`123`](https://ubivar.com/docs/php#delete_eventqueue) | [`{}`](https://ubivar.com/docs/php#list_eventqueue) | | 
+|               | EventReview            | | [`123`](https://ubivar.com/docs/php#retrieve_eventreview) | [`123, {}`](https://ubivar.com/docs/php#update_eventreview) | [`123`](https://ubivar.com/docs/php#delete_eventreview) | [`{}`](https://ubivar.com/docs/php#list_eventreview) | | 
+| **Filters** | FilterWhitelist        | [`{}`](https://ubivar.com/docs/php#create_filterwhitelist)| | [`123, {}`](https://ubivar.com/docs/php#update_filterwhitelist) | [`123`](https://ubivar.com/docs/php#delete_filterwhitelist) | [`{}`](https://ubivar.com/docs/php#list_filterwhitelists) | | 
+|               | FilterBlacklist        |   |  | [`123, {}`](https://ubivar.com/docs/php#update_filterblacklist) |  | [`{}`](https://ubivar.com/docs/php#list_filterblacklist) | | 
+|               | FilterRulesCustom      | [`{}`](https://ubivar.com/docs/php#create_filterrulescustom)|  |  [`123, {}`](https://ubivar.com/docs/php#update_filterrulescustom)| [`123`](https://ubivar.com/docs/php#delete_filterrulescustom) | [`{}`](https://ubivar.com/docs/php#list_filterrulescustom) | | 
+|               | FilterRulesBase         |   |  | [`123, {}`](https://ubivar.com/docs/php#update_filterrulesbase) |  | [`{}`](https://ubivar.com/docs/php#list_filterrulesbase) | | 
+|               | FilterRulesAI           |   |  | [`123, {}`](https://ubivar.com/docs/php#update_filterrulesai) |  | [`{}`](https://ubivar.com/docs/php#list_filterrulesai) | | 
+|               | FilterScoringsDedicated |   |  | [`123, {}`](https://ubivar.com/docs/php#update_filterscoringsdedicated) |  | [`{}`](https://ubivar.com/docs/php#list_filterscoringsdedicated) | | 
+| **Notifications** | NotifierEmail      | [`{}`](https://ubivar.com/docs/php#create_notifieremail)|  | [`123, {}`](https://ubivar.com/docs/php#update_notifieremail) | [`123`](https://ubivar.com/docs/php#delete_notifieremail) | [`{}`](https://ubivar.com/docs/php#list_notifieremail) | | 
+|               | NotifierSms             | [`{}`](https://ubivar.com/docs/php#create_notifiersms)|  | [`123, {}`](https://ubivar.com/docs/php#update_notifiersms) | [`123`](https://ubivar.com/docs/php#delete_notifiersms) | [`{}`](https://ubivar.com/docs/php#list_notifiersms) | | 
+|               | NotifierSlack             | [`{}`](https://ubivar.com/docs/php#create_notifierslack)|  | [`123, {}`](https://ubivar.com/docs/php#update_notifierslack) | [`123`](https://ubivar.com/docs/php#delete_notifierslack) | [`{}`](https://ubivar.com/docs/php#list_notifierslack) | | 
+|               | NotifierWebhook         | [`{}`](https://ubivar.com/docs/php#create_notifierwebhook)|  | [`123, {}`](https://ubivar.com/docs/php#update_notifierwebhook) | [`123`](https://ubivar.com/docs/php#delete_notifierwebhook) | [`{}`](https://ubivar.com/docs/php#list_notifierwebhook) | | 
+|               | NotifierECommerce       |   |  | [`123, {}`](https://ubivar.com/docs/php#update_notifierecommerce) |  | [`{}`](https://ubivar.com/docs/php#list_notifierecommerce) | | 
 
 + *C*: Create
 + *R*: Retrieve
@@ -63,8 +79,6 @@ is available at [https://ubivar.com/docs/php](https://ubivar.com/docs/php).
 
 | Filter        | Default | Example             | Description                   |
 | ------------- |:-------:|:--------------------|:------------------------------|
-| `start_after` |         | `array("start_after"=>10)`| `id` after the one specified  |
-| `end_before`  |         | `array("end_before"=>10)` | `id` before the one specified |
 | `limit`       | `10`    | `array("limit"=>10)`      | At most `10` returned results |
 | `gt`          |         | `array("id"=>array("gt"=>10))`  | `id` greater than 10          |
 | `gte`         |         | `array("id"=>array("gte"=>10))` | `id` greater than or equal    |
