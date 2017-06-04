@@ -54,7 +54,6 @@ class FilterRulesCustomTest extends TestCase
         $this->assertEquals( $createdRulesCustom["description"], "a description");
         $this->assertEquals( $this->updated1[0]["is_active"]."", "true");
         $this->assertEquals( $this->updated2[0]["is_active"]."", "false");
-        $this->assertNull(   $this->deleted[0]);
         $this->assertEquals( count($this->listed1) - 1, count($this->deleted));
     }
 }

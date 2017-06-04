@@ -11,8 +11,8 @@ class EventLabelTest extends TestCase
         // Retrieve
         $this->retrieved  = EventLabel::retrieve("1")[0];
         // Update
-        $this->updated1   = EventLabel::update("1", array("label" => "is_loss", value => "false"))[0];
-        $this->updated2   = EventLabel::update("1", array("label" => "is_loss", value => "true" ))[0];
+        $this->updated1   = EventLabel::update("1", array("label" => "is_loss", "value" => "false"))[0];
+        $this->updated2   = EventLabel::update("1", array("label" => "is_loss", "value" => "true" ))[0];
         // List
         $this->listed     = EventLabel::all(array("order" =>  "id"));
         // Delete
