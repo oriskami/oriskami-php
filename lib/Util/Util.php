@@ -63,8 +63,25 @@ abstract class Util
     {
         if (isset($resp["object"])) {
             $types = array(
-                'me'                    => 'Ubivar\\Me'
-              , 'events'                => 'Ubivar\\Event'
+                'events'                     => 'Ubivar\\Event'
+              , 'event_labels'               => 'Ubivar\\EventLabel'
+              , 'event_notifications'        => 'Ubivar\\EventNotification'
+              , 'event_queues'               => 'Ubivar\\EventQueue'
+              , 'event_reviews'              => 'Ubivar\\EventReview'
+              , 'event_last_id'              => 'Ubivar\\EventLastId'
+
+              , 'filter_whitelists'          => 'Ubivar\\FilterWhitelist'
+              , 'filter_blacklists'          => 'Ubivar\\FilterBlacklist'
+              , 'filter_rules_custom'        => 'Ubivar\\FilterRulesCustom'
+              , 'filter_rules_base'          => 'Ubivar\\FilterRulesBase'
+              , 'filter_rules_ai'            => 'Ubivar\\FilterRulesAI'
+              , 'filter_scorings_dedicated'  => 'Ubivar\\FilterScoringsDedicated'
+
+              , 'notifier_emails'            => 'Ubivar\\NotifierEmail'
+              , 'notifier_sms'               => 'Ubivar\\NotifierSms'
+              , 'notifier_ecommerce'         => 'Ubivar\\NotifierECommerce'
+              , 'notifier_slack'             => 'Ubivar\\NotifierSlack'
+              , 'notifier_webhooks'          => 'Ubivar\\NotifierWebhook'
             );
 
             $class            = $types[$resp["object"]];

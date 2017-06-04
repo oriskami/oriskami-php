@@ -10,9 +10,9 @@ class TestCase extends \PHPUnit_Framework_TestCase
 {
     protected static function authorizeFromEnv()
     {
-        $apiKey = getenv('UBIVAR_TEST_TOKEN');
+        $apiKey = getenv('UBIVAR_TEST_TOKEN_PHP_1');
         Ubivar::setApiKey($apiKey);
-        Ubivar::setApiVersion('0.8.0-beta');
+        Ubivar::setApiVersion('1.0.0');
     }
 
     /**

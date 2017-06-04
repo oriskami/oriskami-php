@@ -4,9 +4,7 @@ namespace Ubivar;
 
 abstract class ApiResource extends Object
 {
-    private static $HEADERS_TO_PERSIST = array(
-      'Ubivar-Account' => true
-    , 'Accept-Version' => true);
+    private static $HEADERS_TO_PERSIST = array('Accept-Version' => true);
 
     public static function baseUrl()
     {
@@ -56,15 +54,7 @@ abstract class ApiResource extends Object
      */
     public static function classUrl()
     {
-        $base               = static::className();
-        $noPluralResources  = array("me","login","logout","routing");
-        if (in_array($base, $noPluralResources)) {
-            return "/${base}";
-        } else if ($base === 'address') {
-            return "/${base}es";
-        } else {
-            return "/${base}s";
-        }
+        return "/" . static::path();
     }
 
     /**
@@ -114,12 +104,11 @@ abstract class ApiResource extends Object
 
     protected static function _retrieve($id, $options = null)
     {
-        $base = static::baseUrl();
         $url = static::classUrl()."/".$id;
 
         list($response, $opts) = static::_staticRequest('get', $url, null, $options);
         $result = Util\Util::convertToUbivarObject($response, $opts);
-        return $result[0];
+        return $result;
     }
 
     protected static function _all($params = null, $options = null)
@@ -131,34 +120,33 @@ abstract class ApiResource extends Object
         return Util\Util::convertToUbivarObject($response, $opts);
     }
 
+    protected static function _update($id, $params = null, $options = null)
+    {
+        self::_validateParams($params);
+        $url = static::classUrl() . "/" . $id ;
+
+        list($response, $opts) = static::_staticRequest('post', $url, $params, $options);
+        $result = Util\Util::convertToUbivarObject($response, $opts);
+        return $result;
+    }
+
     protected static function _create($params = null, $options = null)
     {
         self::_validateParams($params);
-        $base = static::baseUrl();
         $url = static::classUrl();
 
         list($response, $opts) = static::_staticRequest('post', $url, $params, $options);
         $result = Util\Util::convertToUbivarObject($response, $opts);
-        return $result[0];
+        return $result;
     }
 
-    protected function _save($options = null)
-    {
-        $params = $this->_values;
-        $url = $this->instanceUrl();
-
-        list($response, $opts) = $this->_request('post', $url, $params, $options);
-        $result = Util\Util::convertToUbivarObject($response, $opts);
-        return $result[0];
-    }
-
-    protected function _delete($params = null, $options = null)
+    protected static function _delete($id, $params = null, $options = null)
     {
         self::_validateParams($params);
+        $url = static::classUrl() . "/" . $id ;
 
-        $url = $this->instanceUrl();
-        list($response, $opts) = $this->_request('delete', $url, $params, $options);
+        list($response, $opts) = static::_staticRequest('delete', $url, $params, $options);
         $result = Util\Util::convertToUbivarObject($response, $opts);
-        return $result[0];
+        return $result;
     }
 }

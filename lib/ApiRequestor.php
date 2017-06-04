@@ -165,9 +165,8 @@ class ApiRequestor
         }
 
         $absUrl       = $this->_apiBase.$url;
-        if ($method == "get" && count($params) > 0) {
+        if (($method == "get" || $method == "delete") && count($params) > 0) {
             $absUrl  .= "?".http_build_query($params);
-            // fwrite(STDOUT, "\n".__METHOD__."\t".$absUrl);
         }
         $params       = json_encode($params);
         $langVersion  = phpversion();

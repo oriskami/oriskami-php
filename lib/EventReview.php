@@ -2,25 +2,14 @@
 
 namespace Ubivar;
 
-class Event extends ApiResource
+class EventReview extends ApiResource
 {
     /**
      * @return string path 
      */
     public static function path()
     {
-        return "events";
-    }
-
-    /**
-     * @param array|null $params
-     * @param array|string|null $opts
-     *
-     * @return Event The created login.
-     */
-    public static function create($params = null, $opts = null)
-    {
-        return self::_create($params, $opts);
+        return "event_reviews";
     }
 
     /**
@@ -34,6 +23,7 @@ class Event extends ApiResource
         return self::_retrieve($id, $opts);
     }
 
+
     /**
      * @param integer $id
      * @param array|null $params
@@ -46,9 +36,8 @@ class Event extends ApiResource
         return self::_update($id, $params, $opts);
     }
 
-
     /**
-     * @param string $id
+     * @param integer $id 
      * @param array|null $params
      * @param array|string|null $opts
      *

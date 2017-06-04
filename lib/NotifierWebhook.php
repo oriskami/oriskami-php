@@ -2,14 +2,14 @@
 
 namespace Ubivar;
 
-class Event extends ApiResource
+class NotifierWebhook extends ApiResource
 {
     /**
      * @return string path 
      */
     public static function path()
     {
-        return "events";
+        return "notifier_webhooks";
     }
 
     /**
@@ -24,17 +24,6 @@ class Event extends ApiResource
     }
 
     /**
-     * @param string $id The ID of the login to retrieve.
-     * @param array|string|null $opts
-     *
-     * @return Event
-     */
-    public static function retrieve($id, $opts = null)
-    {
-        return self::_retrieve($id, $opts);
-    }
-
-    /**
      * @param integer $id
      * @param array|null $params
      * @param array|string|null $opts
@@ -46,9 +35,8 @@ class Event extends ApiResource
         return self::_update($id, $params, $opts);
     }
 
-
     /**
-     * @param string $id
+     * @param integer $id
      * @param array|null $params
      * @param array|string|null $opts
      *
