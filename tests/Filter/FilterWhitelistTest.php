@@ -10,14 +10,14 @@ class FilterWhitelistTest extends TestCase
         // CRUD ___________________________________
         // Created ...
         $this->created    = FilterWhitelist::create(array(
-            value => "some pattern"
-          , feature => "email_domain"
-          , is_active => "false"
-          , description => "a description"
+            "value" => "some pattern"
+          , "feature" => "email_domain"
+          , "is_active" => "false"
+          , "description" => "a description"
         ));
         // Update .....
-        $this->updated1   = FilterWhitelist::update("1", array(is_active => "true"));
-        $this->updated2   = FilterWhitelist::update("1", array(is_active => "false"));
+        $this->updated1   = FilterWhitelist::update("1", array("is_active" => "true"));
+        $this->updated2   = FilterWhitelist::update("1", array("is_active" => "false"));
         // List .....
         $this->listed1    = FilterWhitelist::all();
         // Delete .....

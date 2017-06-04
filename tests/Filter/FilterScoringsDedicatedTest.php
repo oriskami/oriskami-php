@@ -9,8 +9,8 @@ class FilterScoringsDedicatedTest extends TestCase
         self::authorizeFromEnv();
         // CRUD ___________________________________
         // Update .....
-        $this->updated1   = FilterScoringsDedicated::update("0", array(is_active => "true"));
-        $this->updated2   = FilterScoringsDedicated::update("0", array(is_active => "false"));
+        $this->updated1   = FilterScoringsDedicated::update("0", array("is_active" => "true"));
+        $this->updated2   = FilterScoringsDedicated::update("0", array("is_active" => "false"));
         // List .....
         $this->listed1    = FilterScoringsDedicated::all();
     }

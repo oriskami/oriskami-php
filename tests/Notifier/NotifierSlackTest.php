@@ -10,13 +10,13 @@ class NotifierSlackTest extends TestCase
         // CRUD ___________________________________
         // Created ...
         $this->created    = NotifierSlack::create(array(
-            value => "some pattern"
-          , is_active => "false"
-          , description => "a description"
+            "value" => "some pattern"
+          , "is_active" => "false"
+          , "description" => "a description"
         ));
         // Update .....
-        $this->updated1   = NotifierSlack::update("0", array(is_active => "true"));
-        $this->updated2   = NotifierSlack::update("0", array(is_active => "false"));
+        $this->updated1   = NotifierSlack::update("0", array("is_active" => "true"));
+        $this->updated2   = NotifierSlack::update("0", array("is_active" => "false"));
         // List .....
         $this->listed1    = NotifierSlack::all();
         // Delete .....

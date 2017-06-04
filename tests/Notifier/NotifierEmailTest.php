@@ -10,13 +10,13 @@ class NotifierEmailTest extends TestCase
         // CRUD ___________________________________
         // Created ...
         $this->created    = NotifierEmail::create(array(
-            value => "some pattern"
-          , is_active => "false"
-          , description => "a description"
+            "value" => "some pattern"
+          , "is_active" => "false"
+          , "description" => "a description"
         ));
         // Update .....
-        $this->updated1   = NotifierEmail::update("0", array(is_active => "true"));
-        $this->updated2   = NotifierEmail::update("0", array(is_active => "false"));
+        $this->updated1   = NotifierEmail::update("0", array("is_active" => "true"));
+        $this->updated2   = NotifierEmail::update("0", array("is_active" => "false"));
         // List .....
         $this->listed1    = NotifierEmail::all();
         // Delete .....

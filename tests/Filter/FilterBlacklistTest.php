@@ -9,8 +9,8 @@ class FilterBlacklistTest extends TestCase
         self::authorizeFromEnv();
         // CRUD ___________________________________
         // Update .....
-        $this->updated1   = FilterBlacklist::update("0", array(is_active => "true"));
-        $this->updated2   = FilterBlacklist::update("0", array(is_active => "false"));
+        $this->updated1   = FilterBlacklist::update("0", array("is_active" => "true"));
+        $this->updated2   = FilterBlacklist::update("0", array("is_active" => "false"));
         // List .....
         $this->listed1    = FilterBlacklist::all();
     }

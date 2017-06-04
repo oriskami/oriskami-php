@@ -10,14 +10,14 @@ class FilterRulesCustomTest extends TestCase
         // CRUD ___________________________________
         // Created ...
         $this->created    = FilterRulesCustom::create(array(
-            value => "some pattern"
-          , feature => "email_domain"
-          , is_active => "false"
-          , description => "a description"
+            "value" => "some pattern"
+          , "feature" => "email_domain"
+          , "is_active" => "false"
+          , "description" => "a description"
         ));
         // Update .....
-        $this->updated1   = FilterRulesCustom::update("0", array(is_active => "true"));
-        $this->updated2   = FilterRulesCustom::update("0", array(is_active => "false"));
+        $this->updated1   = FilterRulesCustom::update("0", array("is_active" => "true"));
+        $this->updated2   = FilterRulesCustom::update("0", array("is_active" => "false"));
         // List .....
         $this->listed1    = FilterRulesCustom::all();
         // Delete .....

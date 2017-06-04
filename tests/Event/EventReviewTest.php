@@ -9,16 +9,16 @@ class EventReviewTest extends TestCase
         self::authorizeFromEnv();
         // CRUD ___________________________________
         // Created ...
-        $this->created    = EventReview::update("1", array(reviewer_id => "125", message => "another review"))[0];
+        $this->created    = EventReview::update("1", array("reviewer_id" => "125", "message" => "another review"))[0];
         // Retrieve ...
         $this->retrieved  = EventReview::retrieve("1")[0];
         // Update .....
-        $this->updated1   = EventReview::update("1", array(review_id => 0, reviewer_id => "124"))[0];
-        $this->updated2   = EventReview::update("1", array(review_id => 0, reviewer_id => "123"))[0];
+        $this->updated1   = EventReview::update("1", array("review_id" => 0, "reviewer_id" => "124"))[0];
+        $this->updated2   = EventReview::update("1", array("review_id" => 0, "reviewer_id" => "123"))[0];
         // List .......
         $this->listed     = EventReview::all(array("order" =>  "id"));
         // Delete .....
-        $this->deleted    = EventReview::delete("1", array(review_id => 2))[0];
+        $this->deleted    = EventReview::delete("1", array("review_id" => 2))[0];
     }
 
     public function testExists()

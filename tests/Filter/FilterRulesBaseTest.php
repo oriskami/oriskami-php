@@ -9,8 +9,8 @@ class FilterRulesBaseTest extends TestCase
         self::authorizeFromEnv();
         // CRUD ___________________________________
         // Update .....
-        $this->updated1   = FilterRulesBase::update("0", array(is_active => "true"));
-        $this->updated2   = FilterRulesBase::update("0", array(is_active => "false"));
+        $this->updated1   = FilterRulesBase::update("0", array("is_active" => "true"));
+        $this->updated2   = FilterRulesBase::update("0", array("is_active" => "false"));
         // List .....
         $this->listed1    = FilterRulesBase::all();
     }
