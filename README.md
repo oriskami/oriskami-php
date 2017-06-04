@@ -6,12 +6,21 @@
 [![License](https://poser.pugx.org/ubivar/ubivar-php/license.svg)](https://packagist.org/packages/ubivar/ubivar-php)
 [![Code Coverage](https://coveralls.io/repos/ubivar/ubivar-php/badge.png?branch=master)](https://coveralls.io/r/ubivar/ubivar-php?branch=master)
 
+The Ubivar PHP library provides convenient access to the Ubivar API from
+applications written in the PHP language. It includes a pre-defined set of
+classes for API resources.
 
-Ubivar prevents the risk of non-payment *at the root* and *on autopilot* for businesses.
+## Documentation
+
+See the [Ubivar API docs](https://www.ubivar.com/docs/php).
+
 
 ## Quick Start
 
-Using [Composer](http://getcomposer.org/), add to your `composer.json` the following, and run `composer install`.
+You don't need this source code unless you want to modify the package. If you
+want to use the package, there are three options:
+
+1. with [Composer](http://getcomposer.org/), add to your `composer.json` the following and run `composer install`.
 ```js
 { 
   "require": {
@@ -19,33 +28,120 @@ Using [Composer](http://getcomposer.org/), add to your `composer.json` the follo
   }
 }
 ```
-Using [autoload](https://getcomposer.org/doc/00-intro.md#autoloading), add:
+2. with [autoload](https://getcomposer.org/doc/00-intro.md#autoloading), add
 ```php
 require_once('vendor/autoload.php');
 ```
-Manually, download the [latest release](https://github.com/ubivar/ubivar-php/releases) and include the `init.php`.
+3. manually download the [latest release](https://github.com/ubivar/ubivar-php/releases) and include the `init.php`.
 ```php
 require_once('/path/to/ubivar-php/init.php');
 ```
 
-### Send transactions
+### Requirements
+
+- Php 5.4, 5.5, 5.6, 7.0, 7.1
+
+### Usage 
+
+The library needs to be configured with your API key which is available in [My
+Ubivar](https://my.ubivar.com). 
 
 ```php
-\Ubivar\Ubivar::setApiKey('d8e8fca2dc0f896fd7cb4cb0031ba249');
-$event              = \Ubivar\Event::create(array(
-, "parameters"      => array(
-    "firt_name"     => "John"
-  , "last_name"     => "Doe"
+
+\Ubivar\Ubivar::setApiKey("9spB-ChM6J8NwMEEG ... WsJShd6lVQH7f6xz=");
+
+\Ubivar\Event::create(array(
+  "id" => "1",
+  "parameters"  => array(
+    "id"                    => "1",
+    "email"                 =>  "abc@gmail.com",
+    "names"                 =>  "M Abc",
+    "account_creation_time" =>  "2017-05-17 21:50:00",
+    "account_id"            =>  "1",
+    "account_n_fulfilled"   =>  "1",
+    "account_total_since_created" =>  "49.40",
+    "account_total_cur"     =>  "EUR",
+    "invoice_time"          =>  "2017-05-17 21:55:00",
+    "invoice_address_country"=>  "France",
+    "invoice_address_place" =>  "75008 Paris",
+    "invoice_address_street1"=>  "1 Av. des Champs-Élysées",
+    "invoice_name"          =>  "M ABC",
+    "invoice_phone1"        =>  "0123456789",
+    "invoice_phone2"        =>  null,
+    "transport_date"        =>  "2017-05-18 08:00:00",
+    "transport_type"        =>  "Delivery",
+    "transport_mode"        =>  "TNT",
+    "transport_weight"      =>  "9.000",
+    "transport_unit"        =>  "kg",
+    "transport_cur"         =>  "EUR",
+    "delivery_address_country" =>  "France",
+    "delivery_address_place"=>  "75008 Paris",
+    "delivery_address_street1" =>  "1 Av. des Champs-Élysées",
+    "delivery_name"         =>  "M ABC",
+    "delivery_phone1"       =>  "0123450689",
+    "customer_ip_address"   =>  "1.2.3.4",
+    "pmeth_origin"          =>  "FRA",
+    "pmeth_validity"        =>  "0121",
+    "pmeth_brand"           =>  "MC",
+    "pmeth_bin"             =>  "510000",
+    "pmeth_3ds"             =>  "-1",
+    "cart_products"         => array("Product ref #12345"),
+    "cart_details"          => array(
+      array(
+        "name"              =>  "Product ref #12345",
+        "pu"                =>  "10.00",
+        "n"                 =>  "1",
+        "reimbursed"        =>  " 0",
+        "available"         =>  "1",
+        "amount"            =>  "10.00",
+        "cur"               =>  "EUR"
+      )
+    ),
+    "cart_n"          =>  "15000",
+    "order_payment_accepted" =>  "2017-05-17 22:00:00",
+    "amount_pmeth"    =>  "ABC Payment Service Provider",
+    "amount_discounts"=>  0.00,
+    "amount_products" =>  20.00,
+    "amount_transport"=>  10.00,
+    "amount_total"    =>  30.00,
+    "amount_cur"      =>  "EUR"
 ));
-echo $event;
+
+
+# Retrieve, Update, Delete, or List Events 
+
+\Ubivar\Event::retrieve("123")
+\Ubivar\Event::retrieve("123", array("amount_transport" => "20.00"))
+\Ubivar\Event::delete("123")
+\Ubivar\Event::all(array("order" => "-id", "limit" => "10"))
+
+# Create, Retrieve, Update, Delete or List Whitelists
+
+\Ubivar\FilterWhitelist::create(array(
+    "description" => "Test"
+  , "feature" => "email_domain"
+  , "is_active" => "true"
+  , "value" => "gmail.com"))
+\Ubivar\FilterWhitelist::retrieve("0")
+\Ubivar\FilterWhitelist::update("0"
+  , array(
+      "description" => "Test"
+    , "feature" => "email_domain"
+    , "is_active" => "true"
+    , "value" => "yahoo.com"
+    ))
+\Ubivar\FilterWhitelist::delete("123")
+\Ubivar\FilterWhitelist::all()
+
 ```
 
 ## Resources, actions, and arguments 
 
-Every resource is accessed via your `ubivar` instance and accepts an optional
-callback as the last argument. In the matrix below we list the resources
-(rows), the actions (columns) and the arguments (cells). The full documentation
-is available at [https://ubivar.com/docs/php](https://ubivar.com/docs/php). 
+The following matrix lists the resources (rows), the CRUD actions (columns) and
+the arguments (cells). The cell links point to the API documentation at
+[https://ubivar.com/docs/php](https://ubivar.com/docs/php) or to the functional
+tests on github.
+
 
 |               | Resource                | C | R | U | D | L     | Test Specs |
 |--------------:| ----------------------- |:-:|:-:|:-:|:-:|:-----:|:-------:|
@@ -73,26 +169,19 @@ is available at [https://ubivar.com/docs/php](https://ubivar.com/docs/php).
 + *U*: Update
 + *D*: Delete
 + *L*: List
++ `123`: resource id
 + `{}`: JSON with query parameters
 
 ## Filter parameters
 
 | Filter        | Default | Example             | Description                   |
 | ------------- |:-------:|:--------------------|:------------------------------|
-| `limit`       | `10`    | `array("limit"=>10)`      | At most `10` returned results |
+| `order`       | `id`    | `array("order"=>"-id")`         | Sort by decreasing id |
+| `limit`       | `10`    | `array("limit"=>10)`            | At most `10` returned results |
 | `gt`          |         | `array("id"=>array("gt"=>10))`  | `id` greater than 10          |
 | `gte`         |         | `array("id"=>array("gte"=>10))` | `id` greater than or equal    |
 | `lt`          |         | `array("id"=>array("lt"=>10))`  | `id` less than                |
 | `lte`         |         | `array("id"=>array("lte"=>10))` | `id` less than or equal       |
-
-## Configuration
-
-- Require PHP 5.4 and later.
-- Sign up for an account and get an API key at [https://my.ubivar.com](https://my.ubivar.com).
-- Set the API access token:
-```php
-\Ubivar\Ubivar::setApiKey('d8e8fca2dc0f896fd7cb4cb0031ba249');
-```
 
 ## Development
 
@@ -103,7 +192,9 @@ composer install
 ./vendor/bin/phpunit -v 
 ```
 
-To report issues: [issues and feature requests](https://github.com/ubivar/ubivar-php/issues)
+## Issues and feature requests
+
+They are located [here](https://github.com/ubivar/ubivar-php/issues)
 
 ## Author
 - Originally inspired from [stripe-php](https://github.com/stripe/stripe-php). 
