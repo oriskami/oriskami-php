@@ -25,6 +25,18 @@ class FilterRulesAI extends ApiResource
     }
 
     /**
+     * @param string $id
+     * @param array|null $params
+     * @param array|string|null $opts
+     *
+     * @return Event The deleted login.
+     */
+    public static function delete($id, $params = null, $opts = null)
+    {
+        return self::_delete($id, $params, $opts);
+    }
+
+    /**
      * @param array|null $params
      * @param array|string|null $opts
      *
