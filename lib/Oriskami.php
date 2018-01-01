@@ -1,22 +1,22 @@
 <?php
 
-namespace Ubivar;
+namespace Oriskami;
 
-class Ubivar
+class Oriskami
 {
-    // @var string The Ubivar API key to be used for requests.
+    // @var string The Oriskami API key to be used for requests.
     public static $apiKey;
 
-    // @var string The base URL for the Ubivar API.
-    public static $apiBase = 'https://api.ubivar.com';
+    // @var string The base URL for the Oriskami API.
+    public static $apiBase = 'https://api.oriskami.com';
 
     // @var boolean Defaults to true.
     public static $verifySslCerts = true;
 
-    // @var string|null The version of the Ubivar API to use for requests.
+    // @var string|null The version of the Oriskami API to use for requests.
     public static $apiVersion = '1.0.0';
 
-    // version of ubivar-php binding. Patch may differ but both major and minor should align with the 
+    // version of oriskami-php binding. Patch may differ but both major and minor should align with the 
     // one of the API blueprint.
     const VERSION = '1.0.0'; 
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Ubivar;
+namespace Oriskami;
 
 class EventQueue extends ApiResource
 {

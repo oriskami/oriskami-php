@@ -1,6 +1,6 @@
 <phpunit bootstrap="tests/bootstrap.php" colors="true">
   <testsuites>
-    <testsuite name="Ubivar PHP Test Suite">
+    <testsuite name="Oriskami PHP Test Suite">
       <directory suffix="Test.php">tests</directory>
     </testsuite>
   </testsuites>

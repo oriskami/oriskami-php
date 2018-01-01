@@ -1,6 +1,6 @@
 <?php
 
-namespace Ubivar;
+namespace Oriskami;
 
 class FilterRulesBaseTest extends TestCase
 {
@@ -26,10 +26,10 @@ class FilterRulesBaseTest extends TestCase
     public function testClass()
     {
         self::log(__METHOD__, "Should have the right class");
-        $this->assertInstanceOf("Ubivar\\FilterRulesBase", $this->updated1[0]);
-        $this->assertInstanceOf("Ubivar\\FilterRulesBase", $this->updated1[0]);
-        $this->assertInstanceOf("Ubivar\\FilterRulesBase", $this->updated2[0]);
-        $this->assertInstanceOf("Ubivar\\FilterRulesBase", $this->listed1[0]);
+        $this->assertInstanceOf("Oriskami\\FilterRulesBase", $this->updated1[0]);
+        $this->assertInstanceOf("Oriskami\\FilterRulesBase", $this->updated1[0]);
+        $this->assertInstanceOf("Oriskami\\FilterRulesBase", $this->updated2[0]);
+        $this->assertInstanceOf("Oriskami\\FilterRulesBase", $this->listed1[0]);
     }
 
     public function testAttr()

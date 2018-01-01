@@ -1,6 +1,6 @@
 <?php
 
-namespace Ubivar;
+namespace Oriskami;
 
 class NotifierEmailTest extends TestCase
 {
@@ -36,10 +36,10 @@ class NotifierEmailTest extends TestCase
     public function testClass()
     {
         self::log(__METHOD__, "Should have the right class");
-        $this->assertInstanceOf("Ubivar\\NotifierEmail", $this->updated1[0]);
-        $this->assertInstanceOf("Ubivar\\NotifierEmail", $this->updated1[0]);
-        $this->assertInstanceOf("Ubivar\\NotifierEmail", $this->updated2[0]);
-        $this->assertInstanceOf("Ubivar\\NotifierEmail", $this->listed1[0]);
+        $this->assertInstanceOf("Oriskami\\NotifierEmail", $this->updated1[0]);
+        $this->assertInstanceOf("Oriskami\\NotifierEmail", $this->updated1[0]);
+        $this->assertInstanceOf("Oriskami\\NotifierEmail", $this->updated2[0]);
+        $this->assertInstanceOf("Oriskami\\NotifierEmail", $this->listed1[0]);
     }
 
     public function testAttr()

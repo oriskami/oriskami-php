@@ -1,7 +1,7 @@
 <?php
 
-// Ubivar singleton
-require(dirname(__FILE__) . '/lib/Ubivar.php');
+// Oriskami singleton
+require(dirname(__FILE__) . '/lib/Oriskami.php');
 
 // Utilities
 require(dirname(__FILE__) . '/lib/Util/RequestOptions.php');
@@ -23,7 +23,7 @@ require(dirname(__FILE__) . '/lib/ApiResource.php');
 require(dirname(__FILE__) . '/lib/SingletonApiResource.php');
 require(dirname(__FILE__) . '/lib/AttachedObject.php');
 
-// Ubivar API Resources
+// Oriskami API Resources
 require(dirname(__FILE__) . '/lib/Event.php');
 require(dirname(__FILE__) . '/lib/EventNotification.php');
 require(dirname(__FILE__) . '/lib/EventLastId.php');

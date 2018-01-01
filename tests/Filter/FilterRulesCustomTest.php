@@ -1,6 +1,6 @@
 <?php
 
-namespace Ubivar;
+namespace Oriskami;
 
 class FilterRulesCustomTest extends TestCase
 {
@@ -37,10 +37,10 @@ class FilterRulesCustomTest extends TestCase
     public function testClass()
     {
         self::log(__METHOD__, "Should have the right class");
-        $this->assertInstanceOf("Ubivar\\FilterRulesCustom", $this->updated1[0]);
-        $this->assertInstanceOf("Ubivar\\FilterRulesCustom", $this->updated1[0]);
-        $this->assertInstanceOf("Ubivar\\FilterRulesCustom", $this->updated2[0]);
-        $this->assertInstanceOf("Ubivar\\FilterRulesCustom", $this->listed1[0]);
+        $this->assertInstanceOf("Oriskami\\FilterRulesCustom", $this->updated1[0]);
+        $this->assertInstanceOf("Oriskami\\FilterRulesCustom", $this->updated1[0]);
+        $this->assertInstanceOf("Oriskami\\FilterRulesCustom", $this->updated2[0]);
+        $this->assertInstanceOf("Oriskami\\FilterRulesCustom", $this->listed1[0]);
     }
 
     public function testAttr()

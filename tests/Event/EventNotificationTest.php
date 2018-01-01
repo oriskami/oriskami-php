@@ -1,6 +1,6 @@
 <?php
 
-namespace Ubivar;
+namespace Oriskami;
 
 class EventNotificationTest extends TestCase
 {
@@ -27,9 +27,9 @@ class EventNotificationTest extends TestCase
     public function testClass()
     {
         self::log(__METHOD__, "Should have the right class");
-        $this->assertInstanceOf("Ubivar\\EventNotification", $this->retrieved);
-        $this->assertInstanceOf("Ubivar\\EventNotification", $this->listed[0]);
-        $this->assertInstanceOf("Ubivar\\EventNotification", $this->listed[1]);
+        $this->assertInstanceOf("Oriskami\\EventNotification", $this->retrieved);
+        $this->assertInstanceOf("Oriskami\\EventNotification", $this->listed[0]);
+        $this->assertInstanceOf("Oriskami\\EventNotification", $this->listed[1]);
     }
 
     public function testId()

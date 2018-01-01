@@ -1,6 +1,6 @@
 <?php
 
-namespace Ubivar\Util;
+namespace Oriskami\Util;
 
 use IteratorAggregate;
 use ArrayIterator;

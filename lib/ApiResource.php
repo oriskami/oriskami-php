@@ -1,6 +1,6 @@
 <?php
 
-namespace Ubivar;
+namespace Oriskami;
 
 abstract class ApiResource extends Object
 {
@@ -8,7 +8,7 @@ abstract class ApiResource extends Object
 
     public static function baseUrl()
     {
-        return Ubivar::$apiBase;
+        return Oriskami::$apiBase;
     }
 
     /**
@@ -40,8 +40,8 @@ abstract class ApiResource extends Object
         if ($postfixFakeNamespaces = strrchr($class, '')) {
             $class = $postfixFakeNamespaces;
         }
-        if (substr($class, 0, strlen('Ubivar')) == 'Ubivar') {
-            $class = substr($class, strlen('Ubivar'));
+        if (substr($class, 0, strlen('Oriskami')) == 'Oriskami') {
+            $class = substr($class, strlen('Oriskami'));
         }
         $class = str_replace('_', '', $class);
         $name = urlencode($class);
@@ -78,7 +78,7 @@ abstract class ApiResource extends Object
     private static function _validateParams($params = null)
     {
         if ($params && !is_array($params)) {
-            $message = "Ubivar API method calls receive an array as first argument.";
+            $message = "Oriskami API method calls receive an array as first argument.";
             throw new Error\Api($message);
         }
     }
@@ -107,7 +107,7 @@ abstract class ApiResource extends Object
         $url = static::classUrl()."/".$id;
 
         list($response, $opts) = static::_staticRequest('get', $url, null, $options);
-        $result = Util\Util::convertToUbivarObject($response, $opts);
+        $result = Util\Util::convertToOriskamiObject($response, $opts);
         return $result;
     }
 
@@ -117,7 +117,7 @@ abstract class ApiResource extends Object
         $url = static::classUrl();
 
         list($response, $opts) = static::_staticRequest('get', $url, $params, $options);
-        return Util\Util::convertToUbivarObject($response, $opts);
+        return Util\Util::convertToOriskamiObject($response, $opts);
     }
 
     protected static function _update($id, $params = null, $options = null)
@@ -126,7 +126,7 @@ abstract class ApiResource extends Object
         $url = static::classUrl() . "/" . $id ;
 
         list($response, $opts) = static::_staticRequest('post', $url, $params, $options);
-        $result = Util\Util::convertToUbivarObject($response, $opts);
+        $result = Util\Util::convertToOriskamiObject($response, $opts);
         return $result;
     }
 
@@ -136,7 +136,7 @@ abstract class ApiResource extends Object
         $url = static::classUrl();
 
         list($response, $opts) = static::_staticRequest('post', $url, $params, $options);
-        $result = Util\Util::convertToUbivarObject($response, $opts);
+        $result = Util\Util::convertToOriskamiObject($response, $opts);
         return $result;
     }
 
@@ -146,7 +146,7 @@ abstract class ApiResource extends Object
         $url = static::classUrl() . "/" . $id ;
 
         list($response, $opts) = static::_staticRequest('delete', $url, $params, $options);
-        $result = Util\Util::convertToUbivarObject($response, $opts);
+        $result = Util\Util::convertToOriskamiObject($response, $opts);
         return $result;
     }
 }

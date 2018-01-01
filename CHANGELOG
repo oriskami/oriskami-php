@@ -1,3 +1,6 @@
+1.0.2 Jan 1st, 2017
+ - Ubivar -> Orikami
+
 1.0.1-beta May 27th, 2015
  - Encode 'list' request parameters as query string for GET requests.
  - Add support for parameterized filtering of results 

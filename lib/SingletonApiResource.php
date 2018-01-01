@@ -1,6 +1,6 @@
 <?php
 
-namespace Ubivar;
+namespace Oriskami;
 
 abstract class SingletonApiResource extends ApiResource
 {

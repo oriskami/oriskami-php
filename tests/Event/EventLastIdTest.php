@@ -1,6 +1,6 @@
 <?php
 
-namespace Ubivar;
+namespace Oriskami;
 
 class EventLastIdTest extends TestCase
 {
@@ -23,7 +23,7 @@ class EventLastIdTest extends TestCase
     public function testClass()
     {
         self::log(__METHOD__, "Should have the right class");
-        $this->assertInstanceOf("Ubivar\\EventLastId", $this->listed[0]);
+        $this->assertInstanceOf("Oriskami\\EventLastId", $this->listed[0]);
     }
 
     public function testId()

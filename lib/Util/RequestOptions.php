@@ -1,8 +1,8 @@
 <?php
 
-namespace Ubivar\Util;
+namespace Oriskami\Util;
 
-use Ubivar\Error;
+use Oriskami\Error;
 
 class RequestOptions
 {
@@ -61,20 +61,20 @@ class RequestOptions
             if (array_key_exists('idempotency_key', $options)) {
                 $headers['Idempotency-Key'] = $options['idempotency_key'];
             }
-            if (array_key_exists('ubivar_account', $options)) {
-                $headers['Ubivar-Account'] = $options['ubivar_account'];
+            if (array_key_exists('oriskami_account', $options)) {
+                $headers['Oriskami-Account'] = $options['oriskami_account'];
             }
-            if (array_key_exists('ubivar_version', $options)) {
-                // $headers['Ubivar-Version'] = $options['ubivar_version'];
-                $headers['Accept-Version'] = $options['ubivar_version'];
+            if (array_key_exists('oriskami_version', $options)) {
+                // $headers['Oriskami-Version'] = $options['oriskami_version'];
+                $headers['Accept-Version'] = $options['oriskami_version'];
             }
             return new RequestOptions($key, $headers);
         }
 
-        $message = 'The second argument to Ubivar API method calls is an '
+        $message = 'The second argument to Oriskami API method calls is an '
            . 'optional per-request apiKey, which must be a string, or '
            . 'per-request options, which must be an array. (HINT: you can set '
-           . 'a global apiKey by "Ubivar::setApiKey(<apiKey>)")';
+           . 'a global apiKey by "Oriskami::setApiKey(<apiKey>)")';
         throw new Error\Api($message);
     }
 }

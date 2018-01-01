@@ -1,6 +1,6 @@
 <?php
 
-namespace Ubivar;
+namespace Oriskami;
 
 class NotifierWebhookTest extends TestCase
 {
@@ -36,10 +36,10 @@ class NotifierWebhookTest extends TestCase
     public function testClass()
     {
         self::log(__METHOD__, "Should have the right class");
-        $this->assertInstanceOf("Ubivar\\NotifierWebhook", $this->updated1[0]);
-        $this->assertInstanceOf("Ubivar\\NotifierWebhook", $this->updated1[0]);
-        $this->assertInstanceOf("Ubivar\\NotifierWebhook", $this->updated2[0]);
-        $this->assertInstanceOf("Ubivar\\NotifierWebhook", $this->listed1[0]);
+        $this->assertInstanceOf("Oriskami\\NotifierWebhook", $this->updated1[0]);
+        $this->assertInstanceOf("Oriskami\\NotifierWebhook", $this->updated1[0]);
+        $this->assertInstanceOf("Oriskami\\NotifierWebhook", $this->updated2[0]);
+        $this->assertInstanceOf("Oriskami\\NotifierWebhook", $this->listed1[0]);
     }
 
     public function testAttr()

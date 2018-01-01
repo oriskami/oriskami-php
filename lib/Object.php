@@ -1,6 +1,6 @@
 <?php
 
-namespace Ubivar;
+namespace Oriskami;
 
 use ArrayAccess;
 use InvalidArgumentException;
@@ -97,17 +97,17 @@ class Object implements ArrayAccess
         } else if ($this->_transientValues->includes($k)) {
             $class = get_class($this);
             $attrs = join(', ', array_keys($this->_values));
-            $message = "Ubivar Notice: Undefined property of $class instance: $k. "
+            $message = "Oriskami Notice: Undefined property of $class instance: $k. "
                     . "HINT: The $k attribute was set in the past, however. "
                     . "It was then wiped when refreshing the object "
-                    . "with the result returned by Ubivar's API, "
+                    . "with the result returned by Oriskami's API, "
                     . "probably as a result of a save(). The attributes currently "
                     . "available on this object are: $attrs";
             error_log($message);
             return null;
         } else {
             $class = get_class($this);
-            error_log("Ubivar Notice: Undefined property of $class instance: $k");
+            error_log("Oriskami Notice: Undefined property of $class instance: $k");
             return null;
         }
     }
@@ -188,7 +188,7 @@ class Object implements ArrayAccess
             if (self::$nestedUpdatableAttributes->includes($k) && is_array($v)) {
                 $this->_values[$k] = AttachedObject::constructFrom($v, $opts);
             } else {
-                $this->_values[$k] = Util\Util::convertToUbivarObject($v, $opts);
+                $this->_values[$k] = Util\Util::convertToOriskamiObject($v, $opts);
             }
 
             $this->_transientValues->discard($k);
@@ -244,7 +244,7 @@ class Object implements ArrayAccess
     public function __toArray($recursive = false)
     {
         if ($recursive) {
-            return Util\Util::convertUbivarObjectToArray($this->_values);
+            return Util\Util::convertOriskamiObjectToArray($this->_values);
         } else {
             return $this->_values;
         }

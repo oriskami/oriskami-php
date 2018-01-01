@@ -1,8 +1,8 @@
 <?php
 
-namespace Ubivar\Util;
+namespace Oriskami\Util;
 
-use Ubivar\Object;
+use Oriskami\Object;
 
 abstract class Util
 {
@@ -18,7 +18,7 @@ abstract class Util
             return false;
         }
 
-      // TODO: generally incorrect, but it's correct given Ubivar's response
+      // TODO: generally incorrect, but it's correct given Oriskami's response
         foreach (array_keys($array) as $k) {
             if (!is_numeric($k)) {
                 return false;
@@ -28,12 +28,12 @@ abstract class Util
     }
 
     /**
-     * Recursively converts the PHP Ubivar object to an array.
+     * Recursively converts the PHP Oriskami object to an array.
      *
-     * @param array $values The PHP Ubivar object to convert.
+     * @param array $values The PHP Oriskami object to convert.
      * @return array
      */
-    public static function convertUbivarObjectToArray($values)
+    public static function convertOriskamiObjectToArray($values)
     {
         $results = array();
         foreach ($values as $k => $v) {
@@ -44,7 +44,7 @@ abstract class Util
             if ($v instanceof Object) {
                 $results[$k] = $v->__toArray(true);
             } elseif (is_array($v)) {
-                $results[$k] = self::convertUbivarObjectToArray($v);
+                $results[$k] = self::convertOriskamiObjectToArray($v);
             } else {
                 $results[$k] = $v;
             }
@@ -53,35 +53,35 @@ abstract class Util
     }
 
     /**
-     * Converts a response from the Ubivar API to the corresponding PHP object.
+     * Converts a response from the Oriskami API to the corresponding PHP object.
      *
-     * @param array $resp The response from the Ubivar API.
+     * @param array $resp The response from the Oriskami API.
      * @param array $opts
      * @return Object|array
      */
-    public static function convertToUbivarObject($resp, $opts)
+    public static function convertToOriskamiObject($resp, $opts)
     {
         if (isset($resp["object"])) {
             $types = array(
-                'events'                     => 'Ubivar\\Event'
-              , 'event_labels'               => 'Ubivar\\EventLabel'
-              , 'event_notifications'        => 'Ubivar\\EventNotification'
-              , 'event_queues'               => 'Ubivar\\EventQueue'
-              , 'event_reviews'              => 'Ubivar\\EventReview'
-              , 'event_last_id'              => 'Ubivar\\EventLastId'
+                'events'                     => 'Oriskami\\Event'
+              , 'event_labels'               => 'Oriskami\\EventLabel'
+              , 'event_notifications'        => 'Oriskami\\EventNotification'
+              , 'event_queues'               => 'Oriskami\\EventQueue'
+              , 'event_reviews'              => 'Oriskami\\EventReview'
+              , 'event_last_id'              => 'Oriskami\\EventLastId'
 
-              , 'filter_whitelists'          => 'Ubivar\\FilterWhitelist'
-              , 'filter_blacklists'          => 'Ubivar\\FilterBlacklist'
-              , 'filter_rules_custom'        => 'Ubivar\\FilterRulesCustom'
-              , 'filter_rules_base'          => 'Ubivar\\FilterRulesBase'
-              , 'filter_rules_ai'            => 'Ubivar\\FilterRulesAI'
-              , 'filter_scorings_dedicated'  => 'Ubivar\\FilterScoringsDedicated'
+              , 'filter_whitelists'          => 'Oriskami\\FilterWhitelist'
+              , 'filter_blacklists'          => 'Oriskami\\FilterBlacklist'
+              , 'filter_rules_custom'        => 'Oriskami\\FilterRulesCustom'
+              , 'filter_rules_base'          => 'Oriskami\\FilterRulesBase'
+              , 'filter_rules_ai'            => 'Oriskami\\FilterRulesAI'
+              , 'filter_scorings_dedicated'  => 'Oriskami\\FilterScoringsDedicated'
 
-              , 'notifier_emails'            => 'Ubivar\\NotifierEmail'
-              , 'notifier_sms'               => 'Ubivar\\NotifierSms'
-              , 'notifier_ecommerce'         => 'Ubivar\\NotifierECommerce'
-              , 'notifier_slack'             => 'Ubivar\\NotifierSlack'
-              , 'notifier_webhooks'          => 'Ubivar\\NotifierWebhook'
+              , 'notifier_emails'            => 'Oriskami\\NotifierEmail'
+              , 'notifier_sms'               => 'Oriskami\\NotifierSms'
+              , 'notifier_ecommerce'         => 'Oriskami\\NotifierECommerce'
+              , 'notifier_slack'             => 'Oriskami\\NotifierSlack'
+              , 'notifier_webhooks'          => 'Oriskami\\NotifierWebhook'
             );
 
             $class            = $types[$resp["object"]];

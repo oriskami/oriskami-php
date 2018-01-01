@@ -1,6 +1,6 @@
 <?php
 
-namespace Ubivar\Error;
+namespace Oriskami\Error;
 
 class Authentication extends Base
 {

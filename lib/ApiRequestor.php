@@ -1,6 +1,6 @@
 <?php
 
-namespace Ubivar;
+namespace Oriskami;
 
 class ApiRequestor
 {
@@ -12,7 +12,7 @@ class ApiRequestor
     {
         $this->_apiKey = $apiKey;
         if (!$apiBase) {
-            $apiBase = Ubivar::$apiBase;
+            $apiBase = Oriskami::$apiBase;
         }
         $this->_apiBase = $apiBase;
     }
@@ -153,14 +153,14 @@ class ApiRequestor
 
         $myApiKey = $this->_apiKey;
         if (!$myApiKey) {
-            $myApiKey = Ubivar::$apiKey;
+            $myApiKey = Oriskami::$apiKey;
         }
 
         if (!$myApiKey) {
             $msg = 'No API key provided.  (HINT: set your API key using '
-              . '"Ubivar::setApiKey(<API-KEY>)".  You can generate API keys from '
-              . 'the Ubivar web interface.  See https://my.ubivar.com for '
-              . 'details, or email support@ubivar.com if you have any questions.';
+              . '"Oriskami::setApiKey(<API-KEY>)".  You can generate API keys from '
+              . 'the Oriskami web interface.  See https://my.oriskami.com for '
+              . 'details, or email support@oriskami.com if you have any questions.';
             throw new Error\Authentication($msg);
         }
 
@@ -172,18 +172,18 @@ class ApiRequestor
         $langVersion  = phpversion();
         $uname        = php_uname();
         $ua           = array(
-            'bindings_version'  => Ubivar::VERSION,
+            'bindings_version'  => Oriskami::VERSION,
             'lang'              => 'php',
             'lang_version'      => $langVersion,
-            'publisher'         => 'ubivar',
+            'publisher'         => 'oriskami',
             'uname'             => $uname,
         );
         $defaultHeaders = array(
-            'X-Ubivar-Client-User-Agent' => json_encode($ua),
-            'User-Agent'        => 'Ubivar/v1 PhpBindings/' . Ubivar::VERSION,
+            'X-Oriskami-Client-User-Agent' => json_encode($ua),
+            'User-Agent'        => 'Oriskami/v1 PhpBindings/' . Oriskami::VERSION,
             'Authorization'     => 'Bearer ' . $myApiKey,
         );
-        $defaultHeaders['Accept-Version'] = Ubivar::$apiVersion;
+        $defaultHeaders['Accept-Version'] = Oriskami::$apiVersion;
         $hasFile      = false;
         $defaultHeaders['Content-Type'] = 'application/json';
 
@@ -261,7 +261,7 @@ class ApiRequestor
         $opts[CURLOPT_HTTPHEADER]     = $headers;
         $opts[CURLOPT_VERBOSE]        = false;
 
-        if (!Ubivar::$verifySslCerts) {
+        if (!Oriskami::$verifySslCerts) {
             $opts[CURLOPT_SSL_VERIFYPEER] = false;
         }
 
@@ -279,7 +279,7 @@ class ApiRequestor
         ) {
             array_push(
                 $headers,
-                'X-Ubivar-Client-Info: {"ca":"using Ubivar-supplied CA bundle"}'
+                'X-Oriskami-Client-Info: {"ca":"using Oriskami-supplied CA bundle"}'
             );
             $cert = $this->caBundle();
             curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
@@ -318,23 +318,23 @@ class ApiRequestor
             case CURLE_COULDNT_CONNECT:
             case CURLE_COULDNT_RESOLVE_HOST:
             case CURLE_OPERATION_TIMEOUTED:
-                $msg = "Could not connect to Ubivar ($apiBase). Please check your "
+                $msg = "Could not connect to Oriskami ($apiBase). Please check your "
                  . "internet connection and try again.  If this problem persists, "
-                 . "you should check Ubivar's service status at "
-                 . "https://twitter.com/ubivarstatus, or";
+                 . "you should check Oriskami's service status at "
+                 . "https://twitter.com/oriskami_status, or";
                 break;
             case CURLE_SSL_CACERT:
             case CURLE_SSL_PEER_CERTIFICATE:
-                $msg = "Could not verify Ubivar's SSL certificate.  Please make sure "
+                $msg = "Could not verify Oriskami's SSL certificate.  Please make sure "
                  . "that your network is not intercepting certificates.  "
                  . "(Try going to $apiBase in your browser.)  "
                  . "If this problem persists,";
                 break;
             default:
-                $msg = "Unexpected error communicating with Ubivar.  "
+                $msg = "Unexpected error communicating with Oriskami.  "
                  . "If this problem persists,";
         }
-        $msg .= " let us know at support@ubivar.com.";
+        $msg .= " let us know at support@oriskami.com.";
 
         $msg .= "\n\n(Network error [errno $errno]: $message)";
         throw new Error\ApiConnection($msg);

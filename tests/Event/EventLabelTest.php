@@ -1,6 +1,6 @@
 <?php
 
-namespace Ubivar;
+namespace Oriskami;
 
 class EventLabelTest extends TestCase
 {
@@ -32,13 +32,13 @@ class EventLabelTest extends TestCase
     public function testClass()
     {
         self::log(__METHOD__, "Should have the right class");
-        $this->assertInstanceOf("Ubivar\\EventLabel", $this->retrieved);
-        $this->assertInstanceOf("Ubivar\\EventLabel", $this->updated1 );
-        $this->assertInstanceOf("Ubivar\\EventLabel", $this->updated2 );
-        $this->assertInstanceOf("Ubivar\\EventLabel", $this->deleted  );
-        $this->assertInstanceOf("Ubivar\\EventLabel", $this->listed[0]);
-        $this->assertInstanceOf("Ubivar\\EventLabel", $this->listed[1]);
-        $this->assertInstanceOf("Ubivar\\EventLabel", $this->listed[2]);
+        $this->assertInstanceOf("Oriskami\\EventLabel", $this->retrieved);
+        $this->assertInstanceOf("Oriskami\\EventLabel", $this->updated1 );
+        $this->assertInstanceOf("Oriskami\\EventLabel", $this->updated2 );
+        $this->assertInstanceOf("Oriskami\\EventLabel", $this->deleted  );
+        $this->assertInstanceOf("Oriskami\\EventLabel", $this->listed[0]);
+        $this->assertInstanceOf("Oriskami\\EventLabel", $this->listed[1]);
+        $this->assertInstanceOf("Oriskami\\EventLabel", $this->listed[2]);
     }
 
     public function testId()

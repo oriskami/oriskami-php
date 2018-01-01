@@ -1,8 +1,8 @@
 <?php
 
-namespace Ubivar;
+namespace Oriskami;
 
-// e.g. metadata on Ubivar objects.
+// e.g. metadata on Oriskami objects.
 class AttachedObject extends Object
 {
     /**

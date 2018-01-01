@@ -1,9 +1,9 @@
 <?php
 
-namespace Ubivar;
+namespace Oriskami;
 
 /**
- * Base class for Ubivar test cases, provides some utility methods for creating
+ * Base class for Oriskami test cases, provides some utility methods for creating
  * objects.
  */
 class TestCase extends \PHPUnit_Framework_TestCase
@@ -11,8 +11,8 @@ class TestCase extends \PHPUnit_Framework_TestCase
     protected static function authorizeFromEnv()
     {
         $apiKey = getenv('UBIVAR_TEST_TOKEN_PHP_1');
-        Ubivar::setApiKey($apiKey);
-        Ubivar::setApiVersion('1.0.0');
+        Oriskami::setApiKey($apiKey);
+        Oriskami::setApiVersion('1.0.0');
     }
 
     /**

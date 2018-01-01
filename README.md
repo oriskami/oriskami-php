@@ -1,18 +1,18 @@
-# Ubivar PHP bindings
+# Oriskami PHP bindings
 
-[![Build Status](https://travis-ci.org/ubivar/ubivar-php.svg?branch=master)](https://travis-ci.org/ubivar/ubivar-php)
-[![Latest Stable Version](https://poser.pugx.org/ubivar/ubivar-php/v/stable.svg)](https://packagist.org/packages/ubivar/ubivar-php)
-[![Total Downloads](https://poser.pugx.org/ubivar/ubivar-php/downloads.svg)](https://packagist.org/packages/ubivar/ubivar-php)
-[![License](https://poser.pugx.org/ubivar/ubivar-php/license.svg)](https://packagist.org/packages/ubivar/ubivar-php)
-[![Code Coverage](https://coveralls.io/repos/ubivar/ubivar-php/badge.png?branch=master)](https://coveralls.io/r/ubivar/ubivar-php?branch=master)
+[![Build Status](https://travis-ci.org/oriskami/oriskami-php.svg?branch=master)](https://travis-ci.org/oriskami/oriskami-php)
+[![Latest Stable Version](https://poser.pugx.org/oriskami/oriskami-php/v/stable.svg)](https://packagist.org/packages/oriskami/oriskami-php)
+[![Total Downloads](https://poser.pugx.org/oriskami/oriskami-php/downloads.svg)](https://packagist.org/packages/oriskami/oriskami-php)
+[![License](https://poser.pugx.org/oriskami/oriskami-php/license.svg)](https://packagist.org/packages/oriskami/oriskami-php)
+[![Code Coverage](https://coveralls.io/repos/oriskami/oriskami-php/badge.png?branch=master)](https://coveralls.io/r/oriskami/oriskami-php?branch=master)
 
-The Ubivar PHP library provides convenient access to the Ubivar API from
+The Oriskami PHP library provides convenient access to the Oriskami API from
 applications written in the PHP language. It includes a pre-defined set of
 classes for API resources.
 
 ## Documentation
 
-See the [Ubivar API docs](https://www.ubivar.com/docs/php).
+See the [Oriskami API docs](https://www.oriskami.com/docs/php).
 
 
 ## Quick Start
@@ -24,7 +24,7 @@ want to use the package, there are three options:
 ```js
 { 
   "require": {
-    "ubivar/ubivar-php": "*@dev"
+    "oriskami/oriskami-php": "*@dev"
   }
 }
 ```
@@ -32,9 +32,9 @@ want to use the package, there are three options:
 ```php
 require_once('vendor/autoload.php');
 ```
-3. manually download the [latest release](https://github.com/ubivar/ubivar-php/releases) and include the `init.php`.
+3. manually download the [latest release](https://github.com/oriskami/oriskami-php/releases) and include the `init.php`.
 ```php
-require_once('/path/to/ubivar-php/init.php');
+require_once('/path/to/oriskami-php/init.php');
 ```
 
 ### Requirements
@@ -44,13 +44,13 @@ require_once('/path/to/ubivar-php/init.php');
 ### Usage 
 
 The library needs to be configured with your API key which is available in [My
-Ubivar](https://my.ubivar.com). 
+Oriskami](https://my.oriskami.com). 
 
 ```php
 
-\Ubivar\Ubivar::setApiKey("9spB-ChM6J8NwMEEG ... WsJShd6lVQH7f6xz=");
+\Oriskami\Oriskami::setApiKey("9spB-ChM6J8NwMEEG ... WsJShd6lVQH7f6xz=");
 
-\Ubivar\Event::create(array(
+\Oriskami\Event::create(array(
   "id" => "1",
   "parameters"  => array(
     "id"                    => "1",
@@ -110,28 +110,28 @@ Ubivar](https://my.ubivar.com).
 
 # Retrieve, Update, Delete, or List Events 
 
-\Ubivar\Event::retrieve("123")
-\Ubivar\Event::retrieve("123", array("amount_transport" => "20.00"))
-\Ubivar\Event::delete("123")
-\Ubivar\Event::all(array("order" => "-id", "limit" => "10"))
+\Oriskami\Event::retrieve("123")
+\Oriskami\Event::retrieve("123", array("amount_transport" => "20.00"))
+\Oriskami\Event::delete("123")
+\Oriskami\Event::all(array("order" => "-id", "limit" => "10"))
 
 # Create, Retrieve, Update, Delete or List Whitelists
 
-\Ubivar\FilterWhitelist::create(array(
+\Oriskami\FilterWhitelist::create(array(
     "description" => "Test"
   , "feature" => "email_domain"
   , "is_active" => "true"
   , "value" => "gmail.com"))
-\Ubivar\FilterWhitelist::retrieve("0")
-\Ubivar\FilterWhitelist::update("0"
+\Oriskami\FilterWhitelist::retrieve("0")
+\Oriskami\FilterWhitelist::update("0"
   , array(
       "description" => "Test"
     , "feature" => "email_domain"
     , "is_active" => "true"
     , "value" => "yahoo.com"
     ))
-\Ubivar\FilterWhitelist::delete("123")
-\Ubivar\FilterWhitelist::all()
+\Oriskami\FilterWhitelist::delete("123")
+\Oriskami\FilterWhitelist::all()
 
 ```
 
@@ -139,30 +139,30 @@ Ubivar](https://my.ubivar.com).
 
 The following matrix lists the resources (rows), the CRUD actions (columns) and
 the arguments (cells). The cell links point to the API documentation at
-[https://ubivar.com/docs/php](https://ubivar.com/docs/php) or to the functional
+[https://oriskami.com/docs/php](https://oriskami.com/docs/php) or to the functional
 tests on github.
 
 
 |               | Resource                | C | R | U | D | L     | Test Specs |
 |--------------:| ----------------------- |:-:|:-:|:-:|:-:|:-----:|:-------:|
 | **Settings**  | Auth, Credentials       |   |   |   |   |       | | 
-| **Data**      | Event                   | [`{}`](https://ubivar.com/docs/php#create_event)| [`123`](https://ubivar.com/docs/php#retrieve_event) | [`123, {}`](https://ubivar.com/docs/php#update_event) | [`123`](https://ubivar.com/docs/php#delete_event) | [`{}`](https://ubivar.com/docs/php#list_event) | [See on github](https://github.com/ubivar/ubivar-php/blob/master/tests/Event/EventTest.php)| 
-|               | EventNotification      |  | [`123`](https://ubivar.com/docs/php#retrieve_eventnotification) |  |  | [`{}`](https://ubivar.com/docs/php#list_eventnotification) | [See on github](https://github.com/ubivar/ubivar-php/blob/master/tests/Event/EventNotificationTest.php)| 
-|               | EventLastId             |  |  |  |  | [`{}`](https://ubivar.com/docs/php#list_eventlastid) | [See on github](https://github.com/ubivar/ubivar-php/blob/master/tests/Event/EventLastIdTest.php)| 
-|               | EventLabel             | | [`123`](https://ubivar.com/docs/php#retrieve_eventlabel) | [`123, {}`](https://ubivar.com/docs/php#update_eventlabel) | [`123`](https://ubivar.com/docs/php#delete_eventlabel) | [`{}`](https://ubivar.com/docs/php#list_eventlabel) | [See on github](https://github.com/ubivar/ubivar-php/blob/master/tests/Event/EventLabelTest.php)| 
-|               | EventQueue             | | [`123`](https://ubivar.com/docs/php#retrieve_eventqueue) | [`123, {}`](https://ubivar.com/docs/php#update_eventqueue) | [`123`](https://ubivar.com/docs/php#delete_eventqueue) | [`{}`](https://ubivar.com/docs/php#list_eventqueue) | [See on github](https://github.com/ubivar/ubivar-php/blob/master/tests/Event/EventQueueTest.php)| 
-|               | EventReview            | | [`123`](https://ubivar.com/docs/php#retrieve_eventreview) | [`123, {}`](https://ubivar.com/docs/php#update_eventreview) | [`123`](https://ubivar.com/docs/php#delete_eventreview) | [`{}`](https://ubivar.com/docs/php#list_eventreview) | [See on github](https://github.com/ubivar/ubivar-php/blob/master/tests/Event/EventReviewTest.php)| 
-| **Filters** | FilterWhitelist        | [`{}`](https://ubivar.com/docs/php#create_filterwhitelist)| | [`123, {}`](https://ubivar.com/docs/php#update_filterwhitelist) | [`123`](https://ubivar.com/docs/php#delete_filterwhitelist) | [`{}`](https://ubivar.com/docs/php#list_filterwhitelist) | [See on github](https://github.com/ubivar/ubivar-php/blob/master/tests/Filter/FilterWhitelistTest.php)| 
-|               | FilterBlacklist        |   |  | [`123, {}`](https://ubivar.com/docs/php#update_filterblacklist) |  | [`{}`](https://ubivar.com/docs/php#list_filterblacklist) | [See on github](https://github.com/ubivar/ubivar-php/blob/master/tests/Filter/FilterBlacklistTest.php)| 
-|               | FilterRulesCustom      | [`{}`](https://ubivar.com/docs/php#create_filterrulescustom)|  |  [`123, {}`](https://ubivar.com/docs/php#update_filterrulescustom)| [`123`](https://ubivar.com/docs/php#delete_filterrulescustom) | [`{}`](https://ubivar.com/docs/php#list_filterrulescustom) | [See on github](https://github.com/ubivar/ubivar-php/blob/master/tests/Filter/FilterRulesCustomTest.php)| 
-|               | FilterRulesBase         |   |  | [`123, {}`](https://ubivar.com/docs/php#update_filterrulesbase) |  | [`{}`](https://ubivar.com/docs/php#list_filterrulesbase) | [See on github](https://github.com/ubivar/ubivar-php/blob/master/tests/Filter/FilterRulesBaseTest.php)| 
-|               | FilterRulesAI           |   |  | [`123, {}`](https://ubivar.com/docs/php#update_filterrulesai) | [`123`](https://ubivar.com/docs/php#delete_filterrulesai) | [`{}`](https://ubivar.com/docs/php#list_filterrulesai) | [See on github](https://github.com/ubivar/ubivar-php/blob/master/tests/Filter/FilterRulesAITest.php)| 
-|               | FilterScoringsDedicated |   |  | [`123, {}`](https://ubivar.com/docs/php#update_filterscoringsdedicated) |  | [`{}`](https://ubivar.com/docs/php#list_filterscoringsdedicated) | [See on github](https://github.com/ubivar/ubivar-php/blob/master/tests/Filter/FilterScoringsDedicatedTest.php)| 
-| **Notifications** | NotifierEmail      | [`{}`](https://ubivar.com/docs/php#create_notifieremail)|  | [`123, {}`](https://ubivar.com/docs/php#update_notifieremail) | [`123`](https://ubivar.com/docs/php#delete_notifieremail) | [`{}`](https://ubivar.com/docs/php#list_notifieremail) | [See on github](https://github.com/ubivar/ubivar-php/blob/master/tests/Notifier/NotifierEmailTest.php)| 
-|               | NotifierSms             | [`{}`](https://ubivar.com/docs/php#create_notifiersms)|  | [`123, {}`](https://ubivar.com/docs/php#update_notifiersms) | [`123`](https://ubivar.com/docs/php#delete_notifiersms) | [`{}`](https://ubivar.com/docs/php#list_notifiersms) | [See on github](https://github.com/ubivar/ubivar-php/blob/master/tests/Notifier/NotifierSmsTest.php)| 
-|               | NotifierSlack             | [`{}`](https://ubivar.com/docs/php#create_notifierslack)|  | [`123, {}`](https://ubivar.com/docs/php#update_notifierslack) | [`123`](https://ubivar.com/docs/php#delete_notifierslack) | [`{}`](https://ubivar.com/docs/php#list_notifierslack) | [See on github](https://github.com/ubivar/ubivar-php/blob/master/tests/Notifier/NotifierSlackTest.php)| 
-|               | NotifierWebhook         | [`{}`](https://ubivar.com/docs/php#create_notifierwebhook)|  | [`123, {}`](https://ubivar.com/docs/php#update_notifierwebhook) | [`123`](https://ubivar.com/docs/php#delete_notifierwebhook) | [`{}`](https://ubivar.com/docs/php#list_notifierwebhook) | [See on github](https://github.com/ubivar/ubivar-php/blob/master/tests/Notifier/NotifierWebhookTest.php)| 
-|               | NotifierECommerce       |   |  | [`123, {}`](https://ubivar.com/docs/php#update_notifierecommerce) |  | [`{}`](https://ubivar.com/docs/php#list_notifierecommerce) | [See on github](https://github.com/ubivar/ubivar-php/blob/master/tests/Notifier/NotifierECommerceTest.php)| 
+| **Data**      | Event                   | [`{}`](https://oriskami.com/docs/php#create_event)| [`123`](https://oriskami.com/docs/php#retrieve_event) | [`123, {}`](https://oriskami.com/docs/php#update_event) | [`123`](https://oriskami.com/docs/php#delete_event) | [`{}`](https://oriskami.com/docs/php#list_event) | [See on github](https://github.com/oriskami/oriskami-php/blob/master/tests/Event/EventTest.php)| 
+|               | EventNotification      |  | [`123`](https://oriskami.com/docs/php#retrieve_eventnotification) |  |  | [`{}`](https://oriskami.com/docs/php#list_eventnotification) | [See on github](https://github.com/oriskami/oriskami-php/blob/master/tests/Event/EventNotificationTest.php)| 
+|               | EventLastId             |  |  |  |  | [`{}`](https://oriskami.com/docs/php#list_eventlastid) | [See on github](https://github.com/oriskami/oriskami-php/blob/master/tests/Event/EventLastIdTest.php)| 
+|               | EventLabel             | | [`123`](https://oriskami.com/docs/php#retrieve_eventlabel) | [`123, {}`](https://oriskami.com/docs/php#update_eventlabel) | [`123`](https://oriskami.com/docs/php#delete_eventlabel) | [`{}`](https://oriskami.com/docs/php#list_eventlabel) | [See on github](https://github.com/oriskami/oriskami-php/blob/master/tests/Event/EventLabelTest.php)| 
+|               | EventQueue             | | [`123`](https://oriskami.com/docs/php#retrieve_eventqueue) | [`123, {}`](https://oriskami.com/docs/php#update_eventqueue) | [`123`](https://oriskami.com/docs/php#delete_eventqueue) | [`{}`](https://oriskami.com/docs/php#list_eventqueue) | [See on github](https://github.com/oriskami/oriskami-php/blob/master/tests/Event/EventQueueTest.php)| 
+|               | EventReview            | | [`123`](https://oriskami.com/docs/php#retrieve_eventreview) | [`123, {}`](https://oriskami.com/docs/php#update_eventreview) | [`123`](https://oriskami.com/docs/php#delete_eventreview) | [`{}`](https://oriskami.com/docs/php#list_eventreview) | [See on github](https://github.com/oriskami/oriskami-php/blob/master/tests/Event/EventReviewTest.php)| 
+| **Filters** | FilterWhitelist        | [`{}`](https://oriskami.com/docs/php#create_filterwhitelist)| | [`123, {}`](https://oriskami.com/docs/php#update_filterwhitelist) | [`123`](https://oriskami.com/docs/php#delete_filterwhitelist) | [`{}`](https://oriskami.com/docs/php#list_filterwhitelist) | [See on github](https://github.com/oriskami/oriskami-php/blob/master/tests/Filter/FilterWhitelistTest.php)| 
+|               | FilterBlacklist        |   |  | [`123, {}`](https://oriskami.com/docs/php#update_filterblacklist) |  | [`{}`](https://oriskami.com/docs/php#list_filterblacklist) | [See on github](https://github.com/oriskami/oriskami-php/blob/master/tests/Filter/FilterBlacklistTest.php)| 
+|               | FilterRulesCustom      | [`{}`](https://oriskami.com/docs/php#create_filterrulescustom)|  |  [`123, {}`](https://oriskami.com/docs/php#update_filterrulescustom)| [`123`](https://oriskami.com/docs/php#delete_filterrulescustom) | [`{}`](https://oriskami.com/docs/php#list_filterrulescustom) | [See on github](https://github.com/oriskami/oriskami-php/blob/master/tests/Filter/FilterRulesCustomTest.php)| 
+|               | FilterRulesBase         |   |  | [`123, {}`](https://oriskami.com/docs/php#update_filterrulesbase) |  | [`{}`](https://oriskami.com/docs/php#list_filterrulesbase) | [See on github](https://github.com/oriskami/oriskami-php/blob/master/tests/Filter/FilterRulesBaseTest.php)| 
+|               | FilterRulesAI           |   |  | [`123, {}`](https://oriskami.com/docs/php#update_filterrulesai) | [`123`](https://oriskami.com/docs/php#delete_filterrulesai) | [`{}`](https://oriskami.com/docs/php#list_filterrulesai) | [See on github](https://github.com/oriskami/oriskami-php/blob/master/tests/Filter/FilterRulesAITest.php)| 
+|               | FilterScoringsDedicated |   |  | [`123, {}`](https://oriskami.com/docs/php#update_filterscoringsdedicated) |  | [`{}`](https://oriskami.com/docs/php#list_filterscoringsdedicated) | [See on github](https://github.com/oriskami/oriskami-php/blob/master/tests/Filter/FilterScoringsDedicatedTest.php)| 
+| **Notifications** | NotifierEmail      | [`{}`](https://oriskami.com/docs/php#create_notifieremail)|  | [`123, {}`](https://oriskami.com/docs/php#update_notifieremail) | [`123`](https://oriskami.com/docs/php#delete_notifieremail) | [`{}`](https://oriskami.com/docs/php#list_notifieremail) | [See on github](https://github.com/oriskami/oriskami-php/blob/master/tests/Notifier/NotifierEmailTest.php)| 
+|               | NotifierSms             | [`{}`](https://oriskami.com/docs/php#create_notifiersms)|  | [`123, {}`](https://oriskami.com/docs/php#update_notifiersms) | [`123`](https://oriskami.com/docs/php#delete_notifiersms) | [`{}`](https://oriskami.com/docs/php#list_notifiersms) | [See on github](https://github.com/oriskami/oriskami-php/blob/master/tests/Notifier/NotifierSmsTest.php)| 
+|               | NotifierSlack             | [`{}`](https://oriskami.com/docs/php#create_notifierslack)|  | [`123, {}`](https://oriskami.com/docs/php#update_notifierslack) | [`123`](https://oriskami.com/docs/php#delete_notifierslack) | [`{}`](https://oriskami.com/docs/php#list_notifierslack) | [See on github](https://github.com/oriskami/oriskami-php/blob/master/tests/Notifier/NotifierSlackTest.php)| 
+|               | NotifierWebhook         | [`{}`](https://oriskami.com/docs/php#create_notifierwebhook)|  | [`123, {}`](https://oriskami.com/docs/php#update_notifierwebhook) | [`123`](https://oriskami.com/docs/php#delete_notifierwebhook) | [`{}`](https://oriskami.com/docs/php#list_notifierwebhook) | [See on github](https://github.com/oriskami/oriskami-php/blob/master/tests/Notifier/NotifierWebhookTest.php)| 
+|               | NotifierECommerce       |   |  | [`123, {}`](https://oriskami.com/docs/php#update_notifierecommerce) |  | [`{}`](https://oriskami.com/docs/php#list_notifierecommerce) | [See on github](https://github.com/oriskami/oriskami-php/blob/master/tests/Notifier/NotifierECommerceTest.php)| 
 
 + *C*: Create
 + *R*: Retrieve
@@ -187,15 +187,15 @@ tests on github.
 
 To run the test suite:
 ```
-cd path/to/ubivar/ubivar-php
+cd path/to/oriskami/oriskami-php
 composer install 
 ./vendor/bin/phpunit -v 
 ```
 
 ## Issues and feature requests
 
-They are located [here](https://github.com/ubivar/ubivar-php/issues)
+They are located [here](https://github.com/oriskami/oriskami-php/issues)
 
 ## Author
 - Originally inspired from [stripe-php](https://github.com/stripe/stripe-php). 
-- Developed and maintained by Fabrice Colas for [Ubivar](https://ubivar.com). 
+- Developed and maintained by Fabrice Colas for [Oriskami](https://oriskami.com). 
