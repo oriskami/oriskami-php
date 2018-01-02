@@ -10,7 +10,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
 {
     protected static function authorizeFromEnv()
     {
-        $apiKey = getenv('UBIVAR_TEST_TOKEN_PHP_1');
+        $apiKey = getenv('ORISKAMI_TEST_TOKEN_PHP_1');
         Oriskami::setApiKey($apiKey);
         Oriskami::setApiVersion('1.0.0');
     }

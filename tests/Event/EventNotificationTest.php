@@ -12,7 +12,7 @@ class EventNotificationTest extends TestCase
         self::authorizeFromEnv();
         // CRUD ___________________________________
         // Retrieve
-        $this->retrieved  = EventNotification::retrieve("1")[0];
+        $this->retrieved  = EventNotification::retrieve("2")[0];
         // List
         $this->listed     = EventNotification::all(array("order" =>  "id"));
     }
@@ -35,15 +35,14 @@ class EventNotificationTest extends TestCase
     public function testId()
     {
         self::log(__METHOD__, "Should have the right 'id'");
-        $this->assertEquals($this->retrieved->id, "1");
+        $this->assertEquals($this->retrieved->id, "2");
         $this->assertEquals($this->listed[0]->id, "1");
         $this->assertEquals($this->listed[1]->id, "2");
-        $this->assertEquals($this->listed[2]->id, "3");
     }
 
     public function testAttr()
     {
         self::log(__METHOD__, "Should have the expected attributes");
-        $this->assertTrue(array_key_exists("notifier_emails", $this->retrieved->notifications));
+        $this->assertTrue(array_key_exists("notifier_sms", $this->retrieved->notifications));
     }
 }

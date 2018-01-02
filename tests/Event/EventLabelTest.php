@@ -38,7 +38,6 @@ class EventLabelTest extends TestCase
         $this->assertInstanceOf("Oriskami\\EventLabel", $this->deleted  );
         $this->assertInstanceOf("Oriskami\\EventLabel", $this->listed[0]);
         $this->assertInstanceOf("Oriskami\\EventLabel", $this->listed[1]);
-        $this->assertInstanceOf("Oriskami\\EventLabel", $this->listed[2]);
     }
 
     public function testId()
@@ -61,7 +60,7 @@ class EventLabelTest extends TestCase
         $this->assertEquals( $this->updated1->labels["is_loss"]."", "false");
         $this->assertEquals( $this->updated2->labels["is_loss"]."", "true");
         $this->assertEquals( $this->listed[0]->labels["is_loss"], "true");
-        $this->assertEquals( $this->listed[1]->labels["is_loss"], "false");
+        $this->assertEquals( $this->listed[1]->labels["is_loss"], "true");
         $this->assertNull($this->listed[2]->labels);
     }
 }

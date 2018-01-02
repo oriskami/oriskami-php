@@ -38,7 +38,6 @@ class EventQueueTest extends TestCase
         $this->assertInstanceOf("Oriskami\\EventQueue", $this->deleted  );
         $this->assertInstanceOf("Oriskami\\EventQueue", $this->listed[0]);
         $this->assertInstanceOf("Oriskami\\EventQueue", $this->listed[1]);
-        $this->assertInstanceOf("Oriskami\\EventQueue", $this->listed[2]);
     }
 
     public function testId()
@@ -50,7 +49,6 @@ class EventQueueTest extends TestCase
         $this->assertEquals($this->deleted->id  , "1");
         $this->assertEquals($this->listed[0]->id, "1");
         $this->assertEquals($this->listed[1]->id, "2");
-        $this->assertEquals($this->listed[2]->id, "3");
     }
 
     public function testAttr()
@@ -60,8 +58,7 @@ class EventQueueTest extends TestCase
         $this->assertFalse(array_key_exists("active", $this->deleted->queues));
         $this->assertEquals( $this->updated1->queues["active"], "rules_custom");
         $this->assertEquals( $this->updated2->queues["active"], "rules_base");
-        $this->assertEquals( $this->listed[0]->queues["active"],"rules_base");
-        $this->assertEquals( $this->listed[1]->queues["active"],"peer_review");
-        $this->assertNull($this->listed[2]->queues);
+        $this->assertEquals( $this->listed[0]->queue,"rules_base");
+        $this->assertEquals( $this->listed[1]->queue,"peer_review");
     }
 }

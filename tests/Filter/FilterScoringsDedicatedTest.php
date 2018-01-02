@@ -27,7 +27,6 @@ class FilterScoringsDedicatedTest extends TestCase
     {
         self::log(__METHOD__, "Should have the right class");
         $this->assertInstanceOf("Oriskami\\FilterScoringsDedicated", $this->updated1[0]);
-        $this->assertInstanceOf("Oriskami\\FilterScoringsDedicated", $this->updated1[0]);
         $this->assertInstanceOf("Oriskami\\FilterScoringsDedicated", $this->updated2[0]);
         $this->assertInstanceOf("Oriskami\\FilterScoringsDedicated", $this->listed1[0]);
     }

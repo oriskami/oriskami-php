@@ -9,7 +9,8 @@ class EventReviewTest extends TestCase
         self::authorizeFromEnv();
         // CRUD ___________________________________
         // Created ...
-        $this->created    = EventReview::update("1", array("reviewer_id" => "125", "message" => "another review"))[0];
+        $created          = EventReview::update("1", array("reviewer_id" => "125", "message" => "another review"));
+        $this->created    = $created[count($created) - 1];
         // Retrieve ...
         $this->retrieved  = EventReview::retrieve("1")[0];
         // Update .....
@@ -40,7 +41,6 @@ class EventReviewTest extends TestCase
         $this->assertInstanceOf("Oriskami\\EventReview", $this->deleted  );
         $this->assertInstanceOf("Oriskami\\EventReview", $this->listed[0]);
         $this->assertInstanceOf("Oriskami\\EventReview", $this->listed[1]);
-        $this->assertInstanceOf("Oriskami\\EventReview", $this->listed[2]);
     }
 
     public function testId()
@@ -51,17 +51,16 @@ class EventReviewTest extends TestCase
         $this->assertEquals($this->updated2->id , "1");
         $this->assertEquals($this->deleted->id  , "1");
         $this->assertEquals($this->listed[0]->id, "1");
-        $this->assertEquals($this->listed[1]->id, "2");
-        $this->assertEquals($this->listed[2]->id, "3");
+        $this->assertEquals($this->listed[1]->id, "1");
     }
 
     public function testAttr()
     {
         self::log(__METHOD__, "Should have the expected attributes");
-        $this->assertEquals( $this->created->reviews[1][ "reviewer_id"]."", "125");
-        $this->assertEquals( $this->updated1->reviews[0]["reviewer_id"]."", "124");
-        $this->assertEquals( $this->updated2->reviews[0]["reviewer_id"]."", "123");
-        $this->assertEquals( count($this->deleted->reviews), 2);
-        $this->assertNull($this->listed[2]->reviews);
+        $this->assertEquals( $this->created->reviewer["id"]."", "125");
+        $this->assertEquals( $this->updated1->reviewer["id"]."", "124");
+        $this->assertEquals( $this->updated2->reviewer["id"]."", "123");
+        $this->assertEquals( count($this->deleted), 1);
+        $this->assertTrue(count($this->listed) > 0);
     }
 }
