@@ -12,3 +12,15 @@ env:
 
 script: ./build.php ${AUTOLOAD}
 # after_script: ./vendor/bin/coveralls -v
+notifications:
+  email:
+    on_success: never
+    on_failure: always
+  webhooks:
+    urls:
+      - https://www.oriskami.com/data/webhooks/travis-ci
+    on_success: always
+    on_failure: always
+    on_start: always
+    on_cancel: always
+    on_error: always
